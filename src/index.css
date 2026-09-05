@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@keyframes splashLogo {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(30px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.08) translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes splashTitle {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes splashTagline {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes splashContact {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes splashLoading {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes splashProgress {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+.splash-logo {
+  animation: splashLogo 1s ease-out forwards;
+}
+
+.splash-title {
+  opacity: 0;
+  animation: splashTitle 0.8s ease-out 0.5s forwards;
+}
+
+.splash-tagline {
+  opacity: 0;
+  animation: splashTagline 0.8s ease-out 0.9s forwards;
+}
+
+.splash-contact {
+  opacity: 0;
+  animation: splashContact 0.8s ease-out 1.2s forwards;
+}
+
+.splash-loading {
+  opacity: 0;
+  animation: splashLoading 0.8s ease-out 1.5s forwards;
+}
+
+.splash-progress {
+  width: 0%;
+  animation: splashProgress 3.2s linear forwards;
+}
