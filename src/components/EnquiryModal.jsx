@@ -291,8 +291,8 @@ const serviceCategories = {
     ],
   },
 
-   "certification": {
-    title: "Certification",
+   "certifications": {
+    title: "Certifications",
     description: "Talent & workforce solutions",
     icon: BadgeCheck,
 
@@ -1063,7 +1063,7 @@ const EnquiryModal = ({ isOpen, onClose }) => {
                   type="button"
                   onClick={() =>
                     handleCategoryChange(
-                      "certification"
+                      "certifications"
                     )
                   }
                   className={`
@@ -1085,12 +1085,12 @@ const EnquiryModal = ({ isOpen, onClose }) => {
                     sm:px-4
 
                     ${activeCategory ===
-                      "certification"
+                      "certifications"
                       ? "border-[#E1C562]/50 bg-white text-slate-900 shadow-xl"
                       : "border-white/10 bg-white/[0.07] text-white hover:border-white/25 hover:bg-white/[0.12]"
                     }
                   `}
-                >
+                     >
                   <div
                     className="
                       flex
@@ -1110,7 +1110,7 @@ const EnquiryModal = ({ isOpen, onClose }) => {
                         rounded-xl
 
                         ${activeCategory ===
-                          "certification"
+                          "certifications"
                           ? "bg-gradient-to-br from-[#E1C562] to-[#B89B3E] text-white"
                           : "bg-[#E1C562]/10 text-[#E1C562]"
                         }
@@ -1121,7 +1121,7 @@ const EnquiryModal = ({ isOpen, onClose }) => {
 
                     <div className="min-w-0">
                       <p className="text-xs font-bold sm:text-sm">
-                        Certification
+                        Certifications
                       </p>
 
                       <p
@@ -1131,13 +1131,13 @@ const EnquiryModal = ({ isOpen, onClose }) => {
                           sm:text-[11px]
 
                           ${activeCategory ===
-                            "certification"
+                            "certifications"
                             ? "text-slate-500"
                             : "text-white/40"
                           }
                         `}
                       >
-                        Talent & workforce solutions
+                        Certification & compliance solutions
                       </p>
                     </div>
                   </div>
@@ -1150,7 +1150,7 @@ const EnquiryModal = ({ isOpen, onClose }) => {
                       transition-transform
 
                       ${activeCategory ===
-                        "certification"
+                        "certifications"
                         ? "translate-x-1 text-[#B89B3E]"
                         : "text-white/30"
                       }

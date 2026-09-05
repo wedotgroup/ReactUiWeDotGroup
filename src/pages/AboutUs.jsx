@@ -66,14 +66,14 @@ export default function AboutUs() {
     },
   ];
 
-  const companyHighlights = [
-    "IT & Software Solutions",
-    "Company Setup Services",
-    "Manpower & Recruitment",
-    "Surveillance Solutions",
-    "UAE & India Presence",
-    "Tailor-made Business Solutions",
-  ];
+  // const companyHighlights = [
+  //   "IT & Software Solutions",
+  //   "Company Setup Services",
+  //   "Manpower & Recruitment",
+  //   "Surveillance Solutions",
+  //   "UAE & India Presence",
+  //   "Tailor-made Business Solutions",
+  // ];
 
   const services = [
     {
@@ -231,7 +231,7 @@ export default function AboutUs() {
               assurance.
             </p>
       {/* Highlights */}
-      <div className="mt-8 grid gap-3 sm:grid-cols-2">
+      {/* <div className="mt-8 grid gap-3 sm:grid-cols-2">
 
         {companyHighlights.map((item, index) => (
           <div
@@ -249,7 +249,7 @@ export default function AboutUs() {
           </div>
         ))}
 
-      </div>
+      </div> */}
 
       {/* CTA */}
       <div className="mt-8">

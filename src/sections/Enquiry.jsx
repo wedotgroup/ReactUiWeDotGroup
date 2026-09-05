@@ -170,8 +170,8 @@ const serviceCategories = {
       },
     ],
   },
-  "certification": {
-    title: "Certification",
+  "certifications": {
+    title: "Certifications",
     description: "Talent & workforce solutions",
     icon: BadgeCheck ,
 
@@ -838,104 +838,104 @@ const Enquery = () => {
                 </button>
 
                   <button
-                                  type="button"
-                                  onClick={() =>
-                                    handleCategoryChange(
-                                      "certification"
-                                    )
-                                  }
-                                  className={`
-                                    flex
-                                    min-h-[62px]
-                                    w-full
-                                    shrink-0
-                                    items-center
-                                    justify-between
-                                    rounded-xl
-                                    border
-                                    px-3
-                                    py-3
-                                    text-left
-                                    transition-all
-                                    duration-300
-                                    sm:min-h-[70px]
-                                    sm:rounded-2xl
-                                    sm:px-4
-                
-                                    ${activeCategory ===
-                                      "certification"
-                                      ? "border-[#E1C562]/50 bg-white text-slate-900 shadow-xl"
-                                      : "border-white/10 bg-white/[0.07] text-white hover:border-white/25 hover:bg-white/[0.12]"
-                                    }
-                                  `}
-                                >
-                                  <div
-                                    className="
-                                      flex
-                                      min-w-0
-                                      items-center
-                                      gap-3
-                                    "
-                                  >
-                                    <div
-                                      className={`
-                                        flex
-                                        h-10
-                                        w-10
-                                        shrink-0
-                                        items-center
-                                        justify-center
-                                        rounded-xl
-                
-                                        ${activeCategory ===
-                                          "certification"
-                                          ? "bg-gradient-to-br from-[#E1C562] to-[#B89B3E] text-white"
-                                          : "bg-[#E1C562]/10 text-[#E1C562]"
-                                        }
-                                      `}
-                                    >
-                                      <Users size={19} />
-                                    </div>
-                
-                                    <div className="min-w-0">
-                                      <p className="text-xs font-bold sm:text-sm">
-                                        Certification
-                                      </p>
-                
-                                      <p
-                                        className={`
-                                          mt-1
-                                          text-[9px]
-                                          sm:text-[11px]
-                
-                                          ${activeCategory ===
-                                            "certification"
-                                            ? "text-slate-500"
-                                            : "text-white/40"
-                                          }
-                                        `}
-                                      >
-                                        Talent & workforce solutions
-                                      </p>
-                                    </div>
-                                  </div>
-                
-                                  <ArrowRight
-                                    size={17}
-                                    className={`
-                                      ml-2
-                                      shrink-0
-                                      transition-transform
-                
-                                      ${activeCategory ===
-                                        "certification"
-                                        ? "translate-x-1 text-[#B89B3E]"
-                                        : "text-white/30"
-                                      }
-                                    `}
-                                  />
-                                </button>
-              </div>
+                  type="button"
+                  onClick={() =>
+                    handleCategoryChange(
+                      "certifications"
+                    )
+                  }
+                  className={`
+                    flex
+                    min-h-[62px]
+                    w-full
+                    shrink-0
+                    items-center
+                    justify-between
+                    rounded-xl
+                    border
+                    px-3
+                    py-3
+                    text-left
+                    transition-all
+                    duration-300
+                    sm:min-h-[70px]
+                    sm:rounded-2xl
+                    sm:px-4
+
+                    ${activeCategory ===
+                      "certifications"
+                      ? "border-[#E1C562]/50 bg-white text-slate-900 shadow-xl"
+                      : "border-white/10 bg-white/[0.07] text-white hover:border-white/25 hover:bg-white/[0.12]"
+                    }
+                  `}
+                     >
+                  <div
+                    className="
+                      flex
+                      min-w-0
+                      items-center
+                      gap-3
+                    "
+                  >
+                    <div
+                      className={`
+                        flex
+                        h-10
+                        w-10
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-xl
+
+                        ${activeCategory ===
+                          "certifications"
+                          ? "bg-gradient-to-br from-[#E1C562] to-[#B89B3E] text-white"
+                          : "bg-[#E1C562]/10 text-[#E1C562]"
+                        }
+                      `}
+                    >
+                      <Users size={19} />
+                    </div>
+
+                    <div className="min-w-0">
+                      <p className="text-xs font-bold sm:text-sm">
+                        Certifications
+                      </p>
+
+                      <p
+                        className={`
+                          mt-1
+                          text-[9px]
+                          sm:text-[11px]
+
+                          ${activeCategory ===
+                            "certifications"
+                            ? "text-slate-500"
+                            : "text-white/40"
+                          }
+                        `}
+                      >
+                        Certification & compliance solutions
+                      </p>
+                    </div>
+                  </div>
+
+                  <ArrowRight
+                    size={17}
+                    className={`
+                      ml-2
+                      shrink-0
+                      transition-transform
+
+                      ${activeCategory ===
+                        "certifications"
+                        ? "translate-x-1 text-[#B89B3E]"
+                        : "text-white/30"
+                      }
+                    `}
+                  />
+                </button>
+                      </div>
 
               {/* SELECTED CATEGORY */}
               <div

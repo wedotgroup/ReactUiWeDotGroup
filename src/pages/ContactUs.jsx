@@ -226,7 +226,7 @@ export default function ContactUs() {
         {/* =========================================================
             MAIN CONTACT AREA
         ========================================================= */}
-        <section className="px-6 py-20 lg:px-8 lg:py-28">
+        <section className="mt-7">
 <Enquery/>
 
         </section>

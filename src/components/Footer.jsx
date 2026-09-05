@@ -51,8 +51,8 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
       path: "/hr-consultancy",
     },
     {
-      name: "Certification",
-      path: "/certification",
+      name: "Certifications",
+      path: "/certifications",
     },
     {
       name: "Contact Us",
@@ -480,15 +480,15 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
               <ContactItem
                 icon={<Phone size={18} />}
                 label="Dubai Office"
-                value="+971 4 261 9694"
-                href="tel:+97142619694"
+                value="+971 58 508 7199"
+                href="tel:+971 58 508 7199"
               />
 
               <ContactItem
                 icon={<Phone size={18} />}
-                label="UAE Mobile"
-                value="+971 58 508 7199"
-                href="tel:+971585087199"
+                label="India Mobile"
+                value="+919999999999"
+                href="tel:+919999999999"
               />
 
             </div>
@@ -599,14 +599,14 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
         {/* UNITED KINGDOM */}
         <InternationalContact
           country="United Kingdom"
-          code="+44"
+          code="+971"
           flag="/logo/uk-flag.png"
 
           /*
             Replace these with your actual UK number
           */
-          whatsapp="447000000000"
-          phone="+447000000000"
+          whatsapp="+971 58 508 7199"
+          phone="+971 58 508 7199"
         />
 
       </div>
@@ -1034,9 +1034,7 @@ const InternationalContact = ({
       </a>
 
 
-      {/* =================================================
-          CALL
-      ================================================== */}
+     
 
       <a
         href={`tel:${phone}`}
