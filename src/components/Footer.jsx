@@ -38,7 +38,7 @@ const Footer = () => {
     },
     {
       name: "IT Consultancy",
-      path: "/it-consultancy",
+      path: "/itconsultancy",
     },
     {
       name: "HR Consultancy",

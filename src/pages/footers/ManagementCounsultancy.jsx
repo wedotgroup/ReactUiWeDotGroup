@@ -6,87 +6,108 @@ const services = [
     title: "Business Set Up",
     description:
       "Efficient business setup solutions to streamline operations and ensure success.",
-    image: "/images/business-setup.jpg",
+    image:
+      "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80",
     link: "#",
   },
   {
     title: "Business Consulting",
     description:
       "Business consulting helps optimize strategies, improve efficiency, and drive growth.",
-    image: "/images/business-consulting.jpg",
+    image:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
     link: "#",
   },
   {
     title: "Cloud Computing",
     description:
       "Cloud computing provides scalable, flexible, and efficient online services.",
-    image: "/images/cloud-computing.jpg",
+    image:
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
     link: "#",
   },
   {
     title: "Risk Consulting Services",
     description:
       "Risk consulting services identify, assess, and mitigate potential business risks.",
-    image: "/images/risk-consulting.jpg",
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
     link: "#",
   },
   {
     title: "Feasibility Study",
     description:
       "A feasibility study evaluates project viability, risks, and potential success.",
-    image: "/images/feasibility-study.jpg",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
     link: "#",
   },
   {
     title: "Due Diligence",
     description:
       "Due diligence involves investigating risks, opportunities, and financial stability.",
-    image: "/images/due-diligence.jpg",
+    image:
+      "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80",
     link: "#",
   },
   {
     title: "Business Plan",
     description:
       "A business plan outlines goals, strategies, and financial projections.",
-    image: "/images/business-plan.jpg",
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
     link: "#",
   },
   {
     title: "Business Valuation",
     description:
       "Business valuation determines a company's financial worth and market potential.",
-    image: "/images/business-valuation.jpg",
+    image:
+      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80",
     link: "#",
   },
   {
     title: "Book-Keeping",
     description:
       "Bookkeeping involves recording financial transactions for accurate business accounting.",
-    image: "/images/bookkeeping.jpg",
+    image:
+      "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1200&q=80",
     link: "#",
   },
   {
     title: "Financial Management",
     description:
       "Financial management involves planning, controlling, and analyzing financial resources.",
-    image: "/images/financial-management.jpg",
+    image:
+      "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80",
     link: "#",
   },
   {
     title: "Cost Accounting",
     description:
       "Cost accounting tracks, analyzes, and manages costs for business efficiency.",
-    image: "/images/cost-accounting.jpg",
+    image:
+      "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80",
     link: "#",
   },
   {
     title: "Payroll Accounting",
     description:
       "Payroll accounting manages employee compensation, taxes, and financial records.",
-    image: "/images/payroll-accounting.jpg",
+    image:
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
+    link: "#",
+  },
+   {
+    title: "Accounting Advisory",
+    description:
+      "Accounting advisory offers expert guidance on financial strategies and management.",
+    image:
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
     link: "#",
   },
 ];
+
 
 function ManagementConsultancy() {
   return (
@@ -117,7 +138,7 @@ function ManagementConsultancy() {
 
           {/* Title */}
           <h1 className="max-w-4xl text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
-            Management Consultancy
+            Management <span className="text-[#B89B3E]">Consultancy</span>
           </h1>
 
           <div className="mt-6 h-1 w-16 rounded-full bg-emerald-400" />
