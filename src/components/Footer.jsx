@@ -12,7 +12,6 @@ import {
   FaWhatsapp,
   FaFacebookF,
   FaInstagram,
-  FaLinkedinIn,
   FaTiktok,
   FaSnapchatGhost,
 } from "react-icons/fa";
@@ -136,11 +135,7 @@ const Footer = () => {
       url: "https://www.instagram.com/wedotgroup/",
       label: "Instagram",
     },
-    {
-      icon: <FaLinkedinIn />,
-      url: "https://www.linkedin.com/",
-      label: "LinkedIn",
-    },
+   
     {
       icon: <FaTiktok />,
       url: "https://www.tiktok.com/@wedotgroup",
@@ -636,38 +631,32 @@ const Footer = () => {
    CERTIFICATION LOGO
 ========================================================= */
 
-const CertificationLogo = ({
-  src,
-  alt,
-}) => {
-
+const CertificationLogo = ({ src, alt }) => {
   return (
     <div
       className="
         flex
-        h-[72px]
-        w-[72px]
+        h-[78px]
+        w-[78px]
         shrink-0
         items-center
         justify-center
         overflow-hidden
         rounded-full
-        border
-        border-white/10
-        bg-white/[0.045]
-        p-2
-        shadow-[inset_0_0_20px_rgba(255,255,255,0.02)]
+        border-2
+        border-[#E1C562]/40
+        bg-white
+        p-1
+        shadow-[0_4px_20px_rgba(0,0,0,0.15)]
         transition-all
         duration-300
         hover:-translate-y-1
-        hover:border-[#E1C562]/50
-        hover:bg-[#E1C562]/5
-        hover:shadow-[0_8px_25px_rgba(225,197,98,0.08)]
-        sm:h-[78px]
-        sm:w-[78px]
+        hover:border-[#E1C562]
+        hover:shadow-[0_8px_25px_rgba(225,197,98,0.18)]
+        sm:h-[82px]
+        sm:w-[82px]
       "
     >
-
       <img
         src={src}
         alt={alt}
@@ -676,13 +665,14 @@ const CertificationLogo = ({
           block
           h-full
           w-full
+          rounded-full
           object-contain
         "
       />
-
     </div>
   );
 };
+
 
 
 /* =========================================================

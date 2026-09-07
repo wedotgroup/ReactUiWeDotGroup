@@ -685,9 +685,7 @@ export default function ContactUs() {
       </div>
 
 
-      {/* =======================================================
-          ENQUIRY MODAL
-      ======================================================= */}
+   
       <EnquiryModal
         isOpen={isEnquiryOpen}
         onClose={() => setIsEnquiryOpen(false)}

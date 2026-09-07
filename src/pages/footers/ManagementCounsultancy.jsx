@@ -1,7 +1,7 @@
-import React from 'react'
-
-export const ManagementCounsultancy = () => {
+function  ManagementCounsultancy () {
   return (
     <div>ManagementCounsultancy</div>
   )
 }
+
+export default ManagementCounsultancy;
