@@ -50,6 +50,7 @@ const Navbar = () => {
   const megaMenus = {
     management: {
       title: "Management Consultancy",
+      "slug":"management-consultancy",
       description:
         "Strategic business solutions for company formation, advisory, accounting, financial management and sustainable growth.",
       icon: BriefcaseBusiness,
@@ -216,6 +217,7 @@ const Navbar = () => {
 
     it: {
       title: "IT Consultancy",
+      "slug":"itconsultancy",
       description:
         "Modern technology solutions that help businesses innovate, scale and stay competitive.",
       icon: Cpu,
@@ -503,6 +505,7 @@ const Navbar = () => {
                       }
                     `}
                   >
+                    
                     Management Consultancy
 
                     <ChevronDown

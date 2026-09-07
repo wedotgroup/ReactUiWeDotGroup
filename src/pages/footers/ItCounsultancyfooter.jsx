@@ -1,9 +1,13 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import Enquiry from "../../sections/Enquiry";
+import { Link } from "react-router-dom";
+
 
 const services = [
   {
     title: "Website Design",
+    slug: "website-design",
     description:
       "Create stunning, responsive websites that engage and convert visitors effectively.",
     image:
@@ -11,6 +15,7 @@ const services = [
   },
   {
     title: "Web Development",
+    slug: "web-development",
     description:
       "Building custom, scalable websites to enhance your business online presence.",
     image:
@@ -18,6 +23,7 @@ const services = [
   },
   {
     title: "Software Development",
+    slug: "software-development",
     description:
       "Crafting innovative software solutions to streamline your business operations.",
     image:
@@ -25,6 +31,7 @@ const services = [
   },
   {
     title: "Mobile App Development",
+    slug: "mobile-app-development",
     description:
       "Designing intuitive mobile apps to enhance user experience and engagement.",
     image:
@@ -32,6 +39,7 @@ const services = [
   },
   {
     title: "Graphics Design",
+    slug: "graphics-design",
     description:
       "Creating visually stunning designs that communicate your brand’s unique story.",
     image:
@@ -39,6 +47,7 @@ const services = [
   },
   {
     title: "SEO",
+    slug: "seo",
     description:
       "Boost your website's visibility with expert SEO strategies and services.",
     image:
@@ -46,6 +55,7 @@ const services = [
   },
   {
     title: "SMO/SMM",
+    slug: "smo-smm",
     description:
       "Increase brand awareness and engagement with SMO/SMM strategies online.",
     image:
@@ -53,6 +63,7 @@ const services = [
   },
   {
     title: "Google Ads (PPC)",
+    slug: "google-ads-ppc",
     description:
       "Maximize ROI with Google Ads PPC campaigns targeting the right audience.",
     image:
@@ -60,6 +71,7 @@ const services = [
   },
   {
     title: "Content Writing Services",
+    slug: "content-writing-services",
     description:
       "Delivering impactful content that enhances your brand’s online presence.",
     image:
@@ -67,6 +79,7 @@ const services = [
   },
   {
     title: "Bulk Email Marketing",
+    slug: "bulk-email-marketing",
     description:
       "Reach a wide audience with personalized, effective bulk email marketing campaigns.",
     image:
@@ -74,6 +87,7 @@ const services = [
   },
   {
     title: "Bulk SMS Marketing",
+    slug: "bulk-sms-marketing",
     description:
       "Send personalized, effective bulk SMS campaigns to reach your audience.",
     image:
@@ -81,6 +95,7 @@ const services = [
   },
   {
     title: "SSL Certification",
+    slug: "ssl-certification",
     description:
       "Ensure secure connections with trusted SSL certifications for your website.",
     image:
@@ -88,6 +103,7 @@ const services = [
   },
   {
     title: "Web Hosting /Server",
+    slug: "web-hosting-server",
     description:
       "Reliable web hosting and server solutions for fast, secure online performance.",
     image:
@@ -95,6 +111,7 @@ const services = [
   },
   {
     title: "Domain",
+    slug: "domain",
     description:
       "Secure your online presence with our reliable and trusted domain services.",
     image:
@@ -102,6 +119,7 @@ const services = [
   },
   {
     title: "WhatsApp Api Integration",
+    slug: "whatsapp-api-integration",
     description:
       "Automate communication and enhance support with WhatsApp API integration.",
     image:
@@ -109,6 +127,7 @@ const services = [
   },
   {
     title: "Logistic Integration",
+    slug: "logistic-integration",
     description:
       "Seamless logistics integration enhances efficiency, streamlines operations, and growth.",
     image:
@@ -116,6 +135,7 @@ const services = [
   },
   {
     title: "Payment Gateway Integration",
+    slug: "payment-gateway-integration",
     description:
       "Payment gateway integration enables secure, fast transactions for seamless experiences.",
     image:
@@ -260,17 +280,18 @@ function ItCounsultancyfooter() {
                     {service.description}
                   </p>
 
-                  <a
-                    href={service.link}
-                    className="group/link mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#087f5b] transition hover:text-[#011810]"
-                  >
-                    Read More
+                 <Link
+  to={`/it-consultancy/${service.slug}`}
+  className="group/link mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#087f5b] transition hover:text-[#011810]"
+>
+  Read More
 
-                    <ArrowRight
-                      size={16}
-                      className="transition-transform duration-300 group-hover/link:translate-x-1"
-                    />
-                  </a>
+  <ArrowRight
+    size={16}
+    className="transition-transform duration-300 group-hover/link:translate-x-1"
+  />
+</Link>
+
 
                 </div>
 
@@ -284,46 +305,7 @@ function ItCounsultancyfooter() {
       </section>
 
 
-      {/* =====================================================
-          BOTTOM CTA
-      ====================================================== */}
-      <section className="bg-[#011810]">
-
-        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
-
-          <div className="flex flex-col items-start justify-between gap-7 md:flex-row md:items-center">
-
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-400">
-                Need IT Support?
-              </p>
-
-              <h2 className="mt-3 max-w-2xl text-3xl font-bold text-white sm:text-4xl">
-                Let's build the right technology solution for your business.
-              </h2>
-
-              <p className="mt-4 max-w-xl text-sm leading-7 text-gray-300">
-                Talk to our team about your requirements and discover how
-                our IT services can help your business grow.
-              </p>
-            </div>
-
-            <a
-              href="#"
-              className="group inline-flex shrink-0 items-center gap-3 rounded-md bg-emerald-400 px-6 py-3.5 text-sm font-bold text-[#011810] transition hover:bg-emerald-300"
-            >
-              Get Started
-
-              <ArrowRight
-                size={18}
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </a>
-
-          </div>
-
-        </div>
-      </section>
+   <Enquiry/>
 
     </main>
   );

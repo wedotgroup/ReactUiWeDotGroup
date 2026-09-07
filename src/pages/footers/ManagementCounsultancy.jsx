@@ -1,118 +1,120 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import Enquiry from "../../sections/Enquiry";
+import { Link } from "react-router-dom";
+
 
 const services = [
   {
     title: "Business Set Up",
+    slug: "business-plan",
     description:
       "Efficient business setup solutions to streamline operations and ensure success.",
     image:
       "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80",
-    link: "#",
   },
   {
     title: "Business Consulting",
+    slug: "business-consulting",
     description:
       "Business consulting helps optimize strategies, improve efficiency, and drive growth.",
     image:
       "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
-    link: "#",
   },
   {
     title: "Cloud Computing",
+    slug: "cloud-computing",
     description:
       "Cloud computing provides scalable, flexible, and efficient online services.",
     image:
       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
-    link: "#",
   },
   {
     title: "Risk Consulting Services",
+    slug: "risk-consulting-services",
     description:
       "Risk consulting services identify, assess, and mitigate potential business risks.",
     image:
       "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
-    link: "#",
   },
   {
     title: "Feasibility Study",
+    slug: "feasibility-study",
     description:
       "A feasibility study evaluates project viability, risks, and potential success.",
     image:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-    link: "#",
   },
   {
     title: "Due Diligence",
+    slug: "due-diligence",
     description:
       "Due diligence involves investigating risks, opportunities, and financial stability.",
     image:
       "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80",
-    link: "#",
   },
   {
     title: "Business Plan",
+    slug: "business-plan",
     description:
       "A business plan outlines goals, strategies, and financial projections.",
     image:
       "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
-    link: "#",
   },
   {
     title: "Business Valuation",
+    slug: "business-valuation",
     description:
       "Business valuation determines a company's financial worth and market potential.",
     image:
       "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80",
-    link: "#",
   },
   {
     title: "Book-Keeping",
+    slug: "book-keeping",
     description:
       "Bookkeeping involves recording financial transactions for accurate business accounting.",
     image:
       "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1200&q=80",
-    link: "#",
   },
   {
     title: "Financial Management",
+    slug: "financial-management",
     description:
       "Financial management involves planning, controlling, and analyzing financial resources.",
     image:
       "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80",
-    link: "#",
   },
   {
     title: "Cost Accounting",
+    slug: "cost-accounting",
     description:
       "Cost accounting tracks, analyzes, and manages costs for business efficiency.",
     image:
       "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80",
-    link: "#",
   },
   {
     title: "Payroll Accounting",
+    slug: "payroll-accounting",
     description:
       "Payroll accounting manages employee compensation, taxes, and financial records.",
     image:
       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
-    link: "#",
   },
-   {
+  {
     title: "Accounting Advisory",
+    slug: "accounting-advisory",
     description:
       "Accounting advisory offers expert guidance on financial strategies and management.",
     image:
       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
-    link: "#",
   },
 ];
-
 
 function ManagementConsultancy() {
   return (
     <main className="w-full bg-white">
-      
+      {/* HERO */}
       <section className="relative overflow-hidden bg-[#011810]">
         {/* Background shapes */}
         <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-emerald-400/10 blur-[100px]" />
@@ -138,16 +140,15 @@ function ManagementConsultancy() {
 
           {/* Title */}
           <h1 className="max-w-4xl text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
-            Management <span className="text-[#B89B3E]">Consultancy</span>
+            Management{" "}
+            <span className="text-[#B89B3E]">Consultancy</span>
           </h1>
 
           <div className="mt-6 h-1 w-16 rounded-full bg-emerald-400" />
         </div>
       </section>
 
-      {/* =====================================================
-          INTRO
-      ====================================================== */}
+      {/* INTRO */}
       <section className="bg-white">
         <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
           <h2 className="text-3xl font-bold leading-tight text-[#011810] sm:text-4xl">
@@ -170,15 +171,13 @@ function ManagementConsultancy() {
         </div>
       </section>
 
-      {/* =====================================================
-          SERVICES
-      ====================================================== */}
+      {/* SERVICES */}
       <section className="bg-[#f7f8f7]">
         <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
           <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
               <article
-                key={service.title}
+                key={service.slug}
                 className="group overflow-hidden rounded-md bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 {/* Image */}
@@ -203,16 +202,17 @@ function ManagementConsultancy() {
                     {service.description}
                   </p>
 
-                  <a
-                    href={service.link}
+                  {/* Service Link */}
+                  <Link
+                    to={`/management-consultancy/${service.slug}`}
                     className="group/link mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#087f5b] transition hover:text-[#011810]"
                   >
-                    Read More..
+                    Read More
                     <ArrowRight
                       size={16}
                       className="transition-transform duration-300 group-hover/link:translate-x-1"
                     />
-                  </a>
+                  </Link>
                 </div>
               </article>
             ))}
@@ -220,7 +220,7 @@ function ManagementConsultancy() {
         </div>
       </section>
 
-      
+      <Enquiry />
     </main>
   );
 }
