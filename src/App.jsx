@@ -6,9 +6,14 @@ import SplashScreen from "./components/SplashScreen";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import HrConsultancy from "./pages/HrConsultancy";
-
+import PrivecyPolice from "./pages/footers/PrivacyPolice";
 import ManageConsultancy from "./pages/manage-consultancy/ManageConsultancy";
 import ItConsultancy from "./pages/it-consultancy/ItConsultancy";
+import TermCondition from "./pages/footers/TermCondition";
+import RFCPolicy from "./pages/footers/RFCPolicy";
+import ServiceDeliveryPolicy from "./pages/footers/ServiceDeliveryPolicy";
+import PaymentPolicy from "./pages/footers/PaymentPolicy";
+import Disclaimer from "./pages/footers/Disclaimer";
 
 
 function App() {
@@ -62,6 +67,12 @@ function App() {
           path="/it-consultancy/:slug"
           element={<ItConsultancy />}
         />
+        <Route path="/privacy-policy" element={<PrivecyPolice/>}/>
+        <Route path="/terms-conditions" element={<TermCondition/>}/>
+        <Route path="/refund-cancellation-policy" element={<RFCPolicy/>}/>
+        <Route path="/service-delivery-policy" element={<ServiceDeliveryPolicy/>}/>
+        <Route path="/payment-policy" element={<PaymentPolicy/>}/>
+        <Route path="/disclaimer" element={<Disclaimer/>}/>
 
       </Route>
 

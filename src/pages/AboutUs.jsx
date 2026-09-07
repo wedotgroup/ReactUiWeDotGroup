@@ -230,26 +230,7 @@ export default function AboutUs() {
               innovative, and security-driven businesses in need of operational
               assurance.
             </p>
-      {/* Highlights */}
-      {/* <div className="mt-8 grid gap-3 sm:grid-cols-2">
-
-        {companyHighlights.map((item, index) => (
-          <div
-            key={index}
-            className="flex items-center gap-3 rounded-xl border border-gray-200 bg-gray-50 p-4 transition duration-300 hover:border-[#E1C562]/50 hover:bg-[#E1C562]/5"
-          >
-            <CheckCircle2
-              size={18}
-              className="shrink-0 text-[#B89B3E]"
-            />
-
-            <span className="text-sm font-semibold text-gray-700">
-              {item}
-            </span>
-          </div>
-        ))}
-
-      </div> */}
+     
 
       {/* CTA */}
       <div className="mt-8">

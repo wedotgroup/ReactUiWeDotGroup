@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaWhatsapp } from "react-icons/fa";
+import ReactCountryFlag from "react-country-flag";
 
 import {
   Mail,
@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import {
+  FaWhatsapp,
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
@@ -18,26 +19,20 @@ import {
 
 
 const Footer = () => {
+
   /* =====================================================
       QUICK LINKS
   ====================================================== */
-const CertificationLogo = ({ src, alt, className = "" }) => {
-  return (
-    <div
-      className={`h-16 w-16 shrink-0 overflow-hidden rounded-full ${className}`}
-    >
-      <img
-        src={src}
-        alt={alt}
-        className="h-full w-full object-cover"
-      />
-    </div>
-  );
-};
 
   const quickLinks = [
-    { name: "Home", path: "/" },
-    { name: "About Us", path: "/about" },
+    {
+      name: "Home",
+      path: "/",
+    },
+    {
+      name: "About Us",
+      path: "/about",
+    },
     {
       name: "Management Consultancy",
       path: "/management-consultancy",
@@ -56,9 +51,10 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
     },
     {
       name: "Contact Us",
-      path: "/contact-us",
+      path: "/contact",
     },
   ];
+
 
   /* =====================================================
       HR LINKS
@@ -92,6 +88,7 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
     },
   ];
 
+
   /* =====================================================
       POLICY LINKS
   ====================================================== */
@@ -124,6 +121,10 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
   ];
 
 
+  /* =====================================================
+      SOCIAL LINKS
+  ====================================================== */
+
   const socialLinks = [
     {
       icon: <FaFacebookF />,
@@ -135,27 +136,35 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
       url: "https://www.instagram.com/wedotgroup/",
       label: "Instagram",
     },
-  
+    {
+      icon: <FaLinkedinIn />,
+      url: "https://www.linkedin.com/",
+      label: "LinkedIn",
+    },
     {
       icon: <FaTiktok />,
-      url: "https://www.tiktok.com/@wedotgroup?_t=8nWLxLRozgm&_r=1",
+      url: "https://www.tiktok.com/@wedotgroup",
       label: "TikTok",
     },
     {
       icon: <FaSnapchatGhost />,
-      url: "https://www.tiktok.com/@wedotgroup?_t=8nWLxLRozgm&_r=1",
+      url: "https://www.snapchat.com/",
       label: "Snapchat",
     },
   ];
 
+
   return (
     <footer className="relative overflow-hidden bg-[#011810] text-white">
 
-     
+      {/* =====================================================
+          BACKGROUND DECORATION
+      ====================================================== */}
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
 
-        {/* Gold glow */}
+        {/* Gold Glow */}
+
         <div
           className="
             absolute
@@ -164,7 +173,9 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
           "
         />
 
-        {/* Green glow */}
+
+        {/* Green Glow */}
+
         <div
           className="
             absolute
@@ -177,6 +188,7 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
             blur-[130px]
           "
         />
+
 
         <div
           className="
@@ -191,28 +203,33 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
           "
         />
 
-        {/* Diagonal lines */}
+
+        {/* Diagonal Lines */}
+
         <div
           className="
             absolute
             -inset-[35%]
             rotate-[-12deg]
-            opacity-30
             bg-[repeating-linear-gradient(115deg,transparent_0px,transparent_70px,rgba(225,197,98,0.08)_71px,rgba(225,197,98,0.08)_73px,transparent_74px,transparent_145px)]
+            opacity-30
           "
         />
+
 
         <div
           className="
             absolute
             -inset-[35%]
             rotate-[12deg]
-            opacity-15
             bg-[repeating-linear-gradient(65deg,transparent_0px,transparent_110px,rgba(240,215,125,0.08)_111px,rgba(240,215,125,0.08)_113px,transparent_114px,transparent_220px)]
+            opacity-15
           "
         />
 
-        {/* Top line */}
+
+        {/* Top Line */}
+
         <div
           className="
             absolute
@@ -227,7 +244,9 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
           "
         />
 
-        {/* Bottom line */}
+
+        {/* Bottom Line */}
+
         <div
           className="
             absolute
@@ -242,7 +261,9 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
           "
         />
 
-        {/* Decorative circles */}
+
+        {/* Decorative Circles */}
+
         <div
           className="
             absolute
@@ -272,7 +293,9 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
       </div>
 
 
-     
+      {/* =====================================================
+          MAIN FOOTER
+      ====================================================== */}
 
       <div
         className="
@@ -299,11 +322,14 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
           "
         >
 
-    
+          {/* =================================================
+              BRAND
+          ================================================= */}
 
           <div className="lg:col-span-3">
 
-            {/* Main Logo */}
+            {/* Logo */}
+
             <div className="mb-7">
 
               <Link
@@ -315,6 +341,7 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
                   hover:scale-[1.02]
                 "
               >
+
                 <img
                   src="/logo/mainlogo.png"
                   alt="We Dot Group"
@@ -327,6 +354,7 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
                     sm:w-[190px]
                   "
                 />
+
               </Link>
 
             </div>
@@ -336,47 +364,39 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
                 CERTIFICATION LOGOS
             ================================================== */}
 
-            <div className="flex w-full max-w-[270px] items-center gap-3">
-              {/* IAB */}
+            <div className="flex items-center gap-3">
+
               <CertificationLogo
                 src="/logo/iab.png"
                 alt="IAB Certification"
-                className="h-16 w-16 shrink-0 rounded-full object-cover"
               />
 
-              {/* ISO */}
               <CertificationLogo
                 src="/logo/iso.png"
                 alt="ISO Certification"
-                className="h-16 w-16 shrink-0 rounded-full object-cover"
               />
 
-              {/* MSME */}
               <CertificationLogo
                 src="/logo/MSME.png"
                 alt="MSME Certification"
-                className="h-16 w-16 shrink-0 rounded-full object-cover"
               />
+
             </div>
 
 
+            {/* =================================================
+                SOCIAL
+            ================================================== */}
 
-            {/* Social */}
-            <div
-              className="
-                mt-7
-                flex
-                flex-wrap
-                items-center
-                gap-3
-              "
-            >
+            <div className="mt-7 flex flex-wrap items-center gap-3">
 
               {socialLinks.map((social) => (
+
                 <a
                   key={social.label}
                   href={social.url}
                   aria-label={social.label}
+                  title={social.label}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
@@ -398,8 +418,11 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
                     hover:text-[#011810]
                   "
                 >
+
                   {social.icon}
+
                 </a>
+
               ))}
 
             </div>
@@ -454,7 +477,7 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
 
 
           {/* =================================================
-              CONTACT
+              CONTACT DETAILS
           ================================================== */}
 
           <div className="lg:col-span-3">
@@ -481,13 +504,13 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
                 icon={<Phone size={18} />}
                 label="Dubai Office"
                 value="+971 58 508 7199"
-                href="tel:+971 58 508 7199"
+                href="tel:+971585087199"
               />
 
               <ContactItem
                 icon={<Phone size={18} />}
                 label="India Mobile"
-                value="+919999999999"
+                value="+91 99999 99999"
                 href="tel:+919999999999"
               />
 
@@ -540,12 +563,17 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
               md:text-left
             "
           >
+
             © {new Date().getFullYear()} Copyrights by{" "}
+
             <span className="font-medium text-gray-400">
               We Dot Group FZE
             </span>
+
             . All Rights Reserved.
+
           </p>
+
 
           <p
             className="
@@ -561,11 +589,6 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
         </div>
 
       </div>
-
-
-      {/* =====================================================
-          FLOATING INTERNATIONAL CONTACTS
-      ====================================================== */}
 
       <div
         className="
@@ -583,30 +606,23 @@ const CertificationLogo = ({ src, alt, className = "" }) => {
       >
 
         {/* INDIA */}
-        <InternationalContact
-          country="India"
-          code="+91"
-          flag="/logo/india-flag.png"
 
-          /*
-            Replace these with your actual India number
-          */
+        <InternationalContact
+          countryCode="IN"
           whatsapp="919999999999"
           phone="+919999999999"
         />
 
 
-        {/* UNITED KINGDOM */}
-        <InternationalContact
-          country="United Kingdom"
-          code="+971"
-          flag="/logo/uk-flag.png"
+       
 
-          /*
-            Replace these with your actual UK number
-          */
-          whatsapp="+971 58 508 7199"
-          phone="+971 58 508 7199"
+
+        {/* UAE */}
+
+        <InternationalContact
+          countryCode="AE"
+          whatsapp="971585087199"
+          phone="+971585087199"
         />
 
       </div>
@@ -624,6 +640,7 @@ const CertificationLogo = ({
   src,
   alt,
 }) => {
+
   return (
     <div
       className="
@@ -675,6 +692,7 @@ const CertificationLogo = ({
 const FooterTitle = ({
   title,
 }) => {
+
   return (
     <div className="mb-6">
 
@@ -715,10 +733,12 @@ const FooterLinks = ({
   items,
   external = false,
 }) => {
+
   return (
     <ul className="space-y-3.5">
 
       {items.map((item) => (
+
         <li key={item.path}>
 
           {external ? (
@@ -800,6 +820,7 @@ const FooterLinks = ({
           )}
 
         </li>
+
       ))}
 
     </ul>
@@ -817,14 +838,11 @@ const ContactItem = ({
   value,
   href,
 }) => {
+
   return (
     <a
       href={href}
-      className="
-        group
-        flex
-        gap-3
-      "
+      className="group flex gap-3"
     >
 
       <div
@@ -858,6 +876,7 @@ const ContactItem = ({
         </span>
 
       </div>
+
 
       <div className="min-w-0">
 
@@ -901,176 +920,47 @@ const ContactItem = ({
 const InternationalContact = ({
   country,
   code,
-  flag,
+  countryCode,
   whatsapp,
   phone,
 }) => {
   return (
-    <div
-      className="
-        group
-        flex
-        items-center
-        gap-1.5
-        rounded-full
-        border
-        border-white/10
-        bg-[#032219]/95
-        p-1.5
-        pr-2
-        shadow-[0_12px_40px_rgba(0,0,0,0.45)]
-        backdrop-blur-xl
-        transition-all
-        duration-300
-        hover:border-[#E1C562]/40
-        hover:bg-[#062a20]
-        sm:gap-2
-      "
-    >
-
-      {/* =================================================
-          FLAG
-      ================================================== */}
-
-      <div
-        className="
-          flex
-          h-10
-          w-10
-          shrink-0
-          items-center
-          justify-center
-          overflow-hidden
-          rounded-full
-          border
-          border-[#E1C562]/30
-          bg-[#011810]
-          shadow-[0_2px_10px_rgba(0,0,0,0.3)]
-          sm:h-11
-          sm:w-11
-        "
-      >
-
-        <img
-          src={flag}
-          alt={`${country} flag`}
-          className="
-            block
-            h-full
-            w-full
-            object-cover
-          "
-          onError={(e) => {
-            e.currentTarget.style.display = "none";
-          }}
+    <div className="group flex items-center gap-2 rounded-full border border-white/10 bg-[#032219]/95 p-1.5 pr-2 shadow-lg backdrop-blur-xl transition hover:border-[#E1C562]/40 hover:bg-[#062a20]">
+      
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#E1C562]/30 bg-[#011810]">
+        <ReactCountryFlag
+          countryCode={countryCode}
+          svg
+          title={`${country} flag`}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
-
       </div>
 
-
-      {/* =================================================
-          COUNTRY
-      ================================================== */}
-
-      <div className="hidden min-w-[68px] sm:block">
-
-        <p
-          className="
-            truncate
-            text-[9px]
-            font-medium
-            uppercase
-            tracking-wider
-            text-gray-500
-          "
-        >
-          {country}
-        </p>
-
-        <p
-          className="
-            mt-0.5
-            text-xs
-            font-semibold
-            text-white
-          "
-        >
-          {code}
-        </p>
-
-      </div>
-
-
-      {/* =================================================
-          WHATSAPP
-      ================================================== */}
+      
 
       <a
-        href={`https://wa.me/${whatsapp}`}
+        href={`https://wa.me/${String(whatsapp).replace(/\D/g, "")}`}
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`WhatsApp ${country}`}
-        title={`WhatsApp ${country}`}
-        className="
-          flex
-          h-9
-          w-9
-          shrink-0
-          items-center
-          justify-center
-          rounded-full
-          bg-[#25D366]
-          text-white
-          shadow-lg
-          transition-all
-          duration-300
-          hover:scale-110
-          hover:shadow-[#25D366]/20
-          sm:h-10
-          sm:w-10
-        "
+        className="flex h-9 w-9 items-center justify-center rounded-full bg-[#25D366] text-white transition hover:scale-105"
       >
-        <FaWhatsapp className="text-[18px] sm:text-[20px]" />
+        <FaWhatsapp size={18} />
       </a>
-
-
-     
 
       <a
         href={`tel:${phone}`}
         aria-label={`Call ${country}`}
-        title={`Call ${country}`}
-        className="
-          flex
-          h-9
-          w-9
-          shrink-0
-          items-center
-          justify-center
-          rounded-full
-          bg-[#E1C562]
-          text-[#011810]
-          shadow-lg
-          transition-all
-          duration-300
-          hover:scale-110
-          hover:bg-[#F0D77D]
-          hover:shadow-[#E1C562]/20
-          sm:h-10
-          sm:w-10
-        "
+        className="flex h-9 w-9 items-center justify-center rounded-full bg-[#E1C562] text-[#011810] transition hover:scale-105 hover:bg-[#F0D77D]"
       >
-
-        <Phone
-          size={18}
-          strokeWidth={2.3}
-        />
-
+        <Phone size={18} strokeWidth={2.3} />
       </a>
 
     </div>
   );
 };
+
+
 
 
 export default Footer;
