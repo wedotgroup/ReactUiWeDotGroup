@@ -636,8 +636,8 @@ const CertificationLogo = ({ src, alt }) => {
     <div
       className="
         flex
-        h-[78px]
-        w-[78px]
+        h-[60px]
+        w-[60px]
         shrink-0
         items-center
         justify-center

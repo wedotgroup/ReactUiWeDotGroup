@@ -14,6 +14,7 @@ import RFCPolicy from "./pages/footers/RFCPolicy";
 import ServiceDeliveryPolicy from "./pages/footers/ServiceDeliveryPolicy";
 import PaymentPolicy from "./pages/footers/PaymentPolicy";
 import Disclaimer from "./pages/footers/Disclaimer";
+import ManagementCounsultancy from "./pages/footers/ManagementCounsultancy";
 
 
 function App() {
@@ -73,6 +74,7 @@ function App() {
         <Route path="/service-delivery-policy" element={<ServiceDeliveryPolicy/>}/>
         <Route path="/payment-policy" element={<PaymentPolicy/>}/>
         <Route path="/disclaimer" element={<Disclaimer/>}/>
+        <Route path="/management-consultancy" element={<ManagementCounsultancy/>}/>
 
       </Route>
 
