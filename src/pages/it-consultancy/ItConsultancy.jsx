@@ -393,8 +393,8 @@ export default function ITConsultancy() {
             </div>
 
             <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-3xl">
-              Related IT Services
-            </h2>
+{service.relatedService.title}            
+</h2>
 
             <p className="mt-3 max-w-xl text-sm leading-7 text-white/45">
               Explore our other technology and digital services designed

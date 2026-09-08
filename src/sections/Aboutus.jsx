@@ -218,7 +218,7 @@ const Aboutus = () => {
               {/* Image */}
               <div className="relative overflow-hidden rounded-[22px]">
                 <img
-                  src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80"
+                  src="/home/about-us.jpg"
                   alt="About We Dot Group"
                   className="
                     h-[400px]
@@ -269,7 +269,7 @@ const Aboutus = () => {
                       text-[#080808]
                     "
                   >
-                    10+
+                    20+
                   </div>
 
                   <div>

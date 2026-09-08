@@ -19,7 +19,7 @@ export default function ManagementConsaltancy() {
       description:
         "Efficient business setup services for smooth start-ups.",
       image:
-        "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=85",
+        "/home/1mc.jpg",
       icon: Building2,
       path: "/management-consultancy/business-setup",
     },
@@ -29,7 +29,7 @@ export default function ManagementConsaltancy() {
       description:
         "Strategic business consulting to accelerate growth and performance.",
       image:
-        "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=85",
+        "/home/2mc.jpg",
       icon: BriefcaseBusiness,
       path: "/management-consultancy/business-consulting",
     },
@@ -38,7 +38,7 @@ export default function ManagementConsaltancy() {
       description:
         "Guiding Your business Growth with Expert Advice.",
       image:
-        "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=85",
+        "/home/3mc.jpg",
       icon: Lightbulb,
       path: "/management-consultancy/advisory",
     },
@@ -47,7 +47,7 @@ export default function ManagementConsaltancy() {
       description:
         "Simplifying Finances with Trusted Accounting Solutions.",
       image:
-        "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=85",
+        "/home/4mc.jpg",
       icon: Calculator,
       path: "/management-consultancy/accounting",
     },

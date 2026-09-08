@@ -223,7 +223,7 @@ export default function ContactUs() {
 
               <div className="rounded-xl border border-white/10 bg-white/[0.035] p-5 backdrop-blur-md">
                 <p className="text-2xl font-bold text-[#E1C562]">
-                  10+
+                  20+
                 </p>
 
                 <p className="mt-1 text-sm text-slate-400">

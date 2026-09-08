@@ -17,7 +17,7 @@ const WhyChoose = () => {
       description:
         "We specialize in helping businesses establish their presence in the UAE, offering a streamlined and hassle-free company registration process.",
       image:
-        "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=85",
+        "/home/1why.jpg",
       path: "/pdfs/We-Dot-Group-IT-Business-Profile.pdf",
       downloadName: "We-Dot-Group-Management-Consultancy.pdf",
     },
@@ -27,7 +27,7 @@ const WhyChoose = () => {
       description:
         "After successfully registering your company in the UAE, we offer essential IT services that drive business growth. We also provide IT infrastructure support.",
       image:
-        "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=85",
+        "/home/2why.jpg",
       path: "/pdfs/We-Dot-Group-IT-Business-Profile.pdf",
       downloadName: "We-Dot-Group-IT-Consultancy.pdf",
     },
@@ -37,7 +37,7 @@ const WhyChoose = () => {
       description:
         "After setting up your company in the UAE and providing IT services, we offer HR consultancy and staffing solutions to recruit skilled professionals, manage teams, and support business growth.",
       image:
-        "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=85",
+        "/home/3why.jpg",
       path: "/pdfs/HR-Consultancy-Business-Profile.pdf",
       downloadName: "We-Dot-Group-HR-Consultancy.pdf",
     },

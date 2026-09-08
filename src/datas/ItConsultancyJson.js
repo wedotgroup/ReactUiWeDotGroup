@@ -63,31 +63,35 @@ export const servicesdata = {
         },
 
         why_web_development: {
-            title: "Why do you need of Web Development?",
+    title: "Why Do You Need Website Design?",
 
-            items: [
-                {
-                    title: "Experienced Team",
-                    description:
-                        "Our skilled developers are up-to-date with the latest web technologies and industry best practices.",
-                },
-                {
-                    title: "Customized Solutions",
-                    description:
-                        "We understand every business is unique, which is why we offer personalized web development services.",
-                },
-                {
-                    title: "Testing & Quality Assurance",
-                    description:
-                        "We test every aspect of your site to ensure it’s bug-free and performs well across devices.",
-                },
-                {
-                    title: "Launch & Maintenance",
-                    description:
-                        "After a successful launch, we continue to monitor and maintain your website for optimal performance.",
-                },
-            ],
+    description:
+        "A professional website design is essential for establishing a strong online presence and making a positive first impression on potential customers. A well-designed website builds credibility, strengthens your brand, and helps you connect effectively with your audience. It also ensures a seamless experience across smartphones, tablets, and desktops. With more users accessing websites through mobile devices, responsive design is crucial for keeping visitors engaged and making it easy for them to navigate, find information, and take action. A thoughtfully designed website ultimately helps your business build trust, improve user experience, and create more opportunities for growth.",
+
+    items: [
+        {
+            title: "Builds Credibility",
+            description:
+                "A professional website creates a strong first impression, builds trust, and makes your business look more reliable."
         },
+        {
+            title: "Responsive Design",
+            description:
+                "A well-designed website provides a seamless experience across smartphones, tablets, and desktops."
+        },
+        {
+            title: "Better User Experience",
+            description:
+                "Thoughtful design makes it easier for visitors to navigate your website, find information, and take action."
+        },
+        {
+            title: "Business Growth",
+            description:
+                "A strong online presence helps you connect with potential customers and create more opportunities for business growth."
+        }
+    ]
+}
+
     },
 
     "web-development": {
@@ -180,6 +184,7 @@ export const servicesdata = {
             ],
         },
     },
+
     "software-development": {
         slug: "software-development",
         title: "Software Development",
@@ -201,42 +206,42 @@ export const servicesdata = {
                 {
                     title: "Custom Software Development",
                     description:
-                        "We build custom software solutions tailored to your specific business needs, helping you streamline operations, improve productivity, and achieve your goals.",
+                        "Create tailor-made software solutions to address your unique business needs. Our team works closely with you to design and implement solutions that align perfectly with your objectives.",
                     image:
                         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=85",
                 },
                 {
                     title: "Mobile App Development",
                     description:
-                        "We develop robust, intuitive, and high-performing mobile applications for iOS and Android, delivering seamless experiences across devices.",
+                        "Reach your audience on their smartphones with robust and intuitive mobile applications. We build apps for both iOS and Android platforms, ensuring seamless performance and user experience.",
                     image:
                         "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
                 },
                 {
                     title: "Web Application Development",
                     description:
-                        "We create responsive, secure, and scalable web applications using modern technologies, intuitive interfaces, and powerful backend solutions.",
+                        "Develop responsive and secure web applications with the latest technologies. We ensure your web app runs efficiently across browsers, with great UI/UX design and powerful back-end integration.",
                     image:
                         "https://images.unsplash.com/photo-1571721795195-a2ca2d3370a9?auto=format&fit=crop&w=1200&q=85",
                 },
                 {
                     title: "Cloud Solutions",
                     description:
-                        "We develop scalable and secure cloud-based applications using leading platforms such as AWS, Microsoft Azure, and Google Cloud.",
+                        "Harness the power of the cloud with scalable and secure cloud-based applications. We offer cloud development services that increase business flexibility and efficiency, with cloud deployment on AWS, Azure, or Google Cloud.",
                     image:
                         "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
                 },
                 {
                     title: "Enterprise Solutions",
                     description:
-                        "We deliver scalable and secure enterprise software solutions, including CRM, ERP, and business management systems that improve efficiency and integration.",
+                        "Streamline your enterprise operations with customized software solutions designed for scalability, security, and integration across your business functions. From CRM systems to ERP software, we have you covered.",
                     image:
                         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
                 },
                 {
                     title: "Software Integration",
                     description:
-                        "We seamlessly integrate different software systems, applications, and data sources to improve collaboration, automate processes, and enhance business efficiency.",
+                        "Improve system efficiency by integrating disparate software systems, data, and processes. We ensure that all your tools work harmoniously to deliver better insights and collaboration.",
                     image:
                         "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=85",
                 },
@@ -250,31 +255,32 @@ export const servicesdata = {
                 {
                     title: "Tailored Solutions",
                     description:
-                        "Every business has unique requirements, so we develop customized software solutions that align with your specific goals and processes.",
+                        "We understand that every business is unique, so we take a personalized approach to each project. Our team works with you from start to finish to ensure your goals are met.",
                 },
                 {
                     title: "Experienced Team",
                     description:
-                        "Our experienced developers, designers, and project managers use modern technologies and industry best practices to deliver reliable software.",
+                        "Our team is composed of skilled developers, designers, and project managers who are passionate about technology. We stay ahead of the curve with the latest tools, trends, and best practices.",
                 },
                 {
                     title: "Agile Development Process",
                     description:
-                        "We follow an agile development approach that allows flexibility, faster iterations, continuous feedback, and easy adaptation to changing requirements.",
+                        "We follow an agile methodology that allows for flexibility and quick iteration. This ensures that we can adapt to any changes during the development process and deliver high-quality results on time.",
                 },
                 {
                     title: "Quality Assurance",
                     description:
-                        "Our rigorous testing and quality assurance process ensures your software is reliable, secure, stable, and performs smoothly across different environments.",
+                        "We pride ourselves on delivering error-free software. Our rigorous testing and QA process ensures that every product we deliver meets the highest standards of quality.",
                 },
                 {
                     title: "Ongoing Support",
                     description:
-                        "We provide continuous maintenance and technical support after launch to keep your software secure, updated, and performing at its best.",
+                        "Our relationship with clients doesn’t end after the product is launched. We offer continuous support and maintenance to ensure your software continues to run smoothly and evolve as your business grows.",
                 },
             ],
         },
     },
+
     "mobile-app-development": {
         slug: "mobile-app-development",
         title: "Mobile App Development",
@@ -297,42 +303,42 @@ export const servicesdata = {
                 {
                     title: "iOS App Development",
                     description:
-                        "We specialize in building native iOS applications for iPhones, iPads, and other Apple devices using Swift and Objective-C to deliver high-quality apps that meet Apple’s standards.",
+                        "We specialize in building native iOS applications for iPhones, iPads, and other Apple devices. Our developers are well-versed in Swift and Objective-C, ensuring high-quality apps that meet Apple’s rigorous standards.",
                     image:
                         "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=85",
                 },
                 {
                     title: "Android App Development",
                     description:
-                        "Our Android app development team creates responsive and robust applications for smartphones, tablets, and wearables using Kotlin and Java for high-performance experiences.",
+                        "Our Android app development team builds responsive and robust applications for smartphones, tablets, and wearables. We work with Kotlin and Java to create high-performance apps that run smoothly across all Android devices.",
                     image:
                         "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?auto=format&fit=crop&w=1200&q=85",
                 },
                 {
                     title: "Cross-Platform App Development",
                     description:
-                        "Reach both iOS and Android users with a single codebase. We use modern frameworks such as React Native, Flutter, and Xamarin to reduce development time and costs without compromising quality.",
+                        "Reach both iOS and Android users with a single codebase. We utilize frameworks like React Native, Flutter, and Xamarin to create cross-platform apps that save time and development costs without compromising on quality",
                     image:
                         "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1200&q=85",
                 },
                 {
                     title: "UI/UX Design",
                     description:
-                        "We create intuitive, user-centric mobile app interfaces that provide smooth, engaging, and enjoyable experiences while keeping usability and functionality at the center.",
+                        "An exceptional app starts with a great user experience. Our team of designers creates user-centric, intuitive interfaces that provide users with a smooth and engaging experience.",
                     image:
                         "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
                 },
                 {
                     title: "App Testing & Quality Assurance",
                     description:
-                        "Our comprehensive testing process helps identify and resolve bugs while ensuring your mobile application performs reliably across different devices and platforms.",
+                        "We offer comprehensive app testing services to ensure your app is bug-free and performs well across different devices and platforms.",
                     image:
                         "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85",
                 },
                 {
                     title: "App Maintenance & Support",
                     description:
-                        "Our support continues after launch with ongoing maintenance, updates, optimization, and technical assistance to keep your mobile application secure and performing at its best.",
+                        "Our job doesn’t end at launch. We provide ongoing maintenance and support to ensure your app remains up-to-date and optimized.",
                     image:
                         "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85",
                 },
@@ -372,197 +378,196 @@ export const servicesdata = {
         },
     },
     "graphics-design": {
-        slug: "graphics-design",
-        title: "Graphics Design",
-        category: "Creative & Design",
-        paragraph:
-            "Creative Graphic Design Solutions That Bring Your Brand to Life",
+    slug: "graphics-design",
+    title: "Graphics Design",
+    category: "Creative & Design",
 
-        introduction: {
-            title:
-                "Creative Graphic Design That Makes Your Brand Stand Out",
-            description:
-                "At We Dot Group, we create visually compelling graphic designs that help businesses communicate their ideas, strengthen their brand identity, and connect with their audience. From branding and marketing materials to digital graphics, our creative team delivers engaging designs tailored to your business needs.",
-            image:
-                "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1800&q=85",
-        },
+    paragraph:
+        "Creative Graphic Design Solutions That Bring Your Brand to Life",
 
-        relatedService: {
-            title: "Why Choose Our Graphic Design Services?",
-            services: [
-                {
-                    title: "Brand Identity Design",
-                    description:
-                        "We create distinctive brand identities that reflect your business values and personality, helping you build a memorable and consistent presence.",
-                    image:
-                        "https://images.unsplash.com/photo-1634942537034-2531766767d1?auto=format&fit=crop&w=1200&q=85",
-                },
-                {
-                    title: "Logo Design",
-                    description:
-                        "Our creative team designs unique and professional logos that represent your brand effectively and create a strong first impression.",
-                    image:
-                        "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=85",
-                },
-                {
-                    title: "Social Media Graphics",
-                    description:
-                        "We design eye-catching social media graphics that help your business attract attention, increase engagement, and maintain a consistent visual identity.",
-                    image:
-                        "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1200&q=85",
-                },
-                {
-                    title: "Marketing & Promotional Designs",
-                    description:
-                        "From brochures and flyers to banners and promotional creatives, we create impactful designs that support your marketing campaigns and business goals.",
-                    image:
-                        "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1200&q=85",
-                },
-                {
-                    title: "UI/UX Graphics",
-                    description:
-                        "We create clean and engaging visual assets for websites and applications that improve usability while maintaining a strong and consistent brand experience.",
-                    image:
-                        "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
-                },
-                {
-                    title: "Print & Digital Design",
-                    description:
-                        "We deliver high-quality designs for both digital and print platforms, ensuring your visuals look professional and consistent across every medium.",
-                    image:
-                        "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=85",
-                },
-            ],
-        },
+    introduction: {
+        title:
+            "Transforming your ideas into stunning visuals that resonate with your audience.",
 
-        why_web_development: {
-            title: "Why do you need Graphic Design?",
+        description:
+            "At We Dot Group, we specialize in creative and professional graphic design solutions tailored to your brand’s unique needs. From logo design and branding to website visuals and print materials, our expert team ensures your message is conveyed clearly and beautifully.",
 
-            items: [
-                {
-                    title: "Creative & Experienced Team",
-                    description:
-                        "Our experienced designers combine creativity, design principles, and modern tools to create visuals that effectively communicate your brand message.",
-                },
-                {
-                    title: "Customized Designs",
-                    description:
-                        "We create personalized graphic design solutions based on your brand identity, target audience, industry, and specific business requirements.",
-                },
-                {
-                    title: "Strong Brand Identity",
-                    description:
-                        "Professional and consistent visuals help establish a recognizable brand identity and make your business stand out from competitors.",
-                },
-                {
-                    title: "High-Quality Visuals",
-                    description:
-                        "We focus on detail, composition, typography, and visual consistency to deliver polished designs suitable for both digital and print use.",
-                },
-                {
-                    title: "Timely Delivery & Support",
-                    description:
-                        "We work closely with you throughout the design process to ensure your requirements are met and provide ongoing support whenever you need additional creative assets.",
-                },
-            ],
-        },
+        image:
+            "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1800&q=85",
     },
+
+    relatedService: {
+        title: "Why Choose Our Graphic Design Services?",
+
+        services: [
+            {
+                title: "Logo Design",
+                description:
+                    "Custom, memorable logos that capture the essence of your brand.",
+                image:
+                    "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=85",
+            },
+            {
+                title: "Branding & Identity",
+                description:
+                    "Comprehensive branding solutions, including color palettes, typography, and visual identity development.",
+                image:
+                    "https://images.unsplash.com/photo-1634942537034-2531766767d1?auto=format&fit=crop&w=1200&q=85",
+            },
+            {
+                title: "Web & App Design",
+                description:
+                    "Responsive designs for websites and mobile apps, ensuring an intuitive user experience.",
+                image:
+                    "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+            },
+            {
+                title: "Print Materials",
+                description:
+                    "Brochures, business cards, flyers, posters – everything your business needs in print.",
+                image:
+                    "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1200&q=85",
+            },
+            {
+                title: "Social Media Graphics",
+                description:
+                    "Engaging and creative visuals for Facebook, Instagram, Twitter, and more.",
+                image:
+                    "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1200&q=85",
+            },
+            {
+                title: "Packaging Design",
+                description:
+                    "Eye-catching and functional packaging that aligns with your brand.",
+                image:
+                    "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=85",
+            },
+        ],
+    },
+
+    why_web_development: {
+        title: "why do you need of Graphic design ?",
+
+        items: [
+            {
+                title: "Experienced Designers",
+                description:
+                    "Our team has over [X] years of experience in the industry.",
+            },
+            {
+                title: "Personalized Service",
+                description:
+                    "We treat each project uniquely, giving you the attention you deserve.",
+            },
+            {
+                title: "Quality & Creativity",
+                description:
+                    "Our designs are both high-quality and original, ensuring your brand stands out.",
+            },
+            {
+                title: "Timely Delivery",
+                description:
+                    "We respect deadlines and work efficiently to ensure your project is completed on time.",
+            },
+        ],
+    },
+},
     "seo": {
-        slug: "seo",
-        title: "SEO",
-        category: "Digital Marketing",
-        paragraph:
-            "Boost Your Online Visibility and Drive More Organic Growth",
+    slug: "seo",
+    title: "SEO",
+    category: "Digital Marketing",
 
-        introduction: {
-            title:
-                "Powerful SEO Strategies for Sustainable Online Growth",
-            description:
-                "At We Dot Group, we provide result-driven SEO services designed to improve your website’s visibility, attract relevant organic traffic, and help your business grow online. Our SEO strategies combine technical optimization, quality content, keyword research, and continuous performance monitoring to build long-term search engine success.",
-            image:
-                "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1800&q=85",
-        },
+    paragraph:
+        "Boost Your Online Visibility with Expert SEO Services",
 
-        relatedService: {
-            title: "Why Choose Our SEO Services?",
-            services: [
-                {
-                    title: "Keyword Research",
-                    description:
-                        "We identify relevant and high-value keywords that your target audience is searching for, helping your website reach the right customers.",
-                    image:
-                        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
-                },
-                {
-                    title: "On-Page SEO",
-                    description:
-                        "We optimize your website content, headings, metadata, internal links, and other on-page elements to improve search engine visibility and relevance.",
-                    image:
-                        "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=1200&q=85",
-                },
-                {
-                    title: "Technical SEO",
-                    description:
-                        "We improve your website’s technical foundation, including site structure, crawlability, indexing, speed, mobile performance, and overall search engine accessibility.",
-                    image:
-                        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
-                },
-                {
-                    title: "Content Optimization",
-                    description:
-                        "We create and optimize valuable, relevant, and search-friendly content that answers your audience’s questions and supports your business goals.",
-                    image:
-                        "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=1200&q=85",
-                },
-                {
-                    title: "Local SEO",
-                    description:
-                        "We help businesses improve their local search presence and connect with customers who are actively looking for products or services in their area.",
-                    image:
-                        "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=85",
-                },
-                {
-                    title: "SEO Analytics & Reporting",
-                    description:
-                        "We continuously monitor rankings, traffic, conversions, and other key SEO metrics to measure performance and improve your strategy over time.",
-                    image:
-                        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
-                },
-            ],
-        },
+    introduction: {
+        title:
+            "Drive more traffic, increase your rankings, and grow your business with tailored SEO strategies designed for success.",
 
-        why_web_development: {
-            title: "Why do you need SEO?",
+        description:
+            "Unlock the full potential of your website with our expert SEO services. At We Dot Group, we specialize in crafting tailored SEO strategies that boost your visibility, drive organic traffic, and convert visitors into loyal customers. Whether you’re looking to improve your local search rankings or expand your global reach, our team of experts has the tools and knowledge to get you there.",
 
-            items: [
-                {
-                    title: "Increase Online Visibility",
-                    description:
-                        "SEO helps your website appear in relevant search results, making it easier for potential customers to discover your business online.",
-                },
-                {
-                    title: "Drive Organic Traffic",
-                    description:
-                        "A strong SEO strategy can attract targeted organic visitors to your website without relying entirely on paid advertising.",
-                },
-                {
-                    title: "Build Credibility & Trust",
-                    description:
-                        "Higher search visibility and valuable content can help establish your business as a trustworthy and authoritative source in your industry.",
-                },
-                {
-                    title: "Improve User Experience",
-                    description:
-                        "SEO involves optimizing website speed, structure, mobile responsiveness, navigation, and content to create a better experience for visitors.",
-                },
-                {
-                    title: "Long-Term Business Growth",
-                    description:
-                        "Unlike short-term campaigns, a well-executed SEO strategy can continue generating visibility, traffic, leads, and business opportunities over time.",
-                },
-            ],
-        },
+        image:
+            "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1800&q=85",
     },
+
+    relatedService: {
+        title: "Why Choose Our Web Hosting /Server Services?",
+
+        services: [
+            {
+                title: "On-Page SEO Optimization",
+                description:
+                    "On-page SEO is the foundation of a successful search engine strategy. Our team will optimize your website’s content, structure, and HTML code to ensure it is search-engine-friendly.",
+                image:
+                    "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=1200&q=85",
+            },
+            {
+                title: "Off-Page SEO & Link Building",
+                description:
+                    "Off-page SEO is just as important as on-page efforts for gaining authority in search engines. We use proven strategies to build high-quality backlinks and improve your domain authority.",
+                image:
+                    "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=85",
+            },
+            {
+                title: "Technical SEO",
+                description:
+                    "A technically sound website is critical for ranking well on search engines. Our technical SEO services ensure your site is fully optimized for search engine crawlers, ensuring a better user experience and higher rankings.",
+                image:
+                    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+            },
+            {
+                title: "Local SEO",
+                description:
+                    "If your business serves a specific geographic area, local SEO is essential for connecting with your community. We help you optimize your business for location-based searches.",
+                image:
+                    "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=85",
+            },
+            {
+                title: "E-Commerce SEO",
+                description:
+                    "If you're running an e-commerce store, SEO is crucial for driving traffic and increasing sales. We help optimize your e-commerce website for better visibility and user experience.",
+                image:
+                    "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=85",
+            },
+            {
+                title: "SEO Analytics & Reporting",
+                description:
+                    "Tracking your SEO performance is crucial to ensure that your strategies are driving results. Our team provides detailed analytics and reporting to measure your website’s growth.",
+                image:
+                    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+            },
+        ],
+    },
+
+    why_web_development: {
+        title: "why do you need of SEO ?",
+
+        items: [
+            {
+                title: "Increase Organic Traffic",
+                description:
+                    "SEO helps you rank higher on search engines like Google, which drives organic traffic to your website without having to pay for ads. This means more potential customers discovering your business.",
+            },
+            {
+                title: "Improve User Experience",
+                description:
+                    "SEO isn’t just about rankings; it’s also about creating a user-friendly website that loads fast, is easy to navigate, and provides valuable content—improving both user experience and engagement.",
+            },
+            {
+                title: "Build Trust & Credibility",
+                description:
+                    "Websites that appear at the top of search results are perceived as more credible and trustworthy. Effective SEO practices help you establish authority in your industry and build long-term trust with your audience.",
+            },
+            {
+                title: "Generate More Leads & Conversions",
+                description:
+                    "SEO attracts high-quality traffic that is more likely to convert into leads or customers. By targeting the right keywords, you ensure you’re reaching people who are actively searching for the services you offer.",
+            },
+        ],
+    },
+},
+
     "smo-smm": {
         slug: "smo-smm",
         title: "SMO/SMM",
@@ -1045,108 +1050,110 @@ export const servicesdata = {
         },
     },
     "domain": {
-        slug: "domain",
-        title: "Domain",
-        category: "Others",
-        paragraph:
-            "Start Your Digital Journey with the Perfect Domain",
+    slug: "domain",
+    title: "Domain",
+    category: "Others",
+    paragraph:
+        "Start Your Digital Journey with the Perfect Domain",
 
-        introduction: {
-            title:
-                "Your One-Stop Solution for Domain Registration & Management",
-            description:
-                "At We Dot Group, we offer a comprehensive suite of domain services to help you establish and manage your online presence with ease. Whether you’re a new business looking to create your first website or an experienced entrepreneur managing multiple domains, we have you covered.",
-            image:
-                "https://wedotgroup.com/wp-content/uploads/2025/05/domain.jpg",
-        },
+    introduction: {
+        title:
+            "Your One-Stop Solution for Domain Registration & Management",
 
-        relatedService: {
-            title: "Why Choose Our Domain Services?",
-            services: [
-                {
-                    title: "Domain Registration",
-                    description:
-                        "Start your online journey with a domain name that represents your brand. We offer domain registration for a variety of TLDs (Top-Level Domains), including .com, .org, .net, and more. Secure your ideal domain name today with affordable pricing for all domain extensions.",
-                    image:
-                        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
-                },
-                {
-                    title: "Domain Transfers",
-                    description:
-                        "Switching to our domain services is simple and hassle-free. Transfer your existing domain to us and enjoy better service, improved security, and reliable customer support.",
-                    image:
-                        "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=85",
-                },
-                {
-                    title: "Domain Privacy Protection",
-                    description:
-                        "Protect your personal information with domain privacy protection. Keep your contact details private and secure while reducing the risk of unsolicited emails, spam, and identity theft.",
-                    image:
-                        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=85",
-                },
-                {
-                    title: "DNS Management",
-                    description:
-                        "Easily control and configure your domain’s DNS settings. Whether you’re setting up email, managing subdomains, or pointing your domain to a web server, our DNS management tools give you full control.",
-                    image:
-                        "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=85",
-                },
-                {
-                    title: "Subdomain Creation",
-                    description:
-                        "Create and manage subdomains for specific projects, departments, or teams. Each subdomain can point to different parts of your website or online service.",
-                    image:
-                        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=85",
-                },
-                {
-                    title: "Domain Parking",
-                    description:
-                        "If you’re not ready to develop your domain yet but want to secure it, our domain parking service allows you to hold your domain safely until you’re ready to launch.",
-                    image:
-                        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85",
-                },
-            ],
-        },
+        description:
+            "At We Dot Group, we offer a comprehensive suite of domain services to help you establish and manage your online presence with ease. Whether you’re a new business looking to create your first website or an experienced entrepreneur managing multiple domains, we have you covered.",
 
-        why_web_development: {
-            title: "Why Do You Need Domain Services?",
-
-            items: [
-                {
-                    title: "Establishes Your Online Identity",
-                    description:
-                        "A unique domain provides your business with a recognizable address on the internet, making it easier for customers to discover you.",
-                },
-                {
-                    title: "Professionalism and Credibility",
-                    description:
-                        "A professional domain name makes your business look more established and helps build trust with customers and visitors.",
-                },
-                {
-                    title: "Control and Ownership",
-                    description:
-                        "A domain gives you greater control over your website, professional email addresses, DNS settings, and other online services.",
-                },
-                {
-                    title: "Branding and Recognition",
-                    description:
-                        "A memorable domain name strengthens your brand identity and makes it easier for customers to remember and recognize your business.",
-                },
-                {
-                    title: "SEO Benefits",
-                    description:
-                        "Having a relevant and well-established domain can contribute to your website’s search engine visibility and overall online presence.",
-                },
-                {
-                    title: "Custom Email Addresses",
-                    description:
-                        "A professional domain allows you to create branded email addresses such as info@yourcompany.com, helping your business communicate more professionally.",
-                },
-            ],
-        },
-
-
+        image:
+            "https://wedotgroup.com/wp-content/uploads/2025/05/domain.jpg",
     },
+
+    relatedService: {
+        title: "Why Choose Our Domain Services?",
+
+        services: [
+            {
+                title: "Domain Registration",
+                description:
+                    "Start your online journey with a domain name that represents your brand. We offer domain registration for a variety of TLDs (Top-Level Domains), including .com, .org, .net, and more. Secure your ideal domain name today with affordable pricing for all domain extensions.",
+                image:
+                    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+            },
+            {
+                title: "Domain Transfers",
+                description:
+                    "Switching to our domain services is simple and hassle-free. Transfer your existing domain to us and enjoy better service, improved security, and reliable customer support.",
+                image:
+                    "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=85",
+            },
+            {
+                title: "Domain Privacy Protection",
+                description:
+                    "Protect your personal information with domain privacy protection. Keep your contact details private and secure while reducing the risk of unsolicited emails, spam, and identity theft.",
+                image:
+                    "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=85",
+            },
+            {
+                title: "DNS Management",
+                description:
+                    "Easily control and configure your domain’s DNS settings. Whether you’re setting up email, managing subdomains, or pointing your domain to a web server, our DNS management tools give you full control.",
+                image:
+                    "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=85",
+            },
+            {
+                title: "Subdomain Creation",
+                description:
+                    "Create and manage subdomains for specific projects, departments, or teams. Each subdomain can point to different parts of your website or online service.",
+                image:
+                    "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=85",
+            },
+            {
+                title: "Domain Parking",
+                description:
+                    "If you’re not ready to develop your domain yet but want to secure it, our domain parking service allows you to hold your domain safely until you’re ready to launch.",
+                image:
+                    "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85",
+            },
+        ],
+    },
+
+    why_web_development: {
+        title: "Why Do You Need Domain Services?",
+
+        items: [
+            {
+                title: "Establishes Your Online Identity",
+                description:
+                    "A unique address on the internet for easy discovery.",
+            },
+            {
+                title: "Professionalism and Credibility",
+                description:
+                    "A professional domain name makes your business look more established and helps build trust with customers and visitors.",
+            },
+            {
+                title: "Control and Ownership",
+                description:
+                    "A domain gives you greater control over your website, professional email addresses, DNS settings, and other online services.",
+            },
+            {
+                title: "Branding and Recognition",
+                description:
+                    "A memorable domain name strengthens your brand identity and makes it easier for customers to remember and recognize your business.",
+            },
+            {
+                title: "SEO Benefits",
+                description:
+                    "Having a relevant and well-established domain can contribute to your website’s search engine visibility and overall online presence.",
+            },
+            {
+                title: "Custom Email Addresses",
+                description:
+                    "A professional domain allows you to create branded email addresses such as info@yourcompany.com, helping your business communicate more professionally.",
+            },
+        ],
+    },
+},
+
 
     "web-hosting-server": {
         slug: "web-hosting-server",

@@ -20,54 +20,53 @@ export default function ItConsultancy() {
       description:
         "Creating stunning websites for your business growth and success.",
       image:
-        "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=900&q=80",
+        "/home/1it.jpg",
       icon: Monitor,
-      slug: "Website-Design",
+      slug: "website-design",
     },
     {
       title: "Software Development",
       description:
         "Transforming ideas into innovative software solutions.",
       image:
-        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=900&q=80",
+        "/home/2it.jpg",
       icon: Code2,
-      slug: "Software-Development",
+      slug: "software-development",
     },
     {
       title: "Mobile Development",
       description:
         "Building seamless mobile experiences for your business.",
       image:
-        "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=80",
+        "/home/3it.jpg",
       icon: Smartphone,
-      slug: "Mobile-Development",
+      slug: "mobile-development",
     },
     {
       title: "SEO",
       description:
         "Boost your rankings with expert SEO strategies today.",
       image:
-        "https://images.unsplash.com/photo-1571721795195-a2ca2d3370a9?auto=format&fit=crop&w=900&q=80",
+        "/home/4it.jpg",
       icon: Search,
-      slug: "SEO",
+      slug: "seo",
     },
     {
       title: "SMO",
       description:
         "Grow your brand with targeted SMO strategies today.",
-      image:
-        "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=900&q=80",
+      image:"/home/5it.jpg",
       icon: Share2,
-      slug: "SMO",
+      slug: "smo-smm",
     },
     {
       title: "Google Ads",
       description:
         "Drive targeted traffic with effective Google Ads campaigns.",
       image:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
+        "/home/6it.jpg",
       icon: Megaphone,
-      slug: "Google-Ads",
+      slug: "google-ads",
     },
   ];
 
@@ -113,9 +112,7 @@ export default function ItConsultancy() {
           </p>
         </div>
 
-        {/* =========================
-            SERVICE CARDS
-        ========================== */}
+        
         <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => {
             const Icon = service.icon;

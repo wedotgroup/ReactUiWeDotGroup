@@ -58,7 +58,7 @@ export default function HrConsultancy() {
     "1 - 2 Years",
     "2 - 5 Years",
     "5 - 10 Years",
-    "10+ Years",
+    "20+ Years",
   ];
 
   const handleChange = (e) => {

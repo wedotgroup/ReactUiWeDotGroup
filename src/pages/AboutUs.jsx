@@ -171,7 +171,7 @@ export default function AboutUs() {
     <div className="relative">
       <div className="relative overflow-hidden rounded-[32px]">
        <img
-  src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=85"
+  src="/home/about-us.jpg"
   alt="We Dot Group"
   className="h-[420px] w-full object-cover sm:h-[520px] lg:h-[600px]"
 />

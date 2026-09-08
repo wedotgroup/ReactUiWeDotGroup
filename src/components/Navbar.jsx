@@ -115,36 +115,7 @@ const Navbar = () => {
                 "/management-consultancy/jebel-ali-offshore",
             },
             
-            // {
-            //   name: "Dubai",
-            //   path: "/management-consultancy/dubai-mainland",
-            // },
-            // {
-            //   name: "Abu Dhabi",
-            //   path: "/management-consultancy/abu-dhabi-mainland",
-            // },
-            // {
-            //   name: "Sharjah",
-            //   path: "/management-consultancy/sharjah-mainland",
-            // },
-            // {
-            //   name: "Fujairah",
-            //   path: "/management-consultancy/fujairah-mainland",
-            // },
-            // {
-            //   name: "Ajman",
-            //   path: "/management-consultancy/ajman-mainland",
-            // },
-            // {
-            //   name: "Ras Al Khaimah",
-            //   path:
-            //     "/management-consultancy/ras-al-khaimah-mainland",
-            // },
-            // {
-            //   name: "Umm Al Quwain",
-            //   path:
-            //     "/management-consultancy/umm-al-quwain-mainland",
-            // },
+           
           ],
         },
 

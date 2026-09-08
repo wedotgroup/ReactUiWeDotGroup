@@ -100,7 +100,7 @@ export default function HrConsaltancy() {
             <div className="group relative overflow-hidden rounded-[32px]">
 
               <img
-                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=90"
+                src="/home/hr.jpg"
                 alt="HR Consultancy Team"
                 className="
     h-[520px]
