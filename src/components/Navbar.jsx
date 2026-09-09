@@ -590,6 +590,37 @@ const Navbar = () => {
                 </NavLink>
 
                 {/* CONTACT */}
+                <NavLink
+                  to="/certifications"
+                  onClick={closeMenu}
+                  className={navLinkClass}
+                >
+                  {({ isActive }) => (
+                    <>
+                      Certifications
+
+                      <span
+                        className={`
+                          absolute
+                          bottom-0
+                          left-3
+                          right-3
+                          h-[2px]
+                          rounded-full
+                          bg-[#E1C562]
+                          shadow-[0_0_10px_rgba(225,197,98,0.45)]
+                          transition-all
+                          duration-300
+                          ${isActive
+                            ? "scale-x-100 opacity-100"
+                            : "scale-x-0 opacity-0"
+                          }
+                        `}
+                      />
+                    </>
+                  )}
+                </NavLink>
+
 
                 <Link
                   to="/contact"
@@ -1190,7 +1221,7 @@ const MegaMenu = ({
           <Link
             to={
               menu.title === "IT Consultancy"
-                ? "/it-consultancy"
+                ? "/itconsultancy"
                 : "/management-consultancy"
             }
             onClick={onClose}

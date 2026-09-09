@@ -16,6 +16,7 @@ import PaymentPolicy from "./pages/footers/PaymentPolicy";
 import Disclaimer from "./pages/footers/Disclaimer";
 import ManagementCounsultancy from "./pages/footers/ManagementCounsultancy";
 import ItCounsultancyfooter from "./pages/footers/ItCounsultancyfooter"
+import Certifications from "./pages/Certifications";
 
 
 function App() {
@@ -77,6 +78,7 @@ function App() {
         <Route path="/disclaimer" element={<Disclaimer/>}/>
         <Route path="/management-consultancy" element={<ManagementCounsultancy/>}/>
         <Route path="/itconsultancy" element={<ItCounsultancyfooter/>}/>
+        <Route path="/certifications" element={<Certifications/>}/>
 
       </Route>
 
