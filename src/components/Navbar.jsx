@@ -6,6 +6,7 @@ import {
   ArrowUpRight,
   BriefcaseBusiness,
   Cpu,
+  Award,
 } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 
@@ -50,7 +51,7 @@ const Navbar = () => {
   const megaMenus = {
     management: {
       title: "Management Consultancy",
-      "slug":"management-consultancy",
+      slug: "management-consultancy",
       description:
         "Strategic business solutions for company formation, advisory, accounting, financial management and sustainable growth.",
       icon: BriefcaseBusiness,
@@ -59,7 +60,6 @@ const Navbar = () => {
         {
           heading: "Free Zones",
           items: [
-            
             {
               name: "Dubai Free Zones",
               path: "/management-consultancy/dubai-free-zones",
@@ -114,8 +114,6 @@ const Navbar = () => {
               path:
                 "/management-consultancy/jebel-ali-offshore",
             },
-            
-           
           ],
         },
 
@@ -188,7 +186,7 @@ const Navbar = () => {
 
     it: {
       title: "IT Consultancy",
-      "slug":"itconsultancy",
+      slug: "itconsultancy",
       description:
         "Modern technology solutions that help businesses innovate, scale and stay competitive.",
       icon: Cpu,
@@ -289,6 +287,47 @@ const Navbar = () => {
         },
       ],
     },
+
+    certifications: {
+      title: "Certifications",
+      slug: "certifications",
+      description:
+        "Professional certifications and compliance services that help businesses build trust, meet regulatory requirements and strengthen their market credibility.",
+      icon: Award,
+
+      columns: [
+        {
+          heading: "Certifications & Compliance",
+          items: [
+            {
+              name: "ISO Certifications",
+              path: "/certifications/iso-certifications",
+            },
+            {
+              name: "Trademark Registration",
+              path: "/certifications/trademark-registration",
+            },
+            {
+              name: "FSSAI",
+              path: "/certifications/fssai",
+            },
+            {
+              name: "ISI Certification",
+              path: "/certifications/isi-certification",
+            },
+            {
+              name: "ESG Certification",
+              path: "/certifications/esg-certification",
+            },
+            {
+              name: "Social & Labour Compliance",
+              path:
+                "/certifications/social-labour-compliance",
+            },
+          ],
+        },
+      ],
+    },
   };
 
   const closeMenu = () => {
@@ -308,33 +347,34 @@ const Navbar = () => {
     transition-all
     duration-300
     ease-out
-    ${isActive
-      ? "text-white"
-      : "text-white/70 hover:text-white"
+    ${
+      isActive
+        ? "text-white"
+        : "text-white/70 hover:text-white"
     }
   `;
 
   return (
     <>
-    
+      {/* =========================
+          DESKTOP NAVBAR
+      ========================== */}
 
       <nav
         className="
-    fixed
-    left-0
-    top-[40px]
-    z-[9999]
-    w-full
-    bg-[#360a0a]
-   
-  "
+          fixed
+          left-0
+          top-[40px]
+          z-[9999]
+          w-full
+          bg-[#360a0a]
+        "
       >
         <div
           className="
             mx-auto
             w-full
             bg-[#011810]
-            
           "
         >
           <div
@@ -365,17 +405,18 @@ const Navbar = () => {
                   src="/logo/mainlogo.png"
                   alt="WeDot Group"
                   className="
-      h-16
-      w-auto
-      object-contain
-      transition-transform
-      duration-300
-      hover:scale-[1.02]
-      sm:h-[68px]
-      lg:h-[76px]
-    "
+                    h-16
+                    w-auto
+                    object-contain
+                    transition-transform
+                    duration-300
+                    hover:scale-[1.02]
+                    sm:h-[68px]
+                    lg:h-[76px]
+                  "
                 />
               </Link>
+
               {/* DESKTOP NAV */}
 
               <div className="hidden items-center lg:flex">
@@ -403,9 +444,10 @@ const Navbar = () => {
                           shadow-[0_0_10px_rgba(225,197,98,0.45)]
                           transition-all
                           duration-300
-                          ${isActive
-                            ? "scale-x-100 opacity-100"
-                            : "scale-x-0 opacity-0"
+                          ${
+                            isActive
+                              ? "scale-x-100 opacity-100"
+                              : "scale-x-0 opacity-0"
                           }
                         `}
                       />
@@ -436,9 +478,10 @@ const Navbar = () => {
                           shadow-[0_0_10px_rgba(225,197,98,0.45)]
                           transition-all
                           duration-300
-                          ${isActive
-                            ? "scale-x-100 opacity-100"
-                            : "scale-x-0 opacity-0"
+                          ${
+                            isActive
+                              ? "scale-x-100 opacity-100"
+                              : "scale-x-0 opacity-0"
                           }
                         `}
                       />
@@ -470,13 +513,13 @@ const Navbar = () => {
                       font-medium
                       transition-all
                       duration-300
-                      ${activeMenu === "management"
-                        ? "text-white"
-                        : "text-white/70 hover:text-white"
+                      ${
+                        activeMenu === "management"
+                          ? "text-white"
+                          : "text-white/70 hover:text-white"
                       }
                     `}
                   >
-                    
                     Management Consultancy
 
                     <ChevronDown
@@ -484,9 +527,10 @@ const Navbar = () => {
                       className={`
                         transition-transform
                         duration-300
-                        ${activeMenu === "management"
-                          ? "rotate-180 text-[#E1C562]"
-                          : ""
+                        ${
+                          activeMenu === "management"
+                            ? "rotate-180 text-[#E1C562]"
+                            : ""
                         }
                       `}
                     />
@@ -526,9 +570,10 @@ const Navbar = () => {
                       font-medium
                       transition-all
                       duration-300
-                      ${activeMenu === "it"
-                        ? "text-white"
-                        : "text-white/70 hover:text-white"
+                      ${
+                        activeMenu === "it"
+                          ? "text-white"
+                          : "text-white/70 hover:text-white"
                       }
                     `}
                   >
@@ -539,9 +584,10 @@ const Navbar = () => {
                       className={`
                         transition-transform
                         duration-300
-                        ${activeMenu === "it"
-                          ? "rotate-180 text-[#E1C562]"
-                          : ""
+                        ${
+                          activeMenu === "it"
+                            ? "rotate-180 text-[#E1C562]"
+                            : ""
                         }
                       `}
                     />
@@ -579,48 +625,75 @@ const Navbar = () => {
                           shadow-[0_0_10px_rgba(225,197,98,0.45)]
                           transition-all
                           duration-300
-                          ${isActive
-                            ? "scale-x-100 opacity-100"
-                            : "scale-x-0 opacity-0"
+                          ${
+                            isActive
+                              ? "scale-x-100 opacity-100"
+                              : "scale-x-0 opacity-0"
                           }
                         `}
                       />
                     </>
                   )}
                 </NavLink>
+
+                {/* CERTIFICATIONS */}
+
+                <div
+                  className="relative"
+                  onMouseEnter={() =>
+                    setActiveMenu("certifications")
+                  }
+                  onMouseLeave={() =>
+                    setActiveMenu(null)
+                  }
+                >
+                  <button
+                    type="button"
+                    className={`
+                      flex
+                      items-center
+                      gap-1.5
+                      px-3
+                      py-2
+                      text-[14px]
+                      font-medium
+                      transition-all
+                      duration-300
+                      ${
+                        activeMenu === "certifications"
+                          ? "text-white"
+                          : "text-white/70 hover:text-white"
+                      }
+                    `}
+                  >
+                    Certifications
+
+                    <ChevronDown
+                      size={15}
+                      className={`
+                        transition-transform
+                        duration-300
+                        ${
+                          activeMenu === "certifications"
+                            ? "rotate-180 text-[#E1C562]"
+                            : ""
+                        }
+                      `}
+                    />
+                  </button>
+
+                  <MegaMenu
+                    menu={megaMenus.certifications}
+                    isOpen={
+                      activeMenu === "certifications"
+                    }
+                    onClose={() =>
+                      setActiveMenu(null)
+                    }
+                  />
+                </div>
 
                 {/* CONTACT */}
-                <NavLink
-                  to="/certifications"
-                  onClick={closeMenu}
-                  className={navLinkClass}
-                >
-                  {({ isActive }) => (
-                    <>
-                      Certifications
-
-                      <span
-                        className={`
-                          absolute
-                          bottom-0
-                          left-3
-                          right-3
-                          h-[2px]
-                          rounded-full
-                          bg-[#E1C562]
-                          shadow-[0_0_10px_rgba(225,197,98,0.45)]
-                          transition-all
-                          duration-300
-                          ${isActive
-                            ? "scale-x-100 opacity-100"
-                            : "scale-x-0 opacity-0"
-                          }
-                        `}
-                      />
-                    </>
-                  )}
-                </NavLink>
-
 
                 <Link
                   to="/contact"
@@ -714,12 +787,15 @@ const Navbar = () => {
           inset-0
           z-[99999]
           lg:hidden
-          ${isOpen
-            ? "pointer-events-auto"
-            : "pointer-events-none"
+          ${
+            isOpen
+              ? "pointer-events-auto"
+              : "pointer-events-none"
           }
         `}
       >
+        {/* BACKDROP */}
+
         <div
           onClick={closeMenu}
           className={`
@@ -729,12 +805,15 @@ const Navbar = () => {
             backdrop-blur-sm
             transition-opacity
             duration-300
-            ${isOpen
-              ? "opacity-100"
-              : "opacity-0"
+            ${
+              isOpen
+                ? "opacity-100"
+                : "opacity-0"
             }
           `}
         />
+
+        {/* MOBILE DRAWER */}
 
         <div
           className={`
@@ -754,12 +833,15 @@ const Navbar = () => {
             transition-transform
             duration-500
             ease-[cubic-bezier(0.22,1,0.36,1)]
-            ${isOpen
-              ? "translate-x-0"
-              : "-translate-x-full"
+            ${
+              isOpen
+                ? "translate-x-0"
+                : "-translate-x-full"
             }
           `}
         >
+          {/* TOP GOLD LINE */}
+
           <div className="absolute left-0 right-0 top-0 h-[2px] bg-[#E1C562]" />
 
           {/* MOBILE HEADER */}
@@ -825,17 +907,23 @@ const Navbar = () => {
             "
           >
             <div className="space-y-1">
+              {/* HOME */}
+
               <MobileLink
                 to="/"
                 label="Home"
                 onClick={closeMenu}
               />
 
+              {/* ABOUT */}
+
               <MobileLink
                 to="/about"
                 label="About"
                 onClick={closeMenu}
               />
+
+              {/* MANAGEMENT */}
 
               <MobileDropdown
                 title="Management Consultancy"
@@ -860,6 +948,8 @@ const Navbar = () => {
                 }
               />
 
+              {/* IT */}
+
               <MobileDropdown
                 title="IT Consultancy"
                 icon={Cpu}
@@ -881,13 +971,44 @@ const Navbar = () => {
                 }
               />
 
+              {/* HR */}
+
               <MobileLink
                 to="/hr-consultancy"
                 label="HR Consultancy"
                 onClick={closeMenu}
               />
 
+              {/* CERTIFICATIONS */}
+
+              <MobileDropdown
+                title="Certifications"
+                icon={Award}
+                open={
+                  activeMenu === "certifications"
+                }
+                onClick={() =>
+                  setActiveMenu(
+                    activeMenu === "certifications"
+                      ? null
+                      : "certifications"
+                  )
+                }
+              />
+
+              <MobileSubMenu
+                menu={megaMenus.certifications}
+                closeMenu={closeMenu}
+                isOpen={
+                  activeMenu === "certifications"
+                }
+              />
+
+              {/* DIVIDER */}
+
               <div className="my-5 h-px bg-white/[0.08]" />
+
+              {/* CONTACT */}
 
               <Link
                 to="/contact"
@@ -974,6 +1095,10 @@ const Navbar = () => {
    MEGA MENU
 ===================================================== */
 
+/* =====================================================
+   MEGA MENU
+===================================================== */
+
 const MegaMenu = ({
   menu,
   isOpen,
@@ -981,6 +1106,9 @@ const MegaMenu = ({
 }) => {
   const Icon = menu.icon;
   const columnCount = menu.columns.length;
+
+  // Certifications needs a smaller, compact mega menu
+  const isCompactMenu = menu.slug === "certifications";
 
   const gridClass =
     columnCount === 4
@@ -998,15 +1126,24 @@ const MegaMenu = ({
         left-1/2
         top-full
         z-[99999]
-        w-[min(1160px,calc(100vw-30px))]
+
+        ${
+          isCompactMenu
+            ? "w-[520px]"
+            : "w-[min(1160px,calc(100vw-30px))]"
+        }
+
         -translate-x-1/2
         pt-4
+
         transition-all
         duration-300
         ease-[cubic-bezier(0.22,1,0.36,1)]
-        ${isOpen
-          ? "visible translate-y-0 opacity-100 pointer-events-auto"
-          : "invisible -translate-y-3 opacity-0 pointer-events-none"
+
+        ${
+          isOpen
+            ? "visible translate-y-0 opacity-100 pointer-events-auto"
+            : "invisible -translate-y-3 opacity-0 pointer-events-none"
         }
       `}
     >
@@ -1021,6 +1158,8 @@ const MegaMenu = ({
           shadow-[0_30px_90px_rgba(0,0,0,0.65)]
         "
       >
+        {/* TOP GOLD LINE */}
+
         <div
           className="
             absolute
@@ -1035,6 +1174,8 @@ const MegaMenu = ({
           "
         />
 
+        {/* HEADER */}
+
         <div
           className={`
             flex
@@ -1047,16 +1188,26 @@ const MegaMenu = ({
             via-[#0A0A0A]
             to-[#12100A]
             px-7
-            py-5
+
+            ${
+              isCompactMenu
+                ? "py-4"
+                : "py-5"
+            }
+
             transition-all
             duration-500
             ease-out
-            ${isOpen
-              ? "translate-y-0 opacity-100"
-              : "-translate-y-2 opacity-0"
+
+            ${
+              isOpen
+                ? "translate-y-0 opacity-100"
+                : "-translate-y-2 opacity-0"
             }
           `}
         >
+          {/* ICON */}
+
           <div
             className="
               flex
@@ -1075,25 +1226,31 @@ const MegaMenu = ({
             <Icon size={21} />
           </div>
 
+          {/* TITLE + DESCRIPTION */}
+
           <div className="min-w-0">
             <h3 className="text-[17px] font-bold text-white">
               {menu.title}
             </h3>
 
-            <p className="mt-1 max-w-3xl text-[13px] leading-5 text-white/45">
+            <p className="mt-1 text-[13px] leading-5 text-white/45">
               {menu.description}
             </p>
           </div>
         </div>
 
+        {/* CONTENT */}
+
         <div
-          className="
-            max-h-[calc(100vh-220px)]
-            overflow-y-auto
-            px-7
-            py-6
+          className={`
             mega-scroll
-          "
+
+            ${
+              isCompactMenu
+                ? "overflow-visible px-7 py-4"
+                : "max-h-[calc(100vh-220px)] overflow-y-auto px-7 py-6"
+            }
+          `}
         >
           <div
             className={`
@@ -1109,12 +1266,15 @@ const MegaMenu = ({
                   key={column.heading}
                   className={`
                     min-w-0
+
                     transition-all
                     duration-500
                     ease-out
-                    ${isOpen
-                      ? "translate-y-0 opacity-100"
-                      : "translate-y-4 opacity-0"
+
+                    ${
+                      isOpen
+                        ? "translate-y-0 opacity-100"
+                        : "translate-y-4 opacity-0"
                     }
                   `}
                   style={{
@@ -1123,6 +1283,8 @@ const MegaMenu = ({
                       : "0ms",
                   }}
                 >
+                  {/* COLUMN HEADING */}
+
                   <div className="mb-3 flex items-center gap-2">
                     <span
                       className="
@@ -1146,6 +1308,8 @@ const MegaMenu = ({
                     </p>
                   </div>
 
+                  {/* ITEMS */}
+
                   <div className="space-y-1">
                     {column.items.map((item) => (
                       <Link
@@ -1167,8 +1331,10 @@ const MegaMenu = ({
                           text-[13px]
                           font-medium
                           text-white/55
+
                           transition-all
                           duration-200
+
                           hover:translate-x-1
                           hover:border-[#E1C562]/10
                           hover:bg-[#E1C562]/[0.06]
@@ -1186,8 +1352,10 @@ const MegaMenu = ({
                             -translate-x-1
                             text-[#E1C562]
                             opacity-0
+
                             transition-all
                             duration-200
+
                             group-hover:translate-x-0
                             group-hover:opacity-100
                           "
@@ -1200,6 +1368,8 @@ const MegaMenu = ({
             )}
           </div>
         </div>
+
+        {/* FOOTER */}
 
         <div
           className="
@@ -1219,11 +1389,7 @@ const MegaMenu = ({
           </span>
 
           <Link
-            to={
-              menu.title === "IT Consultancy"
-                ? "/itconsultancy"
-                : "/management-consultancy"
-            }
+            to={`/${menu.slug}`}
             onClick={onClose}
             className="
               group
@@ -1234,8 +1400,10 @@ const MegaMenu = ({
               text-xs
               font-bold
               text-[#E1C562]
+
               transition-colors
               duration-200
+
               hover:text-[#F0D77D]
             "
           >
@@ -1246,6 +1414,7 @@ const MegaMenu = ({
               className="
                 transition-transform
                 duration-200
+
                 group-hover:translate-x-0.5
                 group-hover:-translate-y-0.5
               "
@@ -1256,6 +1425,8 @@ const MegaMenu = ({
     </div>
   );
 };
+
+
 
 /* =====================================================
    MOBILE LINK
@@ -1280,19 +1451,20 @@ const MobileLink = ({
         font-medium
         transition-all
         duration-300
-        ${isActive
-          ? `
-              border-[#E1C562]/15
-              bg-[#E1C562]/10
-              text-[#E1C562]
-            `
-          : `
-              border-transparent
-              text-white/65
-              hover:border-white/[0.06]
-              hover:bg-white/[0.04]
-              hover:text-white
-            `
+        ${
+          isActive
+            ? `
+                border-[#E1C562]/15
+                bg-[#E1C562]/10
+                text-[#E1C562]
+              `
+            : `
+                border-transparent
+                text-white/65
+                hover:border-white/[0.06]
+                hover:bg-white/[0.04]
+                hover:text-white
+              `
         }
       `}
     >
@@ -1328,19 +1500,20 @@ const MobileDropdown = ({
         font-medium
         transition-all
         duration-300
-        ${open
-          ? `
-              border-[#E1C562]/15
-              bg-[#E1C562]/10
-              text-[#E1C562]
-            `
-          : `
-              border-transparent
-              text-white/65
-              hover:border-white/[0.06]
-              hover:bg-white/[0.04]
-              hover:text-white
-            `
+        ${
+          open
+            ? `
+                border-[#E1C562]/15
+                bg-[#E1C562]/10
+                text-[#E1C562]
+              `
+            : `
+                border-transparent
+                text-white/65
+                hover:border-white/[0.06]
+                hover:bg-white/[0.04]
+                hover:text-white
+              `
         }
       `}
     >
@@ -1381,9 +1554,10 @@ const MobileSubMenu = ({
         transition-all
         duration-500
         ease-out
-        ${isOpen
-          ? "max-h-[1400px] opacity-100"
-          : "max-h-0 opacity-0"
+        ${
+          isOpen
+            ? "max-h-[1400px] opacity-100"
+            : "max-h-0 opacity-0"
         }
       `}
     >

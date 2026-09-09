@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   ArrowUpRight,
   Mail,
@@ -17,103 +17,148 @@ export default function ContactUs() {
   // BRANCH DATA
   // =========================================================
   const branches = [
-    {
-      id: "india-gurgaon",
-      country: "India",
-      countryCode: "IN",
-      office: "India Office",
-      shortAddress: "Gurgaon, Haryana",
-      address: [
-        "101, Spaze Tristar Mall",
-        "Sec 92, Gurgaon - 122505",
-        "Haryana, India",
-      ],
-      phone: [],
-      email: "info@wedotgroup.com",
-      mapQuery:
-        "101 Spaze Tristar Mall Sec 92 Gurgaon Haryana India",
-    },
+  {
+    id: "india",
+    country: "India",
+    countryCode: "IN",
+    office: "India Office",
+    shortAddress: "Gurgaon, Haryana",
+    address: [
+      "101, Spaze Tristar Mall",
+      "Sec 92, Gurgaon - 122505",
+      "Haryana, India",
+    ],
+    phone: [
+      "+91 00000 00000",
+      "+91 00000 00000",
+    ],
+    email: [
+      "info@wedotgroup.com",
+      "support@wedotgroup.com",
+    ],
+    mapQuery:
+      "101 Spaze Tristar Mall Sec 92 Gurgaon Haryana India",
+  },
 
-    {
-      id: "dubai",
-      country: "United Arab Emirates",
-      countryCode: "UAE",
-      office: "Dubai Office",
-      shortAddress: "Port Saeed, Deira, Dubai",
-      address: [
-        "Office 403, Al Owasis Building",
-        "Port Saeed, Deira",
-        "Dubai, UAE",
-      ],
-      phone: [
-        "+971 4 261 9694",
-        "+971 58 508 7199",
-      ],
-      email: "info@wedotgroup.com",
-      mapQuery:
-        "Office 403 Al Owasis Building Port Saeed Deira Dubai UAE",
-    },
+  {
+    id: "uae",
+    country: "United Arab Emirates",
+    countryCode: "UAE",
+    office: "UAE Offices",
+    shortAddress: "Dubai & Ajman, UAE",
 
-    {
-      id: "ajman",
-      country: "United Arab Emirates",
-      countryCode: "UAE",
-      office: "UAE Registered Office",
-      shortAddress: "Ajman Free Zone, Ajman",
-      address: [
-        "Number B.C. 1302767",
-        "Building Ajman Free Zone",
-        "C1 Building, Ajman, UAE",
-      ],
-      phone: [
-        "+971 58 508 7199",
-      ],
-      email: "info@wedotgroup.com",
-      mapQuery:
-        "Building Ajman Free Zone C1 Building Ajman UAE",
-    },
+    locations: [
+      {
+        id: "dubai",
+        office: "Dubai Office",
+        shortAddress: "Port Saeed, Deira, Dubai",
+        address: [
+          "Office 403, Al Owasis Building",
+          "Port Saeed, Deira",
+          "Dubai, UAE",
+        ],
+        phone: [
+          "+971 4 261 9694",
+          "+971 58 508 7199",
+        ],
+        email: [
+          "info@wedotgroup.com",
+          "support@wedotgroup.com",
+        ],
+        mapQuery:
+          "Office 403 Al Owasis Building Port Saeed Deira Dubai UAE",
+      },
 
-    // =======================================================
-    // ADD MORE BRANCHES BELOW
-    // =======================================================
+      {
+        id: "ajman",
+        office: "UAE Registered Office",
+        shortAddress: "Ajman Free Zone, Ajman",
+        address: [
+          "Number B.C. 1302767",
+          "Building Ajman Free Zone",
+          "C1 Building, Ajman, UAE",
+        ],
+        phone: [
+          "+971 4 261 9694",
+          "+971 58 508 7199",
+        ],
+        email: [
+          "info@wedotgroup.com",
+          "support@wedotgroup.com",
+        ],
+        mapQuery:
+          "Building C1 Ajman Free Zone Ajman UAE",
+      },
+    ],
+  },
+];
 
-    // {
-    //   id: "mumbai",
-    //   country: "India",
-    //   countryCode: "IN",
-    //   office: "Mumbai Office",
-    //   shortAddress: "Mumbai, Maharashtra",
-    //   address: [
-    //     "Your Office Address",
-    //     "Mumbai, Maharashtra",
-    //     "India",
-    //   ],
-    //   phone: ["+91 XXXXX XXXXX"],
-    //   email: "info@wedotgroup.com",
-    //   mapQuery: "Mumbai Maharashtra India",
-    // },
-  ];
-
+  // =========================================================
+  // SELECTED COUNTRY
+  // =========================================================
   const [selectedBranch, setSelectedBranch] = useState(
     branches[0] || null
   );
 
   // =========================================================
+  // SELECTED UAE LOCATION
+  // =========================================================
+  const [selectedLocationId, setSelectedLocationId] =
+    useState("dubai");
+
+
+  const selectedOffice = useMemo(() => {
+    if (!selectedBranch) return null;
+
+    // India / normal branch
+    if (!selectedBranch.locations) {
+      return selectedBranch;
+    }
+
+    // UAE / nested locations
+    return (
+      selectedBranch.locations.find(
+        (location) => location.id === selectedLocationId
+      ) || selectedBranch.locations[0]
+    );
+  }, [selectedBranch, selectedLocationId]);
+
+  
+  const handleBranchSelect = (branch) => {
+    setSelectedBranch(branch);
+
+    // Default UAE location = Dubai
+    if (branch.id === "uae") {
+      setSelectedLocationId("dubai");
+    }
+  };
+
+  // =========================================================
+  // UAE LOCATION SELECT HANDLER
+  // =========================================================
+  const handleLocationSelect = (locationId) => {
+    setSelectedLocationId(locationId);
+  };
+
+  // =========================================================
   // GOOGLE MAP URL
   // =========================================================
-  const getMapUrl = (branch) => {
-    if (!branch) return "";
+  const getMapUrl = (office) => {
+    if (!office?.mapQuery) return "#";
 
     return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-      branch.mapQuery
+      office.mapQuery
     )}`;
   };
 
-  const getMapEmbedUrl = (branch) => {
-    if (!branch) return "";
+  // =========================================================
+  // GOOGLE MAP EMBED URL
+  // =========================================================
+  const getMapEmbedUrl = (office) => {
+    if (!office?.mapQuery) return "";
 
     return `https://www.google.com/maps?q=${encodeURIComponent(
-      branch.mapQuery
+      office.mapQuery
     )}&output=embed`;
   };
 
@@ -203,11 +248,11 @@ export default function ContactUs() {
 
               <div className="rounded-xl border border-white/10 bg-white/[0.035] p-5 backdrop-blur-md">
                 <p className="text-2xl font-bold text-[#E1C562]">
-                  {branches.length}+
+                  {branches.length}
                 </p>
 
                 <p className="mt-1 text-sm text-slate-400">
-                  Office locations
+                  Countries
                 </p>
               </div>
 
@@ -237,7 +282,9 @@ export default function ContactUs() {
         </section>
 
 
-    
+        {/* =====================================================
+            LOCATIONS
+        ===================================================== */}
         <section
           id="locations"
           className="border-t border-slate-200 bg-white px-6 py-20 lg:px-8"
@@ -265,8 +312,8 @@ export default function ContactUs() {
 
                 <p className="mt-5 max-w-2xl text-base leading-7 text-slate-500">
                   Visit one of our offices or connect with our team
-                  directly. Select a location to see complete branch
-                  information and directions.
+                  directly. Select a country and then choose a
+                  specific office location.
                 </p>
 
               </div>
@@ -275,7 +322,7 @@ export default function ContactUs() {
               <div className="hidden rounded-2xl border border-slate-200 bg-[#f8f8f6] px-6 py-5 sm:block">
 
                 <p className="text-xs font-bold uppercase tracking-[0.15em] text-slate-400">
-                  Global Offices
+                  Global Countries
                 </p>
 
                 <p className="mt-1 text-3xl font-bold text-slate-900">
@@ -288,12 +335,12 @@ export default function ContactUs() {
 
 
             {/* =================================================
-                BRANCH SELECTOR
+                COUNTRY SELECTOR
             ================================================= */}
             {branches.length > 0 ? (
               <>
 
-                <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 
                   {branches.map((branch) => {
 
@@ -305,7 +352,7 @@ export default function ContactUs() {
                         key={branch.id}
                         type="button"
                         onClick={() =>
-                          setSelectedBranch(branch)
+                          handleBranchSelect(branch)
                         }
                         aria-pressed={isSelected}
                         className={`group relative overflow-hidden rounded-2xl border p-5 text-left transition-all duration-300 ${
@@ -347,7 +394,6 @@ export default function ContactUs() {
 
                         </div>
 
-
                         {/* Name */}
                         <h3
                           className={`mt-6 text-lg font-bold ${
@@ -356,9 +402,8 @@ export default function ContactUs() {
                               : "text-slate-900"
                           }`}
                         >
-                          {branch.office}
+                          {branch.country}
                         </h3>
-
 
                         {/* Short Address */}
                         <p
@@ -371,6 +416,18 @@ export default function ContactUs() {
                           {branch.shortAddress}
                         </p>
 
+                        {/* Location Count */}
+                        {branch.locations && (
+                          <p
+                            className={`mt-2 text-xs font-medium ${
+                              isSelected
+                                ? "text-slate-500"
+                                : "text-slate-400"
+                            }`}
+                          >
+                            {branch.locations.length} office locations
+                          </p>
+                        )}
 
                         {/* Action */}
                         <div
@@ -380,7 +437,7 @@ export default function ContactUs() {
                               : "text-[#B89B3E]"
                           }`}
                         >
-                          View details
+                          View locations
 
                           <ArrowUpRight
                             size={14}
@@ -396,9 +453,71 @@ export default function ContactUs() {
 
 
                 {/* =================================================
+                    UAE LOCATION SELECTOR
+                ================================================= */}
+                {selectedBranch?.locations && (
+                  <div className="mt-8 rounded-2xl border border-slate-200 bg-[#f8f8f6] p-5 sm:p-6">
+
+                    <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+
+                      <div>
+                        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#B89B3E]">
+                          UAE Locations
+                        </p>
+
+                        <h3 className="mt-2 text-xl font-bold text-slate-900">
+                          Select an office
+                        </h3>
+                      </div>
+
+                      <div className="flex flex-wrap gap-3">
+
+                        {selectedBranch.locations.map(
+                          (location) => {
+
+                            const isLocationSelected =
+                              selectedOffice?.id ===
+                              location.id;
+
+                            return (
+                              <button
+                                key={location.id}
+                                type="button"
+                                onClick={() =>
+                                  handleLocationSelect(
+                                    location.id
+                                  )
+                                }
+                                aria-pressed={
+                                  isLocationSelected
+                                }
+                                className={`inline-flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition ${
+                                  isLocationSelected
+                                    ? "bg-[#080808] text-[#E1C562] shadow-md"
+                                    : "border border-slate-200 bg-white text-slate-600 hover:border-[#E1C562] hover:text-[#B08D1E]"
+                                }`}
+                              >
+                                <MapPin size={16} />
+
+                                {location.office}
+
+                              </button>
+                            );
+                          }
+                        )}
+
+                      </div>
+
+                    </div>
+
+                  </div>
+                )}
+
+
+                {/* =================================================
                     SELECTED LOCATION
                 ================================================= */}
-                {selectedBranch && (
+                {selectedOffice && (
                   <div className="mt-8 overflow-hidden rounded-3xl border border-slate-200 bg-[#f7f7f5] shadow-[0_20px_70px_rgba(15,23,42,0.08)]">
 
                     <div className="grid lg:grid-cols-[0.8fr_1.2fr]">
@@ -416,6 +535,7 @@ export default function ContactUs() {
                           </div>
 
                           <div>
+
                             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#B89B3E]">
                               Selected Office
                             </p>
@@ -423,6 +543,7 @@ export default function ContactUs() {
                             <p className="mt-1 text-xs font-medium text-slate-400">
                               {selectedBranch.country}
                             </p>
+
                           </div>
 
                         </div>
@@ -430,10 +551,18 @@ export default function ContactUs() {
 
                         {/* Office */}
                         <h3 className="mt-8 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                          {selectedBranch.office}
+                          {selectedOffice.office}
                         </h3>
 
                         <div className="mt-3 h-1 w-12 rounded-full bg-[#E1C562]" />
+
+
+                        {/* Short Address */}
+                        {selectedOffice.shortAddress && (
+                          <p className="mt-5 text-sm font-medium text-slate-500">
+                            {selectedOffice.shortAddress}
+                          </p>
+                        )}
 
 
                         {/* Address */}
@@ -451,13 +580,15 @@ export default function ContactUs() {
                             />
 
                             <div className="text-sm leading-7 text-slate-600">
-                              {selectedBranch.address.map(
+
+                              {selectedOffice.address?.map(
                                 (line, index) => (
                                   <div key={index}>
                                     {line}
                                   </div>
                                 )
                               )}
+
                             </div>
 
                           </div>
@@ -466,7 +597,7 @@ export default function ContactUs() {
 
 
                         {/* Phone */}
-                        {selectedBranch.phone?.length > 0 && (
+                        {selectedOffice.phone?.length > 0 && (
                           <div className="mt-7">
 
                             <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">
@@ -475,7 +606,7 @@ export default function ContactUs() {
 
                             <div className="mt-3 space-y-2">
 
-                              {selectedBranch.phone.map(
+                              {selectedOffice.phone.map(
                                 (phone, index) => (
                                   <a
                                     key={index}
@@ -502,34 +633,45 @@ export default function ContactUs() {
 
 
                         {/* Email */}
-                        <div className="mt-7">
+                        {/* Email */}
+{selectedOffice.email?.length > 0 && (
+  <div className="mt-7">
 
-                          <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">
-                            Email
-                          </p>
+    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">
+      Email
+    </p>
 
-                          <a
-                            href={`mailto:${selectedBranch.email}`}
-                            className="mt-3 flex items-center gap-3 text-sm font-medium text-slate-600 transition hover:text-[#B89B3E]"
-                          >
-                            <Mail
-                              size={17}
-                              className="shrink-0 text-[#B89B3E]"
-                            />
+    <div className="mt-3 space-y-2">
 
-                            <span className="break-all">
-                              {selectedBranch.email}
-                            </span>
-                          </a>
+      {selectedOffice.email.map((email, index) => (
+        <a
+          key={index}
+          href={`mailto:${email}`}
+          className="flex items-center gap-3 text-sm font-medium text-slate-600 transition hover:text-[#B89B3E]"
+        >
+          <Mail
+            size={17}
+            className="shrink-0 text-[#B89B3E]"
+          />
 
-                        </div>
+          <span className="break-all">
+            {email}
+          </span>
+        </a>
+      ))}
+
+    </div>
+
+  </div>
+)}
+
 
 
                         {/* Buttons */}
                         <div className="mt-9 flex flex-col gap-3 sm:flex-row">
 
                           <a
-                            href={getMapUrl(selectedBranch)}
+                            href={getMapUrl(selectedOffice)}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#080808] px-5 py-3.5 text-sm font-semibold text-[#E1C562] transition duration-300 hover:bg-[#E1C562] hover:text-[#080808]"
@@ -542,16 +684,19 @@ export default function ContactUs() {
                               size={16}
                               className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                             />
+
                           </a>
 
-                          <a
-                            href={`mailto:${selectedBranch.email}`}
-                            className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3.5 text-sm font-semibold text-slate-700 transition duration-300 hover:border-[#E1C562] hover:text-[#B89B3E]"
-                          >
-                            <Mail size={17} />
+                          {selectedOffice.email && (
+                            <a
+                              href={`mailto:${selectedOffice.email}`}
+                              className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3.5 text-sm font-semibold text-slate-700 transition duration-300 hover:border-[#E1C562] hover:text-[#B89B3E]"
+                            >
+                              <Mail size={17} />
 
-                            Contact Office
-                          </a>
+                              Contact Office
+                            </a>
+                          )}
 
                         </div>
 
@@ -564,9 +709,9 @@ export default function ContactUs() {
                       <div className="relative min-h-[420px] bg-slate-200 lg:min-h-[620px]">
 
                         <iframe
-                          key={selectedBranch.id}
-                          title={`${selectedBranch.office} Google Map`}
-                          src={getMapEmbedUrl(selectedBranch)}
+                          key={selectedOffice.id}
+                          title={`${selectedOffice.office} Google Map`}
+                          src={getMapEmbedUrl(selectedOffice)}
                           className="absolute inset-0 h-full w-full border-0"
                           allowFullScreen
                           loading="lazy"
@@ -580,7 +725,7 @@ export default function ContactUs() {
 
                             <span className="h-2 w-2 rounded-full bg-[#E1C562] shadow-[0_0_10px_#E1C562]" />
 
-                            {selectedBranch.office}
+                            {selectedOffice.office}
 
                           </div>
 
@@ -595,6 +740,7 @@ export default function ContactUs() {
 
               </>
             ) : (
+
               /* =================================================
                   NO BRANCHES
               ================================================= */
@@ -614,78 +760,86 @@ export default function ContactUs() {
                 </p>
 
               </div>
+
             )}
 
           </div>
         </section>
 
 
+        {/* =====================================================
+            ENQUIRY SECTION
+        ===================================================== */}
         <section className="bg-[#f7f7f5] py-8">
           <Enquery />
-        </section> 
+        </section>
 
 
+        {/* =====================================================
+            CTA
+        ===================================================== */}
         <section className="relative overflow-hidden bg-white px-6 py-20 lg:px-8">
 
-  {/* Glow */}
-  <div className="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-[#E1C562]/10 blur-[110px]" />
+          {/* Glow */}
+          <div className="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-[#E1C562]/10 blur-[110px]" />
 
-  <div className="relative mx-auto max-w-5xl text-center">
+          <div className="relative mx-auto max-w-5xl text-center">
 
-    {/* Icon */}
-    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#E1C562] text-[#080808] shadow-[0_0_30px_rgba(225,197,98,0.15)]">
-      <Mail size={25} />
-    </div>
+            {/* Icon */}
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#E1C562] text-[#080808] shadow-[0_0_30px_rgba(225,197,98,0.15)]">
+              <Mail size={25} />
+            </div>
 
-    <p className="mt-7 text-xs font-bold uppercase tracking-[0.2em] text-[#B08D1E]">
-      Let's Talk
-    </p>
+            <p className="mt-7 text-xs font-bold uppercase tracking-[0.2em] text-[#B08D1E]">
+              Let's Talk
+            </p>
 
-    <h2 className="mt-3 text-3xl font-bold text-[#080808] sm:text-4xl lg:text-5xl">
-      Have a question?
-    </h2>
+            <h2 className="mt-3 text-3xl font-bold text-[#080808] sm:text-4xl lg:text-5xl">
+              Have a question?
+            </h2>
 
-    <p className="mx-auto mt-5 max-w-2xl leading-7 text-slate-600">
-      Our team is ready to help you explore the right
-      solution for your business.
-    </p>
+            <p className="mx-auto mt-5 max-w-2xl leading-7 text-slate-600">
+              Our team is ready to help you explore the right
+              solution for your business.
+            </p>
 
-    {/* Buttons */}
-    <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+            {/* Buttons */}
+            <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
 
-      <button
-        type="button"
-        onClick={() => setIsEnquiryOpen(true)}
-        className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#E1C562] px-7 py-3.5 font-semibold text-[#080808] shadow-lg shadow-[#E1C562]/20 transition hover:bg-[#D4B653]"
-      >
-        Start an Enquiry
+              <button
+                type="button"
+                onClick={() => setIsEnquiryOpen(true)}
+                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#E1C562] px-7 py-3.5 font-semibold text-[#080808] shadow-lg shadow-[#E1C562]/20 transition hover:bg-[#D4B653]"
+              >
+                Start an Enquiry
 
-        <ArrowUpRight
-          size={18}
-          className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-        />
-      </button>
+                <ArrowUpRight
+                  size={18}
+                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </button>
 
-      <a
-        href="mailto:info@wedotgroup.com"
-        className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-7 py-3.5 font-semibold text-[#080808] transition hover:border-[#E1C562]/40 hover:bg-[#E1C562]/10 hover:text-[#B08D1E]"
-      >
-        <Mail size={18} />
+              <a
+                href="mailto:info@wedotgroup.com"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-7 py-3.5 font-semibold text-[#080808] transition hover:border-[#E1C562]/40 hover:bg-[#E1C562]/10 hover:text-[#B08D1E]"
+              >
+                <Mail size={18} />
 
-        Email Our Team
-      </a>
+                Email Our Team
+              </a>
 
-    </div>
+            </div>
 
-  </div>
+          </div>
 
-</section>
-
+        </section>
 
       </div>
 
 
-   
+      {/* =====================================================
+          ENQUIRY MODAL
+      ===================================================== */}
       <EnquiryModal
         isOpen={isEnquiryOpen}
         onClose={() => setIsEnquiryOpen(false)}
