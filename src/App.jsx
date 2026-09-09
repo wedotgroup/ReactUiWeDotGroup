@@ -18,6 +18,14 @@ import ManagementCounsultancy from "./pages/footers/ManagementCounsultancy";
 import ItCounsultancyfooter from "./pages/footers/ItCounsultancyfooter"
 import Certifications from "./pages/Certifications";
 
+import ISOCertifications from "./pages/certifications/ISOCertifications";
+import ESGCertification from "./pages/certifications/ESGCertification";
+import FSSAI from "./pages/certifications/FSSAI";
+import ISICertification from "./pages/certifications/ISICertification";
+import SocialLabourCompliance from "./pages/certifications/SocialLabourCompliance";
+import TrademarkRegistration from "./pages/certifications/TrademarkRegistration";
+
+
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -79,6 +87,14 @@ function App() {
         <Route path="/management-consultancy" element={<ManagementCounsultancy/>}/>
         <Route path="/itconsultancy" element={<ItCounsultancyfooter/>}/>
         <Route path="/certifications" element={<Certifications/>}/>
+
+        
+          <Route path="/certifications/iso-certifications" element={<ISOCertifications/>}/>
+            <Route path="/certifications/trademark-registration" element={<TrademarkRegistration/>}/>
+              <Route path="/certifications/fssai" element={<FSSAI/>}/>
+                <Route path="/certifications/isi-certification" element={<ISICertification/>}/>
+                  <Route path="/certifications/esg-certification" element={<ESGCertification/>}/>
+                    <Route path="/certifications/social-labour-compliance" element={<SocialLabourCompliance/>}/>
 
       </Route>
 

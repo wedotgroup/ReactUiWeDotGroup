@@ -13,9 +13,7 @@ import Enquery from "../sections/Enquiry";
 export default function ContactUs() {
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
 
-  // =========================================================
-  // BRANCH DATA
-  // =========================================================
+  
   const branches = [
   {
     id: "india",
@@ -93,16 +91,12 @@ export default function ContactUs() {
   },
 ];
 
-  // =========================================================
-  // SELECTED COUNTRY
-  // =========================================================
+ 
   const [selectedBranch, setSelectedBranch] = useState(
     branches[0] || null
   );
 
-  // =========================================================
-  // SELECTED UAE LOCATION
-  // =========================================================
+ 
   const [selectedLocationId, setSelectedLocationId] =
     useState("dubai");
 
@@ -703,9 +697,6 @@ export default function ContactUs() {
                       </div>
 
 
-                      {/* =================================================
-                          MAP
-                      ================================================= */}
                       <div className="relative min-h-[420px] bg-slate-200 lg:min-h-[620px]">
 
                         <iframe
@@ -741,9 +732,6 @@ export default function ContactUs() {
               </>
             ) : (
 
-              /* =================================================
-                  NO BRANCHES
-              ================================================= */
               <div className="mt-10 rounded-2xl border border-dashed border-slate-300 bg-[#f8f8f6] p-10 text-center">
 
                 <MapPin
@@ -767,79 +755,91 @@ export default function ContactUs() {
         </section>
 
 
-        {/* =====================================================
-            ENQUIRY SECTION
-        ===================================================== */}
-        <section className="bg-[#f7f7f5] py-8">
+       
+        <section className="py-8">
           <Enquery />
         </section>
 
 
-        {/* =====================================================
-            CTA
-        ===================================================== */}
-        <section className="relative overflow-hidden bg-white px-6 py-20 lg:px-8">
+        
+        <section className="relative overflow-hidden bg-[#E1C562] px-6 py-20 lg:px-8 mt-9">
 
-          {/* Glow */}
-          <div className="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-[#E1C562]/10 blur-[110px]" />
+  {/* Glow */}
+  <div className="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-white/10 blur-[110px]" />
 
-          <div className="relative mx-auto max-w-5xl text-center">
+  <div className="relative mx-auto max-w-7xl">
 
-            {/* Icon */}
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#E1C562] text-[#080808] shadow-[0_0_30px_rgba(225,197,98,0.15)]">
-              <Mail size={25} />
-            </div>
+    <div className="grid items-center gap-10 lg:grid-cols-[1fr_auto]">
 
-            <p className="mt-7 text-xs font-bold uppercase tracking-[0.2em] text-[#B08D1E]">
-              Let's Talk
-            </p>
+      {/* =====================================================
+          LEFT CONTENT
+      ===================================================== */}
+      <div className="max-w-3xl">
 
-            <h2 className="mt-3 text-3xl font-bold text-[#080808] sm:text-4xl lg:text-5xl">
-              Have a question?
-            </h2>
+        {/* Label */}
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#B08D1E]">
+          Let's Talk
+        </p>
 
-            <p className="mx-auto mt-5 max-w-2xl leading-7 text-slate-600">
-              Our team is ready to help you explore the right
-              solution for your business.
-            </p>
+        {/* Heading */}
+        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#080808] sm:text-4xl lg:text-5xl">
+          Have a question?
+        </h2>
 
-            {/* Buttons */}
-            <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-
-              <button
-                type="button"
-                onClick={() => setIsEnquiryOpen(true)}
-                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#E1C562] px-7 py-3.5 font-semibold text-[#080808] shadow-lg shadow-[#E1C562]/20 transition hover:bg-[#D4B653]"
-              >
-                Start an Enquiry
-
-                <ArrowUpRight
-                  size={18}
-                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                />
-              </button>
-
-              <a
-                href="mailto:info@wedotgroup.com"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-7 py-3.5 font-semibold text-[#080808] transition hover:border-[#E1C562]/40 hover:bg-[#E1C562]/10 hover:text-[#B08D1E]"
-              >
-                <Mail size={18} />
-
-                Email Our Team
-              </a>
-
-            </div>
-
-          </div>
-
-        </section>
+        {/* Description */}
+        <p className="mt-5 max-w-2xl leading-7 text-slate-700">
+          Our team is ready to help you explore the right
+          solution for your business.
+        </p>
 
       </div>
 
 
       {/* =====================================================
-          ENQUIRY MODAL
+          RIGHT BUTTONS
       ===================================================== */}
+      <div className="flex w-full flex-col gap-3 sm:flex-row lg:w-auto lg:flex-col">
+
+        {/* Start Enquiry */}
+        <button
+          type="button"
+          onClick={() => setIsEnquiryOpen(true)}
+          className="group cursor-pointer inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-[#080808] px-7 font-semibold text-[#E1C562] shadow-lg transition-all duration-300 hover:bg-[#171717] hover:shadow-xl"
+        >
+          Start an Enquiry
+
+          <ArrowUpRight
+            size={18}
+            className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+          />
+        </button>
+
+
+        {/* Email */}
+        <a
+          href="mailto:info@wedotgroup.com"
+          className="group inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-[#080808]/20 bg-white/30 px-7 font-semibold text-[#080808] transition-all duration-300 hover:border-[#080808]/40 hover:bg-white/60"
+        >
+          <Mail
+            size={18}
+            className="transition-transform duration-300 group-hover:scale-110"
+          />
+
+          Email Our Team
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+      </div>
+
+
+ 
       <EnquiryModal
         isOpen={isEnquiryOpen}
         onClose={() => setIsEnquiryOpen(false)}
