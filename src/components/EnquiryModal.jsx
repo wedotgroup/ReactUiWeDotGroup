@@ -1159,67 +1159,7 @@ const EnquiryModal = ({ isOpen, onClose }) => {
                 </button>
               </div>
 
-              <div
-                className="
-                  mt-5
-                  rounded-xl
-                  border
-                  border-white/10
-                  bg-white/[0.05]
-                  p-3
-                  sm:mt-7
-                  sm:rounded-2xl
-                  sm:p-4
-                "
-              >
-                <div className="flex items-center gap-3">
-                  <div
-                    className="
-                      flex
-                      h-9
-                      w-9
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-lg
-                      bg-[#E1C562]/10
-                      text-[#E1C562]
-                    "
-                  >
-                    {CategoryIcon && (
-                      <CategoryIcon size={17} />
-                    )}
-                  </div>
-
-                  <div className="min-w-0">
-                    <p
-                      className="
-                        text-[8px]
-                        font-bold
-                        uppercase
-                        tracking-[0.15em]
-                        text-white/40
-                        sm:text-[9px]
-                      "
-                    >
-                      Selected Category
-                    </p>
-
-                    <p
-                      className="
-                        mt-1
-                        truncate
-                        text-xs
-                        font-bold
-                        text-white
-                        sm:text-sm
-                      "
-                    >
-                      {currentCategory?.title}
-                    </p>
-                  </div>
-                </div>
-              </div>
+             
 
               {/* PRIVACY */}
 

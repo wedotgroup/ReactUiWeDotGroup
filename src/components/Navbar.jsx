@@ -301,28 +301,28 @@ const Navbar = () => {
           items: [
             {
               name: "ISO Certifications",
-              path: "/certifications/iso-certifications",
+              path: "#",
             },
             {
               name: "Trademark Registration",
-              path: "/certifications/trademark-registration",
+              path: "#",
             },
             {
               name: "FSSAI",
-              path: "/certifications/fssai",
+              path: "#",
             },
             {
               name: "ISI Certification",
-              path: "/certifications/isi-certification",
+              path: "#",
             },
             {
               name: "ESG Certification",
-              path: "/certifications/esg-certification",
+              path: "#",
             },
             {
               name: "Social & Labour Compliance",
               path:
-                "/certifications/social-labour-compliance",
+                "#",
             },
           ],
         },

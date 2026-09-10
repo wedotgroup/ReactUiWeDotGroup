@@ -937,57 +937,7 @@ const Enquery = () => {
                 </button>
                       </div>
 
-              {/* SELECTED CATEGORY */}
-              <div
-                className="
-                  mt-6
-                  rounded-2xl
-                  border
-                  border-white/10
-                  bg-white/[0.05]
-                  p-4
-                  backdrop-blur-sm
-                "
-              >
-                <div className="flex items-center gap-3">
-                  <div
-                    className="
-                      flex
-                      h-9
-                      w-9
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-lg
-                      bg-[#E1C562]/10
-                      text-[#E1C562]
-                    "
-                  >
-                    {CategoryIcon && (
-                      <CategoryIcon size={17} />
-                    )}
-                  </div>
-
-                  <div className="min-w-0">
-                    <p
-                      className="
-                        text-[9px]
-                        font-bold
-                        uppercase
-                        tracking-[0.15em]
-                        text-white/40
-                      "
-                    >
-                      Selected Category
-                    </p>
-
-                    <p className="mt-1 truncate text-sm font-bold text-white">
-                      {currentCategory?.title}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
+          
               {/* PRIVACY */}
               <p
                 className="
