@@ -3,12 +3,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Aboutus = () => {
-  const features = [
-    "Business-focused solutions",
-    "Experienced professionals",
-    "Technology-driven approach",
-    "Long-term partnerships",
-  ];
+  
 
   return (
     <section className="relative overflow-hidden bg-white pt-20 pb-24 sm:pt-24 lg:pt-28">
@@ -109,59 +104,7 @@ const Aboutus = () => {
               assurance.
             </p>
 
-            {/* Features */}
-            <div className="mt-9 grid gap-3 sm:grid-cols-2">
-              {features.map((item) => (
-                <div
-                  key={item}
-                  className="
-                    group flex items-center gap-3
-                    rounded-xl
-                    border border-black/10
-                    bg-white/70
-                    px-4 py-3.5
-                    shadow-sm
-                    backdrop-blur-sm
-                    transition-all duration-300
-                    hover:-translate-y-1
-                    hover:border-[#E1C562]/60
-                    hover:bg-[#E1C562]/10
-                    hover:shadow-md
-                  "
-                >
-                  <div
-                    className="
-                      flex h-9 w-9 shrink-0 items-center justify-center
-                      rounded-lg
-                      bg-[#E1C562]/15
-                      transition-all duration-300
-                      group-hover:bg-[#E1C562]
-                    "
-                  >
-                    <CheckCircle2
-                      size={17}
-                      className="
-                        text-[#B89B3E]
-                        transition-colors duration-300
-                        group-hover:text-[#080808]
-                      "
-                    />
-                  </div>
-
-                  <span
-                    className="
-                      text-sm font-semibold
-                      text-[#080808]/70
-                      transition-colors duration-300
-                      group-hover:text-[#080808]
-                    "
-                  >
-                    {item}
-                  </span>
-                </div>
-              ))}
-            </div>
-
+          
             {/* CTA */}
             <div className="mt-10">
               <Link

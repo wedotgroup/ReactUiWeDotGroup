@@ -1,4 +1,3 @@
-
 import { useRef, useState } from "react";
 import {
   ArrowRight,
@@ -18,6 +17,7 @@ import {
   Globe2,
   UserCheck,
   Building2,
+  AlertCircle,
 } from "lucide-react";
 import axios from "axios";
 import apiUrl from "../api/api";
@@ -27,7 +27,16 @@ export default function HrConsultancy() {
 
   const [files, setFiles] = useState([]);
   const [dragActive, setDragActive] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+
+  // Popup states
+  const [popup, setPopup] = useState({
+    show: false,
+    type: "success",
+    title: "",
+    message: "",
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [formData, setFormData] = useState({
     companyName: "",
@@ -61,6 +70,10 @@ export default function HrConsultancy() {
     "20+ Years",
   ];
 
+  // =========================================================
+  // FORM CHANGE
+  // =========================================================
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -68,11 +81,11 @@ export default function HrConsultancy() {
       ...prev,
       [name]: value,
     }));
-
-    if (submitted) {
-      setSubmitted(false);
-    }
   };
+
+  // =========================================================
+  // FILE HANDLING
+  // =========================================================
 
   const handleFiles = (selectedFiles) => {
     const newFiles = Array.from(selectedFiles || []);
@@ -82,6 +95,9 @@ export default function HrConsultancy() {
 
   const handleFileChange = (e) => {
     handleFiles(e.target.files);
+
+    // Allow selecting the same file again
+    e.target.value = "";
   };
 
   const handleDrop = (e) => {
@@ -97,47 +113,212 @@ export default function HrConsultancy() {
     setFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
+  // =========================================================
+  // CLOSE POPUP
+  // =========================================================
+
+  const closePopup = () => {
+    setPopup((prev) => ({
+      ...prev,
+      show: false,
+    }));
+  };
+
+  // =========================================================
+  // SUBMIT FORM
+  // =========================================================
+
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const data = new FormData();
-    Object.entries(formData).forEach(([key, value]) => {
-      data.append(key, value);
-    });
+    if (isSubmitting) return;
 
-    // Supporting files
-    files.forEach((file) => {
-      data.append("supporting_files[]", file);
-    });
+    setIsSubmitting(true);
 
-    const response = await axios.post(`${apiUrl}/hr/form`,data,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+    try {
+      const data = new FormData();
+
+      // Add form fields
+      Object.entries(formData).forEach(([key, value]) => {
+        data.append(key, value);
+      });
+
+      // Add supporting files
+      files.forEach((file) => {
+        data.append("supporting_files[]", file);
+      });
+
+      const response = await axios.post(
+        `${apiUrl}/hr/form`,
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("Success:", response.data);
+
+      // Reset form
+      setFormData({
+        companyName: "",
+        contactPerson: "",
+        email: "",
+        phone: "",
+        jobTitle: "",
+        jobLocation: "",
+        employmentType: "",
+        experience: "",
+        salaryRange: "",
+        department: "",
+        jobDescription: "",
+        skills: "",
+        qualifications: "",
+      });
+
+      // Reset files
+      setFiles([]);
+
+      // Reset file input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
       }
-    );
 
-    console.log("Success:", response.data);
+      // Show success popup
+      setPopup({
+        show: true,
+        type: "success",
+        title: "Requirement Submitted!",
+        message:
+          "Thank you for submitting your requirement. Our HR team will review your request and contact you shortly.",
+      });
 
-    setSubmitted(true);
+      // Scroll to form
+      setTimeout(() => {
+        document
+          .getElementById("hr-enquiry")
+          ?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+      }, 100);
 
-    window.scrollTo({
-      top:
-        document.getElementById("hr-enquiry")?.offsetTop - 100,
-      behavior: "smooth",
-    });
-  } catch (error) {
-    console.error("Error:", error.response?.data || error);
-  }
-};
+      // Auto close popup after 4 seconds
+      setTimeout(() => {
+        closePopup();
+      }, 4000);
+    } catch (error) {
+      console.error(
+        "Error:",
+        error.response?.data || error
+      );
+
+      const message =
+        error.response?.data?.message ||
+        error.response?.data?.error ||
+        "Something went wrong. Please try again.";
+
+      // Show error popup
+      setPopup({
+        show: true,
+        type: "error",
+        title: "Submission Failed",
+        message,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <main className="min-h-screen overflow-hidden bg-[#080808] text-slate-900">
+
+      {/* =========================================================
+          SUCCESS / ERROR POPUP
+      ========================================================= */}
+
+      {popup.show && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 px-5 backdrop-blur-sm"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              closePopup();
+            }
+          }}
+        >
+          <div
+            className={`relative w-full max-w-md overflow-hidden rounded-[24px] bg-white p-7 text-center shadow-[0_25px_100px_rgba(0,0,0,0.45)] sm:p-8`}
+          >
+            {/* Close */}
+            <button
+              type="button"
+              onClick={closePopup}
+              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-black/35 transition hover:bg-black/5 hover:text-black"
+              aria-label="Close popup"
+            >
+              <X size={18} />
+            </button>
+
+            {/* Icon */}
+            <div
+              className={`mx-auto flex h-16 w-16 items-center justify-center rounded-full ${
+                popup.type === "success"
+                  ? "bg-green-100"
+                  : "bg-red-100"
+              }`}
+            >
+              {popup.type === "success" ? (
+                <CheckCircle2
+                  size={36}
+                  className="text-green-600"
+                />
+              ) : (
+                <AlertCircle
+                  size={36}
+                  className="text-red-600"
+                />
+              )}
+            </div>
+
+            {/* Title */}
+            <h2
+              className={`mt-5 text-2xl font-bold ${
+                popup.type === "success"
+                  ? "text-[#080808]"
+                  : "text-red-700"
+              }`}
+            >
+              {popup.title}
+            </h2>
+
+            {/* Message */}
+            <p className="mx-auto mt-3 max-w-sm text-sm leading-6 text-black/50">
+              {popup.message}
+            </p>
+
+            {/* Button */}
+            <button
+              type="button"
+              onClick={closePopup}
+              className={`mt-6 w-full rounded-xl px-5 py-3 text-sm font-bold transition ${
+                popup.type === "success"
+                  ? "bg-[#E1C562] text-[#080808] hover:bg-[#D4B653]"
+                  : "bg-red-600 text-white hover:bg-red-700"
+              }`}
+            >
+              {popup.type === "success"
+                ? "Okay, Got It"
+                : "Close"}
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* =========================================================
           HERO
       ========================================================= */}
+
       <section className="relative overflow-hidden bg-[#080808]">
         {/* Grid */}
         <div
@@ -158,6 +339,7 @@ export default function HrConsultancy() {
 
         <div className="relative mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8 lg:py-24">
           <div className="grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
+
             {/* HERO CONTENT */}
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-[#E1C562]/25 bg-[#E1C562]/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#F0D77D]">
@@ -225,6 +407,7 @@ export default function HrConsultancy() {
             {/* HERO CARD */}
             <div className="relative hidden lg:block">
               <div className="relative rounded-[28px] border border-white/10 bg-white/[0.045] p-7 shadow-2xl backdrop-blur-xl">
+
                 {/* Floating icon */}
                 <div className="absolute -right-4 -top-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#E1C562] text-[#080808] shadow-xl">
                   <Users size={22} />
@@ -275,6 +458,7 @@ export default function HrConsultancy() {
       {/* =========================================================
           SERVICE HIGHLIGHTS
       ========================================================= */}
+
       <section className="bg-[#080808] px-5 pb-10 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
           <HighlightCard
@@ -300,12 +484,13 @@ export default function HrConsultancy() {
       {/* =========================================================
           MAIN SECTION
       ========================================================= */}
+
       <section className="relative bg-[#080808] px-5 py-14 sm:px-6 lg:px-8 lg:py-20">
         <div className="mx-auto grid max-w-7xl items-start gap-7 lg:grid-cols-[300px_minmax(0,1fr)]">
-          {/* =====================================================
-              SIDEBAR
-          ===================================================== */}
+
+          {/* SIDEBAR */}
           <aside className="space-y-4">
+
             {/* About */}
             <div className="rounded-2xl bg-white p-6 shadow-[0_15px_45px_rgba(0,0,0,0.22)]">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#E1C562]/15 text-[#B89B3E]">
@@ -398,15 +583,18 @@ export default function HrConsultancy() {
           </aside>
 
           {/* =====================================================
-              COMPACT FORM
+              FORM
           ===================================================== */}
+
           <div
             id="hr-enquiry"
             className="overflow-hidden rounded-[24px] bg-white shadow-[0_20px_65px_rgba(0,0,0,0.3)]"
           >
+
             {/* Form Header */}
             <div className="border-b border-black/10 bg-[#fafafa] px-6 py-6 sm:px-8">
               <div className="flex items-center gap-4">
+
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#080808] text-[#E1C562]">
                   <BriefcaseBusiness size={20} />
                 </div>
@@ -435,26 +623,6 @@ export default function HrConsultancy() {
               onSubmit={handleSubmit}
               className="p-6 sm:p-8"
             >
-              {/* SUCCESS */}
-              {submitted && (
-                <div className="mb-6 flex items-start gap-3 rounded-xl border border-green-200 bg-green-50 px-4 py-3">
-                  <CheckCircle2
-                    size={19}
-                    className="mt-0.5 shrink-0 text-green-600"
-                  />
-
-                  <div>
-                    <p className="text-sm font-bold text-green-800">
-                      Requirement submitted successfully.
-                    </p>
-
-                    <p className="mt-0.5 text-xs text-green-700">
-                      Our HR team will review your requirement and get back to
-                      you.
-                    </p>
-                  </div>
-                </div>
-              )}
 
               {/* COMPANY */}
               <FormSection
@@ -462,6 +630,7 @@ export default function HrConsultancy() {
                 description="Basic details about your organization."
               >
                 <div className="grid gap-4 sm:grid-cols-2">
+
                   <FormInput
                     label="Company Name"
                     name="companyName"
@@ -499,6 +668,7 @@ export default function HrConsultancy() {
                     onChange={handleChange}
                     required
                   />
+
                 </div>
               </FormSection>
 
@@ -508,6 +678,7 @@ export default function HrConsultancy() {
                 description="Tell us about the position you need to fill."
               >
                 <div className="grid gap-4 sm:grid-cols-2">
+
                   <FormInput
                     label="Job Title"
                     name="jobTitle"
@@ -557,6 +728,7 @@ export default function HrConsultancy() {
                     value={formData.department}
                     onChange={handleChange}
                   />
+
                 </div>
               </FormSection>
 
@@ -566,6 +738,7 @@ export default function HrConsultancy() {
                 description="Share the key skills and qualifications you are looking for."
               >
                 <div className="space-y-4">
+
                   <FormTextarea
                     label="Job Description"
                     name="jobDescription"
@@ -576,6 +749,7 @@ export default function HrConsultancy() {
                   />
 
                   <div className="grid gap-4 sm:grid-cols-2">
+
                     <FormTextarea
                       label="Required Skills"
                       name="skills"
@@ -591,12 +765,14 @@ export default function HrConsultancy() {
                       value={formData.qualifications}
                       onChange={handleChange}
                     />
+
                   </div>
                 </div>
               </FormSection>
 
               {/* FILE */}
               <div className="mt-8 border-t border-black/10 pt-8">
+
                 <div className="mb-4">
                   <h3 className="text-base font-bold text-[#080808]">
                     Supporting Document
@@ -613,13 +789,16 @@ export default function HrConsultancy() {
                   }}
                   onDragLeave={() => setDragActive(false)}
                   onDrop={handleDrop}
-                  onClick={() => fileInputRef.current?.click()}
+                  onClick={() =>
+                    fileInputRef.current?.click()
+                  }
                   className={`flex cursor-pointer items-center gap-4 rounded-xl border border-dashed px-4 py-4 transition ${
                     dragActive
                       ? "border-[#E1C562] bg-[#E1C562]/10"
                       : "border-black/10 bg-[#fafafa] hover:border-[#B89B3E] hover:bg-[#E1C562]/5"
                   }`}
                 >
+
                   <input
                     ref={fileInputRef}
                     type="file"
@@ -651,12 +830,15 @@ export default function HrConsultancy() {
                 {/* Files */}
                 {files.length > 0 && (
                   <div className="mt-3 space-y-2">
+
                     {files.map((file, index) => (
                       <div
                         key={`${file.name}-${index}`}
                         className="flex items-center justify-between gap-3 rounded-xl border border-black/10 bg-[#fafafa] px-3 py-2.5"
                       >
+
                         <div className="flex min-w-0 items-center gap-2.5">
+
                           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#080808] text-[#E1C562]">
                             <FileText size={14} />
                           </div>
@@ -670,6 +852,7 @@ export default function HrConsultancy() {
                               {(file.size / 1024 / 1024).toFixed(2)} MB
                             </p>
                           </div>
+
                         </div>
 
                         <button
@@ -682,14 +865,17 @@ export default function HrConsultancy() {
                         >
                           <X size={15} />
                         </button>
+
                       </div>
                     ))}
+
                   </div>
                 )}
               </div>
 
               {/* SUBMIT */}
               <div className="mt-8 flex flex-col gap-4 border-t border-black/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+
                 <div className="flex items-start gap-2.5">
                   <ShieldCheck
                     size={17}
@@ -704,15 +890,30 @@ export default function HrConsultancy() {
 
                 <button
                   type="submit"
-                  className="group inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-[#E1C562] px-6 text-sm font-bold text-[#080808] shadow-lg shadow-[#E1C562]/10 transition hover:-translate-y-0.5 hover:bg-[#D4B653]"
+                  disabled={isSubmitting}
+                  className={`group inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-xl px-6 text-sm font-bold text-[#080808] shadow-lg shadow-[#E1C562]/10 transition ${
+                    isSubmitting
+                      ? "cursor-not-allowed bg-[#E1C562]/60"
+                      : "bg-[#E1C562] hover:-translate-y-0.5 hover:bg-[#D4B653]"
+                  }`}
                 >
-                  Submit Requirement
+                  {isSubmitting ? (
+                    <>
+                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-[#080808]/30 border-t-[#080808]" />
+                      Submitting...
+                    </>
+                  ) : (
+                    <>
+                      Submit Requirement
 
-                  <ArrowRight
-                    size={17}
-                    className="transition-transform group-hover:translate-x-1"
-                  />
+                      <ArrowRight
+                        size={17}
+                        className="transition-transform group-hover:translate-x-1"
+                      />
+                    </>
+                  )}
                 </button>
+
               </div>
             </form>
           </div>
@@ -722,14 +923,19 @@ export default function HrConsultancy() {
       {/* =========================================================
           CTA
       ========================================================= */}
+
       <section className="relative overflow-hidden border-t border-[#E1C562]/15 bg-[#080808]">
+
         <div className="absolute -left-20 top-0 h-64 w-64 rounded-full bg-[#E1C562]/10 blur-3xl" />
 
         <div className="absolute -right-20 bottom-0 h-64 w-64 rounded-full bg-[#B89B3E]/10 blur-3xl" />
 
         <div className="relative mx-auto max-w-7xl px-5 py-14 sm:px-6 lg:px-8">
+
           <div className="flex flex-col items-center justify-between gap-7 text-center lg:flex-row lg:text-left">
+
             <div>
+
               <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#E1C562]">
                 <Sparkles size={16} />
                 HR Consultancy by We Dot Group
@@ -743,6 +949,7 @@ export default function HrConsultancy() {
                 Share your manpower requirements with our team and let us help
                 you build the workforce your business needs.
               </p>
+
             </div>
 
             <a
@@ -752,6 +959,7 @@ export default function HrConsultancy() {
               Start Hiring
               <ArrowRight size={17} />
             </a>
+
           </div>
         </div>
       </section>
@@ -766,17 +974,21 @@ export default function HrConsultancy() {
 function HeroFeature({ icon: Icon, title, text }) {
   return (
     <div className="flex gap-3">
+
       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#E1C562]/10 text-[#E1C562]">
         <Icon size={17} />
       </div>
 
       <div>
-        <p className="text-xs font-semibold text-white">{title}</p>
+        <p className="text-xs font-semibold text-white">
+          {title}
+        </p>
 
         <p className="mt-0.5 text-[11px] leading-5 text-white/40">
           {text}
         </p>
       </div>
+
     </div>
   );
 }
@@ -788,13 +1000,19 @@ function HeroFeature({ icon: Icon, title, text }) {
 function HighlightCard({ icon: Icon, title, text }) {
   return (
     <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-5">
+
       <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E1C562]/10 text-[#E1C562]">
         <Icon size={19} />
       </div>
 
-      <h3 className="mt-4 text-sm font-bold text-white">{title}</h3>
+      <h3 className="mt-4 text-sm font-bold text-white">
+        {title}
+      </h3>
 
-      <p className="mt-1.5 text-xs leading-5 text-white/40">{text}</p>
+      <p className="mt-1.5 text-xs leading-5 text-white/40">
+        {text}
+      </p>
+
     </div>
   );
 }
@@ -806,15 +1024,21 @@ function HighlightCard({ icon: Icon, title, text }) {
 function SidebarFeature({ icon: Icon, title, text }) {
   return (
     <div className="flex gap-3">
+
       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#080808] text-[#E1C562]">
         <Icon size={16} />
       </div>
 
       <div>
-        <h3 className="text-sm font-semibold text-[#080808]">{title}</h3>
+        <h3 className="text-sm font-semibold text-[#080808]">
+          {title}
+        </h3>
 
-        <p className="mt-0.5 text-xs leading-5 text-black/45">{text}</p>
+        <p className="mt-0.5 text-xs leading-5 text-black/45">
+          {text}
+        </p>
       </div>
+
     </div>
   );
 }
@@ -829,7 +1053,11 @@ function ContactItem({ href, icon: Icon, text }) {
       href={href}
       className="flex items-center gap-3 text-xs text-white/50 transition hover:text-[#E1C562]"
     >
-      <Icon size={15} className="shrink-0 text-[#E1C562]" />
+      <Icon
+        size={15}
+        className="shrink-0 text-[#E1C562]"
+      />
+
       <span>{text}</span>
     </a>
   );
@@ -839,13 +1067,24 @@ function ContactItem({ href, icon: Icon, text }) {
    FORM SECTION
 ============================================================= */
 
-function FormSection({ title, description, children }) {
+function FormSection({
+  title,
+  description,
+  children,
+}) {
   return (
     <div className="border-b border-black/10 pb-8">
-      <div className="mb-5">
-        <h3 className="text-base font-bold text-[#080808]">{title}</h3>
 
-        <p className="mt-1 text-xs text-black/40">{description}</p>
+      <div className="mb-5">
+
+        <h3 className="text-base font-bold text-[#080808]">
+          {title}
+        </h3>
+
+        <p className="mt-1 text-xs text-black/40">
+          {description}
+        </p>
+
       </div>
 
       {children}
@@ -853,6 +1092,9 @@ function FormSection({ title, description, children }) {
   );
 }
 
+/* =============================================================
+   FORM INPUT
+============================================================= */
 
 function FormInput({
   label,
@@ -865,6 +1107,7 @@ function FormInput({
 }) {
   return (
     <div>
+
       <label
         htmlFor={name}
         className="mb-1.5 block text-xs font-semibold text-[#080808]"
@@ -872,7 +1115,9 @@ function FormInput({
         {label}
 
         {required && (
-          <span className="ml-1 text-[#B89B3E]">*</span>
+          <span className="ml-1 text-[#B89B3E]">
+            *
+          </span>
         )}
       </label>
 
@@ -886,6 +1131,7 @@ function FormInput({
         required={required}
         className="h-11 w-full rounded-xl border border-black/10 bg-[#fafafa] px-3.5 text-sm text-[#080808] outline-none transition placeholder:text-black/25 hover:border-[#B89B3E] focus:border-[#E1C562] focus:bg-white focus:ring-4 focus:ring-[#E1C562]/10"
       />
+
     </div>
   );
 }
@@ -903,6 +1149,7 @@ function FormSelect({
 }) {
   return (
     <div>
+
       <label
         htmlFor={name}
         className="mb-1.5 block text-xs font-semibold text-[#080808]"
@@ -911,6 +1158,7 @@ function FormSelect({
       </label>
 
       <div className="relative">
+
         <select
           id={name}
           name={name}
@@ -918,25 +1166,35 @@ function FormSelect({
           onChange={onChange}
           className="h-11 w-full appearance-none rounded-xl border border-black/10 bg-[#fafafa] px-3.5 pr-10 text-sm text-black/65 outline-none transition hover:border-[#B89B3E] focus:border-[#E1C562] focus:bg-white focus:ring-4 focus:ring-[#E1C562]/10"
         >
-          <option value="">Select option</option>
+
+          <option value="">
+            Select option
+          </option>
 
           {options.map((option) => (
-            <option key={option} value={option}>
+            <option
+              key={option}
+              value={option}
+            >
               {option}
             </option>
           ))}
+
         </select>
 
         <ChevronDown
           size={16}
           className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#B89B3E]"
         />
+
       </div>
     </div>
   );
 }
 
-
+/* =============================================================
+   FORM TEXTAREA
+============================================================= */
 
 function FormTextarea({
   label,
@@ -948,6 +1206,7 @@ function FormTextarea({
 }) {
   return (
     <div>
+
       <label
         htmlFor={name}
         className="mb-1.5 block text-xs font-semibold text-[#080808]"
@@ -955,7 +1214,9 @@ function FormTextarea({
         {label}
 
         {required && (
-          <span className="ml-1 text-[#B89B3E]">*</span>
+          <span className="ml-1 text-[#B89B3E]">
+            *
+          </span>
         )}
       </label>
 
@@ -969,7 +1230,7 @@ function FormTextarea({
         required={required}
         className="w-full resize-none rounded-xl border border-black/10 bg-[#fafafa] px-3.5 py-3 text-sm leading-6 text-[#080808] outline-none transition placeholder:text-black/25 hover:border-[#B89B3E] focus:border-[#E1C562] focus:bg-white focus:ring-4 focus:ring-[#E1C562]/10"
       />
+
     </div>
   );
 }
-

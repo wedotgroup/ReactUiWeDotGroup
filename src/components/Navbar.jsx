@@ -96,10 +96,7 @@ const Navbar = () => {
         {
           heading: "Offshore & Mainland",
           items: [
-            {
-              name: "All Offshores",
-              path: "/management-consultancy/offshores",
-            },
+            
             {
               name: "Ras Al Khaimah Offshore",
               path:

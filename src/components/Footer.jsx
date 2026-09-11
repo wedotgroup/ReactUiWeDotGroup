@@ -19,9 +19,7 @@ import {
 
 const Footer = () => {
 
-  /* =====================================================
-      QUICK LINKS
-  ====================================================== */
+  
 
   const quickLinks = [
     {
@@ -518,9 +516,7 @@ const Footer = () => {
       </div>
 
 
-      {/* =====================================================
-          COPYRIGHT
-      ====================================================== */}
+     
 
       <div
         className="
@@ -568,19 +564,6 @@ const Footer = () => {
             . All Rights Reserved.
 
           </p>
-
-
-          <p
-            className="
-              text-center
-              text-[11px]
-              text-gray-600
-              sm:text-xs
-            "
-          >
-            Trusted • Professional • Global
-          </p>
-
         </div>
 
       </div>
@@ -818,9 +801,7 @@ const FooterLinks = ({
 };
 
 
-/* =========================================================
-   CONTACT ITEM
-========================================================= */
+
 
 const ContactItem = ({
   icon,
