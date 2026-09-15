@@ -43,14 +43,16 @@ const initialCartItems = [
   },
 ];
 
-const Cart = () => {
+const AddToCart = () => {
   const navigate = useNavigate();
 
   const [cartItems, setCartItems] = useState(initialCartItems);
   const [coupon, setCoupon] = useState("");
   const [couponApplied, setCouponApplied] = useState(false);
 
- 
+  // -----------------------------------------
+  // UPDATE QUANTITY
+  // -----------------------------------------
   const updateQuantity = (id, type) => {
     setCartItems((items) =>
       items.map((item) => {
@@ -74,17 +76,23 @@ const Cart = () => {
     );
   };
 
-  
+  // -----------------------------------------
+  // REMOVE ITEM
+  // -----------------------------------------
   const removeItem = (id) => {
     setCartItems((items) => items.filter((item) => item.id !== id));
   };
 
- 
+  // -----------------------------------------
+  // CLEAR CART
+  // -----------------------------------------
   const clearCart = () => {
     setCartItems([]);
   };
 
-  
+  // -----------------------------------------
+  // PRICE
+  // -----------------------------------------
   const subtotal = useMemo(() => {
     return cartItems.reduce(
       (total, item) => total + item.price * item.quantity,
@@ -102,7 +110,9 @@ const Cart = () => {
     return `AED ${price.toFixed(2)}`;
   };
 
-  
+  // -----------------------------------------
+  // COUPON
+  // -----------------------------------------
   const applyCoupon = () => {
     if (coupon.trim().toUpperCase() === "WEDOT10") {
       setCouponApplied(true);
@@ -111,7 +121,9 @@ const Cart = () => {
     }
   };
 
-
+  // -----------------------------------------
+  // EMPTY CART
+  // -----------------------------------------
   if (cartItems.length === 0) {
     return (
       <div className="min-h-screen bg-[#011810] text-white">
@@ -177,7 +189,9 @@ const Cart = () => {
   return (
     <div className="min-h-screen bg-[#011810] text-white">
 
-      
+      {/* =========================================
+          HEADER
+      ========================================== */}
 
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="absolute -right-32 -top-32 h-72 w-72 rounded-full bg-[#d4af37]/10 blur-3xl" />
@@ -222,13 +236,17 @@ const Cart = () => {
         </div>
       </section>
 
-      
+      {/* =========================================
+          MAIN
+      ========================================== */}
 
       <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
 
         <div className="grid gap-8 lg:grid-cols-[1fr_390px]">
 
-       
+          {/* =====================================
+              LEFT SIDE
+          ====================================== */}
 
           <div>
 
@@ -382,7 +400,9 @@ const Cart = () => {
 
             </div>
 
-          
+            {/* =====================================
+                TRUST CARDS
+            ====================================== */}
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
 
@@ -407,7 +427,9 @@ const Cart = () => {
             </div>
           </div>
 
-         
+          {/* =====================================
+              ORDER SUMMARY
+          ====================================== */}
 
           <aside className="lg:sticky lg:top-6 lg:self-start">
 
@@ -631,7 +653,9 @@ const Cart = () => {
   );
 };
 
-
+/* =================================================
+   TRUST CARD
+================================================= */
 
 const TrustCard = ({ icon, title, text }) => {
   return (
@@ -679,4 +703,4 @@ const PaymentOption = ({ logo, name }) => {
   );
 };
 
-export default Cart;
+export default AddToCart;
