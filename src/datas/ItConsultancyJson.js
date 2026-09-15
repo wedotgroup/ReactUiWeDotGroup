@@ -11,7 +11,7 @@ export const servicesdata = {
             description:
                 "In today’s digital world, having an impactful website is crucial to building your brand and attracting customers. Our website design services ensure a seamless, responsive, and engaging online experience tailored to your business needs. Whether you need a personal blog, an e-commerce site, or a corporate website, we’re here to help you stand out.",
             image:
-                "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1800&q=85",
+                "/ItCunsaltancy/website-des.jpg",
         },
 
         relatedService: {
@@ -106,7 +106,7 @@ export const servicesdata = {
             description:
                 "Welcome to We Dot Group, where we specialize in creating custom, responsive, and user-friendly websites that elevate your online presence. Whether you’re a startup, a small business, or an established enterprise, we offer tailor-made web development solutions to suit your needs.",
             image:
-                "https://images.unsplash.com/photo-154765870-da2b51169166?auto=format&fit=crop&w=1800&q=85",
+                "/ItCunsaltancy/wed-dev.jpg",
         },
 
         relatedService: {
@@ -197,7 +197,7 @@ export const servicesdata = {
             description:
                 "At We Dot Group, we provide cutting-edge software development services that help businesses transform their ideas into powerful, scalable, and user-friendly applications. Whether you’re a startup or an established enterprise, our team of experts is here to deliver tailored solutions that drive growth, innovation, and efficiency.",
             image:
-                "https://images.unsplash.com/photo-154765819-da2b51169166?auto=format&fit=crop&w=1800&q=85",
+                "/ItCunsaltancy/software-dev.jpg",
         },
 
         relatedService: {
@@ -294,7 +294,7 @@ export const servicesdata = {
             description:
                 "At We Dot Group, we specialize in creating innovative and user-friendly mobile applications that help businesses thrive in the digital age. Whether you’re looking to build a native mobile app or a cross-platform solution, our experienced team has the expertise to bring your vision to life.",
             image:
-                "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1800&q=85",
+                "/ItCunsaltancy/mobile-app-dev.jpg",
         },
 
         relatedService: {
@@ -393,7 +393,7 @@ export const servicesdata = {
             "At We Dot Group, we specialize in creative and professional graphic design solutions tailored to your brand’s unique needs. From logo design and branding to website visuals and print materials, our expert team ensures your message is conveyed clearly and beautifully.",
 
         image:
-            "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1800&q=85",
+            "/ItCunsaltancy/graphic-des.jpg",
     },
 
     relatedService: {
@@ -488,7 +488,7 @@ export const servicesdata = {
             "Unlock the full potential of your website with our expert SEO services. At We Dot Group, we specialize in crafting tailored SEO strategies that boost your visibility, drive organic traffic, and convert visitors into loyal customers. Whether you’re looking to improve your local search rankings or expand your global reach, our team of experts has the tools and knowledge to get you there.",
 
         image:
-            "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1800&q=85",
+            "/ItCunsaltancy/seo.jpg",
     },
 
     relatedService: {
@@ -581,7 +581,7 @@ export const servicesdata = {
             description:
                 "Social Media Optimization (SMO) involves optimizing your social media profiles and content to increase visibility, engagement, and brand awareness. It focuses on enhancing your presence across social platforms by optimizing content, using relevant hashtags, and improving user interaction.",
             image:
-                "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1800&q=85",
+                "/ItCunsaltancy/smo.jpg",
         },
 
         relatedService: {
@@ -677,7 +677,7 @@ export const servicesdata = {
             description:
                 "Google Ads is a powerful online advertising platform that allows businesses to create ads that appear on Google’s search results pages and across its network of partner websites. Google Ads operates on a pay-per-click (PPC) model, where you only pay when someone clicks on your ad. As the world’s largest search engine, Google offers your business a tremendous opportunity to reach potential customers when they are actively searching for products or services like yours.",
             image:
-                "https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&w=1800&q=85",
+                "/ItCunsaltancy/google-adds.jpg",
         },
 
         relatedService: {
@@ -773,7 +773,7 @@ export const servicesdata = {
             description:
                 "At WE Dot Group, we specialize in providing top-notch content writing services that help businesses engage their audience, boost their online presence, and achieve their marketing goals. Whether you need blog posts, website content, social media copy, product descriptions, or more, our team of expert writers is here to create content that resonates with your target audience.",
             image:
-                "https://images.unsplash.com/photo-1456324504439-367cee3b3c92?auto=format&fit=crop&w=1800&q=85",
+                "/ItCunsaltancy/content-write.jpg",
         },
 
         relatedService: {
@@ -869,7 +869,7 @@ export const servicesdata = {
             description:
                 "Unlock the power of email marketing with our Bulk Email Marketing Service designed to help you send personalized, professional emails to large audiences effortlessly. Whether you’re promoting a product, sending newsletters, or nurturing leads, we’ve got you covered.",
             image:
-                "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1800&q=85",
+                "/ItCunsaltancy/bulk-email.jpg",
         },
 
         relatedService: {
@@ -966,7 +966,7 @@ export const servicesdata = {
             description:
                 "In today’s fast-paced world, direct communication with your audience is crucial. Bulk SMS marketing allows businesses to connect with customers instantly, delivering your message directly to their mobile phones in seconds. Whether you’re promoting a sale, sending reminders, or updating customers, our Bulk SMS Marketing service ensures your messages are delivered with impact.",
             image:
-                "https://wedotgroup.com/wp-content/uploads/2025/05/bulk-sms-marketing.jpg",
+                "/ItCunsaltancy/bulk-sms.jpg",
         },
 
         relatedService: {
@@ -1063,8 +1063,7 @@ export const servicesdata = {
         description:
             "At We Dot Group, we offer a comprehensive suite of domain services to help you establish and manage your online presence with ease. Whether you’re a new business looking to create your first website or an experienced entrepreneur managing multiple domains, we have you covered.",
 
-        image:
-            "https://wedotgroup.com/wp-content/uploads/2025/05/domain.jpg",
+        image:"/ItCunsaltancy/domain.jpg",
     },
 
     relatedService: {
@@ -1168,7 +1167,7 @@ export const servicesdata = {
             description:
                 "At We Dot Group, we offer cutting-edge web hosting and server solutions designed to meet the needs of businesses of all sizes. Whether you’re a small startup, a growing enterprise, or a large corporation, we provide the infrastructure and support to ensure your website is fast, secure, and always available.",
             image:
-                "https://wedotgroup.com/wp-content/uploads/2025/05/web-hosting-server.jpg",
+                "/ItCunsaltancy/hosting.jpg",
         },
 
         relatedService: {
@@ -1265,7 +1264,7 @@ export const servicesdata = {
             description:
                 "In today’s digital world, website security is paramount. SSL (Secure Sockets Layer) certificates are a vital component in ensuring your website is safe and trusted by users. At We Dot Group, we offer premium SSL certificate solutions that protect sensitive information, improve your website’s SEO, and give your visitors the confidence to interact with your site securely.",
             image:
-                "https://wedotgroup.com/wp-content/uploads/2025/05/ssl-certification.jpg",
+                "/ItCunsaltancy/ssl.jpg",
         },
 
         relatedService: {
@@ -1358,7 +1357,7 @@ export const servicesdata = {
             description:
                 "Are you ready to take your business communication to the next level? With our WhatsApp API Integration Service, you can seamlessly integrate WhatsApp into your business operations, enabling real-time messaging, customer support, and marketing on one of the world’s most popular messaging platforms.",
             image:
-                "https://wedotgroup.com/wp-content/uploads/2025/05/whats-app.jpg",
+                "/ItCunsaltancy/whatsapp-api.jpg",
         },
 
         relatedService: {
@@ -1456,7 +1455,7 @@ export const servicesdata = {
             description:
                 "At We Dot Group, we understand that logistics operations are a critical component of any successful business. Our Logistics Integration Service connects your various systems, platforms, and processes to provide a streamlined, efficient solution that reduces costs and improves performance. Whether you’re managing inventory, transportation, or fulfillment, our integrated approach will optimize your entire logistics network.",
             image:
-                "https://wedotgroup.com/wp-content/uploads/2025/03/standard-quality-control-concept-m-1-scaled.jpg",
+                "/ItCunsaltancy/logistic.jpg",
         },
 
         relatedService: {
@@ -1557,7 +1556,7 @@ export const servicesdata = {
             description:
                 "At We Dot Group,we specialize in integrating payment gateways that enable your business to accept online payments with ease. Whether you’re launching an eCommerce site, a subscription service, or a mobile app, our integration services ensure that transactions are secure, compliant, and frictionless for your users.",
             image:
-                "https://wedotgroup.com/wp-content/uploads/2025/03/person-paying-with-its-smartphone-wallet-app-scaled.jpg",
+                "/ItCunsaltancy/payment.jpg",
         },
 
         relatedService: {

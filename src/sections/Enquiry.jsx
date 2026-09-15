@@ -306,10 +306,7 @@ const Enquery = () => {
     try {
       setIsSubmitting(true);
 
-      const response = await axios.post(
-        `${apiUrl}/contact`,
-        formData
-      );
+      const response = await axios.post(`${apiUrl}/contact`,formData);
 
       toast.success(
         response?.data?.message ||
@@ -318,7 +315,9 @@ const Enquery = () => {
 
       resetForm();
     } catch (error) {
-      console.error("Enquiry submit error:", error);
+    console.log("Status:", error.response?.status);
+    console.log("Response data:", error.response?.data);
+    console.log("Response headers:", error.response?.headers);
 
       toast.error(
         error?.response?.data?.message ||

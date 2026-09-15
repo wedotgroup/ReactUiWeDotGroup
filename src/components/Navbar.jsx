@@ -517,7 +517,7 @@ const Navbar = () => {
                       }
                     `}
                   >
-                    Management Consultancy
+                    <Link to="/management-consultancy">Management Consultancy</Link>
 
                     <ChevronDown
                       size={15}
@@ -574,7 +574,7 @@ const Navbar = () => {
                       }
                     `}
                   >
-                    IT Consultancy
+                   <Link to="/itconsultancy"> IT Consultancy</Link>
 
                     <ChevronDown
                       size={15}
@@ -1088,13 +1088,7 @@ const Navbar = () => {
   );
 };
 
-/* =====================================================
-   MEGA MENU
-===================================================== */
 
-/* =====================================================
-   MEGA MENU
-===================================================== */
 
 const MegaMenu = ({
   menu,
@@ -1425,9 +1419,6 @@ const MegaMenu = ({
 
 
 
-/* =====================================================
-   MOBILE LINK
-===================================================== */
 
 const MobileLink = ({
   to,
@@ -1470,9 +1461,7 @@ const MobileLink = ({
   );
 };
 
-/* =====================================================
-   MOBILE DROPDOWN
-===================================================== */
+
 
 const MobileDropdown = ({
   title,
@@ -1531,9 +1520,6 @@ const MobileDropdown = ({
   );
 };
 
-/* =====================================================
-   MOBILE SUB MENU
-===================================================== */
 
 const MobileSubMenu = ({
   menu,

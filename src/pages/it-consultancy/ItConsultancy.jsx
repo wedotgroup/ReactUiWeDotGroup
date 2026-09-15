@@ -11,9 +11,7 @@ import { servicesdata } from "../../datas/ItConsultancyJson";
 import Enquiry from "../../sections/Enquiry";
 
 
-// =====================================================
-// ONLINE HERO IMAGES
-// =====================================================
+
 
 const heroImages = [
   "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=2200&q=85",
@@ -32,9 +30,7 @@ export default function ITConsultancy() {
     return <Navigate to={`/it-consultancy/${slug}`} replace />;
   }
 
-  // =====================================================
-  // HERO IMAGE SLIDER
-  // =====================================================
+
 
   const [currentImage, setCurrentImage] = useState(0);
 
@@ -46,9 +42,6 @@ export default function ITConsultancy() {
     return () => clearInterval(interval);
   }, []);
 
-  // =====================================================
-  // DATA
-  // =====================================================
 
   const relatedService = service.relatedService?.services || [];
 
@@ -59,21 +52,12 @@ export default function ITConsultancy() {
   const serviceImage =
     service.introduction?.image || service.image;
 
-  // =====================================================
-  // RETURN
-  // =====================================================
+
 
   return (
     <main className="min-h-screen overflow-hidden bg-[#011810] text-white">
-
-      {/* =====================================================
-          SECTION 1 - HERO
-          GREEN + ONLINE CHANGING IMAGE
-      ===================================================== */}
-
       <section className="relative min-h-[650px] overflow-hidden bg-[#011810] lg:min-h-[720px]">
 
-        {/* Background Images */}
         <div className="absolute inset-0">
 
           {heroImages.map((image, index) => (
@@ -223,10 +207,6 @@ export default function ITConsultancy() {
       </section>
 
 
-      {/* =====================================================
-          SECTION 2 - SERVICE DETAILS
-          WHITE
-      ===================================================== */}
 
       <section
         id="service-details"
@@ -370,11 +350,6 @@ export default function ITConsultancy() {
       </section>
 
 
-      {/* =====================================================
-          SECTION 3 - RELATED SERVICES
-          GREEN
-      ===================================================== */}
-
       <section className="bg-[#011810] px-5 py-20 text-white sm:px-8 sm:py-24 lg:px-10 lg:py-28">
 
         <div className="mx-auto max-w-7xl">
@@ -446,8 +421,6 @@ export default function ITConsultancy() {
 
                   </div>
 
-
-                  {/* Card Content */}
                   <div className="p-6">
 
                     <div className="flex items-start justify-between gap-4">
@@ -505,10 +478,6 @@ export default function ITConsultancy() {
       </section>
 
 
-      {/* =====================================================
-          SECTION 4 - WHY CHOOSE US
-          WHITE
-      ===================================================== */}
 
       {whyItems.length > 0 && (
         <section className="relative overflow-hidden bg-white py-20 text-[#011810] sm:py-24 lg:py-28">
@@ -632,8 +601,6 @@ export default function ITConsultancy() {
 
         </section>
       )}
-
-
     <Enquiry/>
     </main>
   );

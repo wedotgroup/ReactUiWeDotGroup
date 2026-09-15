@@ -8,27 +8,28 @@ export const services = {
   introduction: {
     title: "About Abu Dhabi Free Zones",
     description: "Abu Dhabi has developed numerous free zones to promote international trade and investment, offering a range of benefits for businesses, including tax exemptions, simplified company setup, 100% foreign ownership, low operating costs, and full capital and profit repatriation. These zones provide a business-friendly environment with fewer regulations, faster approvals, and a streamlined process for establishing a company.",
-    image: "",
+    image: "/ManagementCunsaltancy/all-freez-zone/abu-dhabi-free-zone/about.png",
   },
 
   relatedService: {
     title: "All Free Zones in Abu Dhabi",
-    description: "Here, we explore some of the most popular free zones in Abu Dhabi...",
+    description: "Here, we explore some of the most popular free zones in Abu Dhabi, each catering to a diverse range of industries, including aviation, food and beverage (F&B), oil and gas, information technology, and more. As noted earlier, free zones can either be industry-specific or designed for general purposes, providing tailored benefits depending on the nature of the business.",
 
     services: [
       {
         title: "Abu Dhabi Global Market (ADGM)",
-        description: "...",
-        image: "",
+        description: "",
+        image: "/ManagementCunsaltancy/all-freez-zone/abu-dhabi-free-zone/3.png",
       },
       {
         title: "Khalifa Industrial Zone Abu Dhabi (KIZAD)",
-        description: "...",
-        image: "",
+        description: "",
+        image: "/ManagementCunsaltancy/all-freez-zone/abu-dhabi-free-zone/4.png",
       },
     ],
   },
 },
+
 "dubai-free-zones": {
     slug: "dubai-free-zones",
     title: "Dubai Free Zones",
@@ -42,7 +43,7 @@ export const services = {
         description:
             "Free zones in Dubai have long been the preferred choice for businesses looking to set up in the UAE, thanks to the wide array of benefits they offer. The introduction of free zones was part of a broader strategy to diversify the UAE’s oil-dependent economy and create more business and investment opportunities across Dubai and the wider emirates. Over time, these free zones have proven to be highly successful in attracting foreign businesses, making them highly sought-after locations for company registration in Dubai.",
         image:
-            "https://wedotgroup.com/wp-content/uploads/2025/04/top-view-dubai-scaled.jpg",
+            "/ManagementCunsaltancy/all-freez-zone/dubai-free-zone/about.jpg",
     },
 
     relatedService: {
@@ -56,65 +57,66 @@ export const services = {
                 title: "General",
                 description: "",
                 image:
-                    "https://wedotgroup.com/wp-content/uploads/2025/04/modetn-city-luxury-center-dubai-united-arab-emirates-scaled.jpg",
+                    "/ManagementCunsaltancy/all-freez-zone/dubai-free-zone/1.jpg",
             },
             {
                 title: "Meydan Free Zone (Meydan FZ)",
                 description: "",
                 image:
-                    "https://wedotgroup.com/wp-content/uploads/2025/04/shot-burj-park-from-dubai-uae-scaled.jpg",
+                    "/ManagementCunsaltancy/all-freez-zone/dubai-free-zone/2.jpg",
             },
             {
                 title: "International Free Zone Authority (IFZA)",
                 description: "",
                 image:
-                    "https://wedotgroup.com/wp-content/uploads/2025/04/Untitled-design-17.png",
+                    "/ManagementCunsaltancy/all-freez-zone/dubai-free-zone/3.png",
             },
             {
                 title: "Jebel Ali Free Zone (JAFZA)",
                 description: "",
                 image:
-                    "https://wedotgroup.com/wp-content/uploads/2025/04/Untitled-design-18.png",
+                    "/ManagementCunsaltancy/all-freez-zone/dubai-free-zone/4.png",
             },
             {
                 title: "Dubai South Free Zone (DSO)",
                 description: "",
                 image:
-                    "https://wedotgroup.com/wp-content/uploads/2025/04/panoramic-view-dubai-city-illuminated-neon-spectrum-1-scaled.jpg",
+                    "/ManagementCunsaltancy/all-freez-zone/dubai-free-zone/5.jpg",
             },
             {
                 title: "Dubai Silicon Oasis Authority (DSOA)",
                 description: "",
                 image:
-                    "https://wedotgroup.com/wp-content/uploads/2025/04/Untitled-design-19.png",
+                    "/ManagementCunsaltancy/all-freez-zone/dubai-free-zone/6.png",
             },
             {
                 title: "Dubai Multi Commodities Centre (DMCC)",
                 description: "",
                 image:
-                    "https://wedotgroup.com/wp-content/uploads/2025/04/Untitled-design-23.png",
+                    "/ManagementCunsaltancy/all-freez-zone/dubai-free-zone/7.png",
             },
             {
                 title: "Dubai International Financial Centre (DIFC)",
                 description: "",
                 image:
-                    "https://wedotgroup.com/wp-content/uploads/2025/04/Untitled-design-20.png",
+                    "/ManagementCunsaltancy/all-freez-zone/dubai-free-zone/8.png",
             },
             {
                 title: "Dubai Airport Free Zone (DAFZ)",
                 description: "",
                 image:
-                    "https://wedotgroup.com/wp-content/uploads/2025/04/Untitled-design-21.png",
+                    "/ManagementCunsaltancy/all-freez-zone/dubai-free-zone/9.png",
             },
             {
                 title: "Dubai Creative Clusters (DCC)",
                 description: "",
                 image:
-                    "https://wedotgroup.com/wp-content/uploads/2025/04/Untitled-design-22.png",
+                    "/ManagementCunsaltancy/all-freez-zone/dubai-free-zone/0.png",
             },
         ],
     },
 },
+
 "sharjah-free-zones": {
     slug: "sharjah-free-zones",
     title: "Sharjah Free Zones",
@@ -128,7 +130,7 @@ export const services = {
         description:
             "Free zones in Dubai have long been the preferred choice for businesses looking to set up in the UAE, thanks to the wide array of benefits they offer. The introduction of free zones was part of a broader strategy to diversify the UAE’s oil-dependent economy and create more business and investment opportunities across Dubai and the wider emirates. Over time, these free zones have proven to be highly successful in attracting foreign businesses, making them highly sought-after locations for company registration in Dubai.",
         image:
-            "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=85",
+            "/ManagementCunsaltancy/all-freez-zone/sharjah-free-zone/about.png",
     },
 
     relatedService: {
@@ -142,25 +144,25 @@ export const services = {
                 title: "Sharjah Media City (Shams)",
                 description: "",
                 image:
-                    "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+                    "/ManagementCunsaltancy/all-freez-zone/sharjah-free-zone/3.png",
             },
             {
                 title: "Sharjah Research, Technology, and Innovation Park (SRTIP)",
                 description: "",
                 image:
-                    "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1200&q=85",
+                    "/ManagementCunsaltancy/all-freez-zone/sharjah-free-zone/4.png",
             },
             {
                 title: "Sharjah Publishing City (SPC)",
                 description: "",
                 image:
-                    "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1200&q=85",
+                    "/ManagementCunsaltancy/all-freez-zone/sharjah-free-zone/5.png",
             },
             {
                 title: "Hamriyah Free Zone",
                 description: "",
                 image:
-                    "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85",
+                    "/ManagementCunsaltancy/all-freez-zone/sharjah-free-zone/6.png",
             },
         ],
     },
@@ -179,7 +181,7 @@ export const services = {
         description:
             "Creative City Free Zone in Fujairah, UAE, offers a fast and flexible business setup process, typically completed in just 2-3 working days. It allows 100% foreign ownership, zero capital requirement, and full repatriation of profits and capital. Businesses in the free zone benefit from tax incentives, with no corporate or personal tax, and no financial compliance or auditing requirements. The zone is ideal for professional activities such as advertising, broadcasting, publishing, and finance, though general trading and industrial activities are not permitted. Creative City provides customizable company formation packages, transparent fee structures, post-incorporation support, and no leasing requirements for office space, making it an attractive option for entrepreneurs and startups.",
         image:
-            "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=85",
+            "/ManagementCunsaltancy/all-freez-zone/fujairah-free-zone/about.png",
     },
 
     relatedService: {
@@ -193,7 +195,7 @@ export const services = {
                 title: "Creative City Fujairah",
                 description: "",
                 image:
-                    "https://www.moet.gov.ae/documents/20121/191385/Creative-City-Free-Zone-Authority-%281%29.jpg/4d94e826-1a27-3181-84b2-3f9c2a2f8e7c?t=1628056721955",
+                    "/ManagementCunsaltancy/all-freez-zone/fujairah-free-zone/1.png",
             },
         ],
     },
@@ -211,7 +213,7 @@ export const services = {
         description:
             "Ajman Media City Free Zone (AMCFZ) is rapidly emerging as one of the fastest-growing free zones in the UAE, offering a professional and harmonious environment for businesses and individuals. Located in the Emirate of Ajman, AMCFZ is known for its affordable company formation packages, with licenses typically issued on the same day. The zone boasts modern facilities and services, positioning itself as one of the UAE’s most advanced free zones.\n\nIt is designed to provide a world-class environment with innovative, flexible processes, ensuring businesses receive professional guidance throughout their company formation journey.",
         image:
-            "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=85",
+            "/ManagementCunsaltancy/all-freez-zone/ajman-free-zones/about.png",
     },
 
     relatedService: {
@@ -226,7 +228,7 @@ export const services = {
                     "Ajman Media City Free Zone (AMCFZ)",
                 description: "",
                 image:
-                    "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+                    "/ManagementCunsaltancy/all-freez-zone/ajman-free-zones/3.png",
             },
         ],
     },
@@ -244,7 +246,7 @@ export const services = {
         description:
             "RAKEZ (Ras Al Khaimah Economic Zone) offers a highly attractive environment for businesses in the UAE, providing over 4,000 business activities, affordable company setup options, and both free zone and non-free zone structures. The process is streamlined with minimal documentation, allowing businesses to incorporate without visiting the UAE. RAKEZ offers tax-free incentives, flexible payment plans, and the ability to operate multiple licenses under one company.\n\nWith dedicated zones for industrial, academic, and business activities, plus ready-to-move-in offices, storage solutions, and land for development, it’s ideal for a wide range of industries. RAKEZ also supports freelancers, women entrepreneurs, and offers investor and employee visa options, with easy access to banking, government services, and a thriving network of over 14,000 companies.",
         image:
-            "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=85",
+            "/ManagementCunsaltancy/all-freez-zone/ras-al-khaimah-free-zones/about.png",
     },
 
     relatedService: {
@@ -259,7 +261,7 @@ export const services = {
                     "Ras Al Khaimah Economic Zone (RAKEZ)",
                 description: "",
                 image:
-                    "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85",
+                    "/ManagementCunsaltancy/all-freez-zone/ras-al-khaimah-free-zones/3.png",
             },
         ],
     },
@@ -277,7 +279,7 @@ export const services = {
         description:
             "Umm Al Quwain Free Trade Zone (UAQ FTZ) offers an attractive business environment with a range of benefits, including a wide variety of consultancy and trading activities, no requirement for shareholders to be physically present in the UAE, and limited liability for companies. It allows 100% foreign ownership, 100% repatriation of capital and profits, and offers a tax-free environment with 0% corporate or personal income tax. The company formation process is quick and efficient, making it an ideal choice for entrepreneurs seeking a hassle-free setup in the UAE with full ownership and minimal costs.",
         image:
-            "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=85",
+            "/ManagementCunsaltancy/all-freez-zone/umm-al-quwain-free-zones/about.png",
     },
 
     relatedService: {
@@ -299,7 +301,7 @@ export const services = {
         description:
             "RAK International Corporate Centre (RAK ICC) is a premier government corporate registry based in the Emirate of Ras Al Khaimah, United Arab Emirates, specializing in the registration and formation of international business and offshore companies. Established through Decree No. 12 of 2015 (amended by Decree No. 4 of 2016), RAK ICC was formed by consolidating two former registries—RAK International Companies and RAK Offshore—under one modern, efficient authority.\n\nRenowned for its compliance with international best practices, RAK ICC has built a strong global reputation as a trusted and respected provider of offshore company registration services in the UAE.",
         image:
-            "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=85",
+            "/ManagementCunsaltancy/all-offshore/ras-al-khaimah-offshore/about.png",
     },
 
     relatedService: {
@@ -312,19 +314,19 @@ export const services = {
                 title: "Change Of Domicile",
                 description: "",
                 image:
-                    "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
+                    "/ManagementCunsaltancy/all-offshore/ras-al-khaimah-offshore/3.png",
             },
             {
                 title: "Change Registered Agent",
                 description: "",
                 image:
-                    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=85",
+                    "/ManagementCunsaltancy/all-offshore/ras-al-khaimah-offshore/4.png",
             },
             {
                 title: "RAK ICC Foundation Setup",
                 description: "",
                 image:
-                    "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85",
+                    "/ManagementCunsaltancy/all-offshore/ras-al-khaimah-offshore/5.png",
             },
         ],
     },
@@ -342,7 +344,7 @@ export const services = {
         description:
             "Ajman offshore companies, officially known as International Business Companies, are registered with the Ajman Free Zone (AFZ) in the United Arab Emirates and are designed to meet international standards of confidentiality and efficiency. These companies are ideal for purposes such as asset protection, international trading, tax planning, real estate holding, and estate planning. The setup process is quick and straightforward, requiring only one shareholder and one director—who can be the same individual.\n\nAFZ places high importance on privacy, ensuring shareholder identities are kept strictly confidential in line with UAE law.",
         image:
-            "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=85",
+            "/ManagementCunsaltancy/all-offshore/ajman-offshore/about.png",
     },
 
     relatedService: {
@@ -357,21 +359,21 @@ export const services = {
                     "Complete Our Simple Form in Under 5 Minutes",
                 description: "",
                 image:
-                    "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=85",
+                    "/ManagementCunsaltancy/all-offshore/ajman-offshore/3.png",
             },
             {
                 title:
                     "We Handle the Registration of Your Ajman Offshore Company",
                 description: "",
                 image:
-                    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=85",
+                    "/ManagementCunsaltancy/all-offshore/ajman-offshore/4.png",
             },
             {
                 title:
                     "Get Your Certificate of Incorporation and Start Your Business",
                 description: "",
                 image:
-                    "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=85",
+                    "/ManagementCunsaltancy/all-offshore/ajman-offshore/5.png",
             },
         ],
     },
@@ -389,7 +391,7 @@ export const services = {
         description:
             "Jebel Ali Free Zone (JAFZA) in Dubai is a renowned offshore jurisdiction that offers a streamlined and flexible process for setting up companies. It requires just one shareholder, one secretary (who can also be the shareholder), and two directors (one of whom can also be the shareholder), making it simple to establish a business. JAFZA offshore companies ensure confidentiality of shareholder and officer details and are ideal for purposes such as property holding, asset protection, consultancy, trading, tax planning, and estate planning. With a mature legislative framework and adherence to international best practices, JAFZA is a trusted and respected option for offshore company registration in the UAE.",
         image:
-            "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=85",
+            "/ManagementCunsaltancy/all-offshore/jebel-ali-offshore/about.png",
     },
 
     relatedService: {
@@ -404,111 +406,26 @@ export const services = {
                     "Fill out our simple form and place your order today",
                 description: "",
                 image:
-                    "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=85",
+                    "/ManagementCunsaltancy/all-offshore/jebel-ali-offshore/3.png",
             },
             {
                 title:
                     "We will handle the incorporation of your company.",
                 description: "",
                 image:
-                    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=85",
+                    "/ManagementCunsaltancy/all-offshore/jebel-ali-offshore/4.png",
             },
             {
                 title:
                     "Receive your official company documents.",
                 description: "",
                 image:
-                    "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=85",
+                    "/ManagementCunsaltancy/all-offshore/jebel-ali-offshore/5.png",
             },
         ],
     },
 },
-"dubai-mainland": {
-    slug: "dubai-mainland",
-    title: "Dubai Free Zones",
-    category: "Free Zones",
-    paragraph:
-        "The Strategic Advantages of Establishing in Dubai Free Zones",
 
-    introduction: {
-        title:
-            "About Dubai Free Zones",
-        description:
-            "Free zones in Dubai have long been the preferred choice for businesses looking to set up in the UAE, thanks to the wide array of benefits they offer. The introduction of free zones was part of a broader strategy to diversify the UAE’s oil-dependent economy and create more business and investment opportunities across Dubai and the wider emirates. Over time, these free zones have proven to be highly successful in attracting foreign businesses, making them highly sought-after locations for company registration in Dubai.",
-        image:
-            "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=85",
-    },
-
-    relatedService: {
-        title:
-            "All Free Zones in Dubai",
-        description:
-            "Here, we explore some of the most popular free zones in Dubai, each catering to a diverse range of industries, including aviation, food and beverage (F&B), oil and gas, information technology, and more. As noted earlier, free zones can either be industry-specific or designed for general purposes, providing tailored benefits depending on the nature of the business.",
-
-        services: [
-            {
-                title: "General",
-                description: "",
-                image:
-                    "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=85",
-            },
-            {
-                title: "Meydan Free Zone (Meydan FZ)",
-                description: "",
-                image:
-                    "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=85",
-            },
-            {
-                title: "International Free Zone Authority (IFZA)",
-                description: "",
-                image:
-                    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85",
-            },
-            {
-                title: "Jebel Ali Free Zone (JAFZA)",
-                description: "",
-                image:
-                    "https://images.unsplash.com/photo-1565610222536-ef125c59da2e?auto=format&fit=crop&w=1200&q=85",
-            },
-            {
-                title: "Dubai South Free Zone (DSO)",
-                description: "",
-                image:
-                    "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=85",
-            },
-            {
-                title: "Dubai Silicon Oasis Authority (DSOA)",
-                description: "",
-                image:
-                    "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85",
-            },
-            {
-                title: "Dubai Multi Commodities Centre (DMCC)",
-                description: "",
-                image:
-                    "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85",
-            },
-            {
-                title: "Dubai International Financial Centre (DIFC)",
-                description: "",
-                image:
-                    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85",
-            },
-            {
-                title: "Dubai Airport Free Zone (DAFZ)",
-                description: "",
-                image:
-                    "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=85",
-            },
-            {
-                title: "Dubai Creative Clusters (DCC)",
-                description: "",
-                image:
-                    "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
-            },
-        ],
-    },
-},
 "feasibility-study": {
     slug: "feasibility-study",
     title: "Feasibility Study",
@@ -522,7 +439,7 @@ export const services = {
         description:
             "Starting a new project or business venture requires careful planning and a solid understanding of its viability. Our Feasibility Study service helps you assess whether your idea, product, or service is worth pursuing. With a comprehensive, data-driven analysis, we provide you with the insights you need to make informed decisions and reduce risks.",
         image:
-            "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=85",
+            "/ManagementCunsaltancy/advisory/feasibility.jpg",
     },
 
     relatedService: {
@@ -622,7 +539,7 @@ export const services = {
         description:
             "At We Dot Group, we understand that making informed business decisions is key to your success. Our Due Diligence services provide a detailed and thorough evaluation of potential investments, acquisitions, or partnerships. Whether you’re entering a new market, acquiring a business, or seeking to assess the financial health of a partner, we are here to ensure you have all the insights you need to minimize risks and maximize opportunities.",
         image:
-            "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=85",
+            "/ManagementCunsaltancy/advisory/due-diligence.jpg",
     },
 
     relatedService: {
@@ -722,7 +639,7 @@ export const services = {
         description:
             "Starting and growing a business can be a daunting task, but a well-crafted business plan makes all the difference. Whether you’re a startup or an established company, our Business Plan Services are designed to help you articulate your vision, strategy, and goals with precision and confidence.",
         image:
-            "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=85",
+            "/ManagementCunsaltancy/advisory/businnes-plan.jpg",
     },
 
     relatedService: {
@@ -816,7 +733,7 @@ export const services = {
         description:
             "At We Dot Group, we understand the importance of accurately valuing your business. Whether you’re looking to sell, buy, merge, or simply want a clear understanding of your company’s worth for strategic planning, our expert valuation services are tailored to meet your specific needs.",
         image:
-            "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=85",
+            "/ManagementCunsaltancy/advisory/business-valaution.jpg",
     },
 
     relatedService: {
@@ -915,7 +832,7 @@ export const services = {
         description:
             "At We Dot Group, we provide comprehensive business consulting services designed to help organizations of all sizes navigate challenges, optimize operations, and drive sustainable growth. Our team of experienced consultants works closely with you to develop customized solutions that align with your unique needs and objectives.",
         image:
-            "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1600&q=85",
+            "/ManagementCunsaltancy/advisory/businness-cunsaltancy.jpg",
     },
 
     relatedService: {
@@ -1014,7 +931,7 @@ export const services = {
         description:
             "In today’s fast-paced and ever-changing business environment, identifying, assessing, and managing risks effectively is crucial to ensuring long-term success and sustainability. At We Dot Group, we provide comprehensive Risk Consulting Services that help organizations identify vulnerabilities, mitigate potential threats, and develop strategies to safeguard their assets, reputation, and operations.",
         image:
-            "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=85",
+            "/ManagementCunsaltancy/advisory/risk-consulting-services.jpg",
     },
 
     relatedService: {
@@ -1081,7 +998,7 @@ export const services = {
         description:
             "At We Dot Group, we understand the importance of maintaining accurate financial records. Our expert bookkeeping services ensure that your business stays on top of its finances, allowing you to focus on what you do best—growing your business. Whether you’re a small business, a growing startup, or an established enterprise, our team is here to provide personalized solutions that meet your unique needs.",
         image:
-            "https://static.wixstatic.com/media/b278e3_26f2580b2b0f44a18506c971fe831307~mv2.png/v1/fill/w_980%2Ch_686%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/b278e3_26f2580b2b0f44a18506c971fe831307~mv2.png",
+            "/ManagementCunsaltancy/accounting/book-keeping.jpg",
     },
 
     relatedService: {
@@ -1167,7 +1084,6 @@ export const services = {
         ],
     },
 },
-
 "financial-management": {
 slug: "financial-management",
 title: "Financial Management",
@@ -1181,7 +1097,7 @@ introduction: {
     description:
         "At We Dot Group,we offer comprehensive financial management services tailored to help individuals and businesses achieve financial stability, growth, and long-term success. Our team of certified experts works closely with you to provide personalized solutions that fit your unique financial goals. Whether you’re looking to manage personal finances, optimize business performance, or plan for a secure future, we are here to guide you every step of the way.",
     image:
-        "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1600&q=85",
+        "/ManagementCunsaltancy/accounting/financial-management.jpg",
 },
 
 relatedService: {
@@ -1283,7 +1199,7 @@ introduction: {
     description:
         "At We Dot Group,we understand that having a clear picture of your business’s costs is essential to maintaining profitability and optimizing financial decision-making. Our Cost Accounting Services are designed to provide you with detailed, accurate, and insightful cost data to help you make smarter business choices.",
     image:
-        "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1600&q=85",
+        "/ManagementCunsaltancy/accounting/cost-accounting.jpg",
 },
 
 relatedService: {
@@ -1384,7 +1300,7 @@ why_web_development: {
         description:
             "Managing payroll can be a complex and time-consuming task for any business. Let us handle your payroll accounting so you can focus on what matters most—growing your business. With our expertise, we ensure timely, accurate, and compliant payroll services that are customized to meet your specific needs.",
         image:
-            "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1600&q=85",
+            "/ManagementCunsaltancy/accounting/payroll-accounting.jpg",
     },
 
     relatedService: {
@@ -1483,7 +1399,7 @@ introduction: {
     description:
         "In today’s ever-changing financial landscape, having expert guidance is essential for making informed decisions and driving business growth. Our Accounting Advisory services are designed to help businesses like yours navigate complex financial challenges, optimize your processes, and achieve long-term success.",
     image:
-        "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1600&q=85",
+        "/ManagementCunsaltancy/accounting/accounting-advisory.jpg",
 },
 
 relatedService: {
@@ -1574,7 +1490,7 @@ introduction: {
     description:
         "In today’s fast-paced digital world, cloud computing has become the backbone of modern businesses, offering scalability, flexibility, and cost-efficiency. Whether you need to store vast amounts of data, run applications, or collaborate globally, our cloud computing services are designed to help you achieve more with less. Our cloud solutions are tailored to fit your unique business needs, ensuring enhanced performance, security, and growth potential.",
     image:
-        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=85",
+        "/ManagementCunsaltancy/accounting/cloud-computing.jpg",
 },
 
 relatedService: {

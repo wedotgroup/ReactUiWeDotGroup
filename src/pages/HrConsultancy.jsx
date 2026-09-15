@@ -318,172 +318,148 @@ export default function HrConsultancy() {
       {/* =========================================================
           HERO
       ========================================================= */}
+<section className="relative overflow-hidden bg-[#080808]">
+  {/* Grid */}
+  <div
+    className="absolute inset-0 opacity-[0.045]"
+    style={{
+      backgroundImage:
+        "linear-gradient(#E1C562 1px, transparent 1px), linear-gradient(90deg, #E1C562 1px, transparent 1px)",
+      backgroundSize: "65px 65px",
+    }}
+  />
 
-      <section className="relative overflow-hidden bg-[#080808]">
-        {/* Grid */}
-        <div
-          className="absolute inset-0 opacity-[0.045]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#E1C562 1px, transparent 1px), linear-gradient(90deg, #E1C562 1px, transparent 1px)",
-            backgroundSize: "65px 65px",
-          }}
-        />
+  {/* Glow */}
+  <div className="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#E1C562]/10 blur-[130px]" />
+  <div className="absolute -bottom-52 right-0 h-[550px] w-[550px] rounded-full bg-[#B89B3E]/10 blur-[140px]" />
 
-        {/* Glow */}
-        <div className="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#E1C562]/10 blur-[130px]" />
+  <div className="relative mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
 
-        <div className="absolute -bottom-52 right-0 h-[550px] w-[550px] rounded-full bg-[#B89B3E]/10 blur-[140px]" />
+      {/* LEFT — IMAGE */}
+      <div className="relative">
+        {/* Decorative glow */}
+        <div className="absolute -inset-6 rounded-[40px] bg-[#E1C562]/10 blur-3xl" />
 
-        <div className="absolute left-1/2 top-1/3 h-40 w-40 -translate-x-1/2 rounded-full bg-[#F0D77D]/5 blur-[90px]" />
+        <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.04] shadow-2xl">
+          <img
+            src="/home/hr.jpg"
+            alt="Professional HR team"
+            className="h-[420px] w-full object-cover sm:h-[520px]"
+          />
 
-        <div className="relative mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8 lg:py-24">
-          <div className="grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
+          {/* Image overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/80 via-transparent to-transparent" />
 
-            {/* HERO CONTENT */}
-            <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#E1C562]/25 bg-[#E1C562]/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#F0D77D]">
-                <Sparkles size={14} />
-                HR Consultancy
+          {/* Floating badge */}
+          <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/10 bg-[#080808]/75 p-5 backdrop-blur-xl">
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#E1C562] text-[#080808]">
+                <Users size={21} />
               </div>
 
-              <h1 className="mt-6 text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[58px]">
-                Empowering your workforce with
-                <span className="block text-[#E1C562]">
-                  exceptional HR solutions.
-                </span>
-              </h1>
-
-              <p className="mt-6 max-w-2xl text-sm leading-7 text-white/55 sm:text-base">
-                We Dot Group connects top talent with leading businesses
-                through professional recruitment and staffing solutions
-                tailored to your organization's needs.
-              </p>
-
-              {/* Trust Points */}
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                {[
-                  "Quality recruitment solutions",
-                  "Tailored staffing support",
-                  "Experienced HR professionals",
-                  "No fees for job seekers",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-2.5 text-sm text-white/65"
-                  >
-                    <CheckCircle2
-                      size={17}
-                      className="shrink-0 text-[#E1C562]"
-                    />
-                    {item}
-                  </div>
-                ))}
-              </div>
-
-              {/* CTA */}
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href="#hr-enquiry"
-                  className="group inline-flex items-center gap-2 rounded-xl bg-[#E1C562] px-5 py-3 text-sm font-bold text-[#080808] transition hover:-translate-y-0.5 hover:bg-[#D4B653]"
-                >
-                  Submit Requirement
-                  <ArrowRight
-                    size={17}
-                    className="transition-transform group-hover:translate-x-1"
-                  />
-                </a>
-
-                <a
-                  href="mailto:info@wedotgroup.com"
-                  className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white transition hover:border-[#E1C562]/40 hover:text-[#E1C562]"
-                >
-                  <Mail size={16} />
-                  Contact HR Team
-                </a>
-              </div>
-            </div>
-
-            {/* HERO CARD */}
-            <div className="relative hidden lg:block">
-              <div className="relative rounded-[28px] border border-white/10 bg-white/[0.045] p-7 shadow-2xl backdrop-blur-xl">
-
-                {/* Floating icon */}
-                <div className="absolute -right-4 -top-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#E1C562] text-[#080808] shadow-xl">
-                  <Users size={22} />
-                </div>
-
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#E1C562]/10 text-[#E1C562]">
-                  <UserCheck size={24} />
-                </div>
-
-                <p className="mt-6 text-sm font-semibold text-[#E1C562]">
-                  Connecting talent with opportunity
+              <div>
+                <p className="text-sm font-bold text-white">
+                  Connecting Talent & Business
                 </p>
-
-                <h3 className="mt-2 text-2xl font-bold leading-tight text-white">
-                  Find the right people for your business.
-                </h3>
-
-                <p className="mt-4 text-sm leading-7 text-white/45">
-                  Share your manpower requirements with our team and let us
-                  help you identify suitable candidates for your organization.
+                <p className="mt-1 text-xs text-white/50">
+                  Professional recruitment & staffing solutions
                 </p>
-
-                <div className="mt-7 space-y-4 border-t border-white/10 pt-6">
-                  <HeroFeature
-                    icon={Building2}
-                    title="For Businesses"
-                    text="Reliable recruitment & staffing solutions."
-                  />
-
-                  <HeroFeature
-                    icon={Users}
-                    title="For Candidates"
-                    text="Professional opportunities without job-seeker fees."
-                  />
-
-                  <HeroFeature
-                    icon={Globe2}
-                    title="Professional Support"
-                    text="Dedicated support throughout the recruitment journey."
-                  />
-                </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* =========================================================
-          SERVICE HIGHLIGHTS
-      ========================================================= */}
-
-      <section className="bg-[#080808] px-5 pb-10 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
-          <HighlightCard
-            icon={Users}
-            title="Top Talent"
-            text="Connect your business with skilled and suitable candidates."
-          />
-
-          <HighlightCard
-            icon={BriefcaseBusiness}
-            title="Staffing Solutions"
-            text="Workforce solutions designed around your operational requirements."
-          />
-
-          <HighlightCard
-            icon={ShieldCheck}
-            title="Professional Support"
-            text="A transparent and professional recruitment experience."
-          />
+        {/* Floating accent */}
+        <div className="absolute -right-4 -top-4 hidden h-14 w-14 items-center justify-center rounded-2xl bg-[#E1C562] text-[#080808] shadow-xl sm:flex">
+          <UserCheck size={25} />
         </div>
-      </section>
+      </div>
 
-      {/* =========================================================
-          MAIN SECTION
-      ========================================================= */}
+      {/* RIGHT — CONTENT */}
+      <div className="max-w-3xl">
+
+        <div className="inline-flex items-center gap-2 rounded-full border border-[#E1C562]/25 bg-[#E1C562]/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#F0D77D]">
+          <Sparkles size={14} />
+          HR Consultancy
+        </div>
+
+        <h1 className="mt-6 text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[58px]">
+          Comprehensive HR Solutions for 
+          <span className="block text-[#E1C562]">
+            Your Business Success.
+          </span>
+        </h1>
+
+        <p className="mt-6 max-w-2xl text-sm leading-7 text-white/55 sm:text-base">
+         At We Dot Group, we specialize in HR consultancy services that connect top talent with leading businesses. With a strong commitment to quality recruitment solutions, we help organizations identify the right candidates while ensuring job seekers are matched with opportunities that align with their skills, experience, and career aspirations.</p>
+
+<p className="mt-6 max-w-2xl text-sm leading-7 text-white/55 sm:text-base">We offer our services at competitive rates and are dedicated to supporting candidates throughout their job search journey. To maintain a transparent and candidate-friendly approach, we never charge job seekers any fees, ensuring an open, professional, and supportive experience for all.</p>
+
+<p className="mt-6 max-w-2xl text-sm leading-7 text-white/55 sm:text-base">At We Dot Group, we take pride in understanding the unique requirements of both employers and candidates, enabling us to create successful and lasting matches. Whether you are searching for exceptional talent or exploring your next career opportunity, we are committed to helping you achieve your goals through our expert HR consultancy services.</p>
+        
+
+
+        {/* CTA */}
+        <div className="mt-8 flex flex-wrap gap-3">
+          <a
+            href="#hr-enquiry"
+            className="group inline-flex items-center gap-2 rounded-xl bg-[#E1C562] px-5 py-3 text-sm font-bold text-[#080808] transition hover:-translate-y-0.5 hover:bg-[#D4B653]"
+          >
+            Submit Requirement
+            <ArrowRight
+              size={17}
+              className="transition-transform group-hover:translate-x-1"
+            />
+          </a>
+
+          <a
+            href="mailto:info@wedotgroup.com"
+            className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white transition hover:border-[#E1C562]/40 hover:text-[#E1C562]"
+          >
+            <Mail size={16} />
+            Contact HR Team
+          </a>
+        </div>
+
+       
+      </div>
+    </div>
+  </div>
+</section>
+
+<section className="bg-white px-5 py-16 sm:px-6 lg:px-8 lg:py-24">
+  <div className="mx-auto max-w-7xl">
+    <div className="grid items-center gap-10 lg:grid-cols-[0.3fr_0.7fr]">
+
+      {/* Tab Heading */}
+      <div>
+        <div className="inline-flex items-center rounded-xl bg-[#080808] px-6 py-4">
+          <span className="text-sm font-bold uppercase tracking-[0.18em] text-[#E1C562]">
+            HR Consultancy FORM
+          </span>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="border-l-2 border-[#E1C562] pl-6 sm:pl-8">
+        <p className="text-base leading-8 text-[#080808]/65 sm:text-lg">
+          After setting up your company in the UAE and providing essential IT
+          services, we take the next step to grow your business with targeted
+          digital marketing strategies. Our campaigns help attract clients and
+          establish a strong market presence. As your business expands, the
+          demand for skilled manpower increases, and we offer exclusive
+          staffing solutions tailored to your needs. From IT professionals to
+          administrative support, we provide a workforce that helps manage
+          your operations efficiently, ensuring sustained growth and long-term
+          success for your new company.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
       <section className="relative bg-[#080808] px-5 py-14 sm:px-6 lg:px-8 lg:py-20">
         <div className="mx-auto grid max-w-7xl items-start gap-7 lg:grid-cols-[300px_minmax(0,1fr)]">
@@ -924,7 +900,7 @@ export default function HrConsultancy() {
           CTA
       ========================================================= */}
 
-      <section className="relative overflow-hidden border-t border-[#E1C562]/15 bg-[#080808]">
+      <section className="relative overflow-hidden border-t border-[#E1C562]/15 bg-[#E1C562]  ">
 
         <div className="absolute -left-20 top-0 h-64 w-64 rounded-full bg-[#E1C562]/10 blur-3xl" />
 
@@ -945,7 +921,7 @@ export default function HrConsultancy() {
                 Looking for the right talent?
               </h2>
 
-              <p className="mt-2 max-w-2xl text-sm text-white/45">
+              <p className="mt-2 max-w-2xl text-sm text-white">
                 Share your manpower requirements with our team and let us help
                 you build the workforce your business needs.
               </p>
@@ -954,7 +930,7 @@ export default function HrConsultancy() {
 
             <a
               href="#hr-enquiry"
-              className="inline-flex items-center gap-2 rounded-xl bg-[#E1C562] px-6 py-3 text-sm font-bold text-[#080808] transition hover:-translate-y-0.5 hover:bg-[#D4B653]"
+              className="inline-flex items-center gap-2 rounded-xl bg-[#011810] px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#011810]"
             >
               Start Hiring
               <ArrowRight size={17} />
@@ -1136,9 +1112,6 @@ function FormInput({
   );
 }
 
-/* =============================================================
-   FORM SELECT
-============================================================= */
 
 function FormSelect({
   label,

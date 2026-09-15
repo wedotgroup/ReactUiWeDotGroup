@@ -247,9 +247,7 @@ const EnquiryModal = ({ isOpen, onClose }) => {
     );
   }, [currentCategory, search]);
 
-  /* ---------------------------------------------------------
-     BODY SCROLL LOCK
-  --------------------------------------------------------- */
+ 
 
   useEffect(() => {
     if (!isOpen) {
@@ -266,9 +264,7 @@ const EnquiryModal = ({ isOpen, onClose }) => {
     };
   }, [isOpen]);
 
-  /* ---------------------------------------------------------
-     ESCAPE KEY
-  --------------------------------------------------------- */
+
 
   useEffect(() => {
     if (!isOpen) return;
@@ -286,9 +282,7 @@ const EnquiryModal = ({ isOpen, onClose }) => {
     };
   }, [isOpen, onClose]);
 
-  /* ---------------------------------------------------------
-     CLOSE SERVICE DROPDOWN WHEN CLICKING OUTSIDE
-  --------------------------------------------------------- */
+  
 
   useEffect(() => {
     if (!showServiceDropdown) return;
@@ -313,9 +307,7 @@ const EnquiryModal = ({ isOpen, onClose }) => {
     };
   }, [showServiceDropdown]);
 
-  /* ---------------------------------------------------------
-     CATEGORY CHANGE
-  --------------------------------------------------------- */
+ 
 
   const handleCategoryChange = (categoryKey) => {
     if (!serviceCategories[categoryKey]) return;
@@ -332,9 +324,7 @@ const EnquiryModal = ({ isOpen, onClose }) => {
     setShowServiceDropdown(false);
   };
 
-  /* ---------------------------------------------------------
-     INPUT CHANGE
-  --------------------------------------------------------- */
+  
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -345,9 +335,7 @@ const EnquiryModal = ({ isOpen, onClose }) => {
     }));
   };
 
-  /* ---------------------------------------------------------
-     SERVICE SELECT
-  --------------------------------------------------------- */
+ 
 
   const handleServiceSelect = (service) => {
     setFormData((prev) => ({
@@ -359,9 +347,7 @@ const EnquiryModal = ({ isOpen, onClose }) => {
     setShowServiceDropdown(false);
   };
 
-  /* ---------------------------------------------------------
-     FORM RESET
-  --------------------------------------------------------- */
+  
 
   const resetForm = () => {
     setFormData(INITIAL_FORM_DATA);

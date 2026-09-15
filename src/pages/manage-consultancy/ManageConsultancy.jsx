@@ -30,7 +30,7 @@ export default function ManageConsultancy() {
 
   const [currentImage, setCurrentImage] = useState(0);
 
-  // Change image every 5 seconds
+  // Change hero image every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % heroImages.length);
@@ -39,11 +39,26 @@ export default function ManageConsultancy() {
     return () => clearInterval(interval);
   }, []);
 
-  // Dynamic data
+  // =====================================================
+  // DYNAMIC DATA
+  // =====================================================
+
   const relatedServices = service.relatedService?.services || [];
-  const benefits = service.benefits || [];
+
+  const benefits = (service.benefits || []).filter(
+    (benefit) => benefit && String(benefit).trim()
+  );
+
   const whySection = service.why_web_development;
-  const whyItems = whySection?.items || [];
+
+  // Only render valid why items
+  const whyItems = (whySection?.items || []).filter(
+    (item) => item && item.title && String(item.title).trim()
+  );
+
+  // =====================================================
+  // SECTION CONDITIONS
+  // =====================================================
 
   const hasIntroduction =
     Boolean(service.introduction?.title) ||
@@ -60,7 +75,6 @@ export default function ManageConsultancy() {
 
       {/* =====================================================
           HERO
-          ONLINE CHANGING IMAGE
       ===================================================== */}
 
       <section className="relative min-h-[650px] overflow-hidden bg-[#011810] lg:min-h-[720px]">
@@ -95,7 +109,7 @@ export default function ManageConsultancy() {
         {/* Decorative Line */}
         <div className="absolute left-0 top-0 h-full w-px bg-white/10 lg:left-[8%]" />
 
-        {/* Content */}
+        {/* Hero Content */}
         <div className="relative mx-auto flex min-h-[650px] max-w-7xl items-center px-5 py-28 sm:px-8 lg:min-h-[720px] lg:px-10">
 
           <div className="max-w-3xl">
@@ -219,7 +233,6 @@ export default function ManageConsultancy() {
 
       {/* =====================================================
           SERVICE DETAILS
-          WHITE
       ===================================================== */}
 
       {hasIntroduction && (
@@ -242,7 +255,10 @@ export default function ManageConsultancy() {
 
                     <img
                       src={service.introduction.image}
-                      alt={service.introduction.title || service.title}
+                      alt={
+                        service.introduction.title ||
+                        service.title
+                      }
                       className="h-full w-full object-cover"
                     />
 
@@ -349,7 +365,6 @@ export default function ManageConsultancy() {
 
       {/* =====================================================
           RELATED SERVICES
-          GREEN
       ===================================================== */}
 
       {hasRelatedServices && (
@@ -385,76 +400,83 @@ export default function ManageConsultancy() {
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 
-              {relatedServices.map((item, index) => (
+              {relatedServices
+                .filter(
+                  (item) =>
+                    item &&
+                    item.title &&
+                    String(item.title).trim()
+                )
+                .map((item, index) => (
 
-                <Link
-                  key={`${item.slug || item.title}-${index}`}
-                  to="/contact"
-                  className="group overflow-hidden border border-white/10 bg-[#06251D] transition-all duration-500 hover:-translate-y-2 hover:border-white/30"
-                >
+                  <Link
+                    key={`${item.slug || item.title}-${index}`}
+                    to="/contact"
+                    className="group overflow-hidden border border-white/10 bg-[#06251D] transition-all duration-500 hover:-translate-y-2 hover:border-white/30"
+                  >
 
-                  {item.image && (
-                    <div className="relative h-[280px] overflow-hidden">
+                    {item.image && (
+                      <div className="relative h-[280px] overflow-hidden">
 
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
 
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#011810] via-transparent to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#011810] via-transparent to-transparent" />
 
-                      <div className="absolute bottom-5 left-5">
+                        <div className="absolute bottom-5 left-5">
 
-                        <span className="border border-white/20 bg-[#011810]/60 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-white backdrop-blur-sm">
-                          {service.category || "Service"}
-                        </span>
+                          <span className="border border-white/20 bg-[#011810]/60 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-white backdrop-blur-sm">
+                            {service.category || "Service"}
+                          </span>
 
-                      </div>
-
-                    </div>
-                  )}
-
-                  <div className="p-6">
-
-                    <div className="flex items-start justify-between gap-4">
-
-                      <h3 className="text-xl font-bold text-white">
-                        {item.title}
-                      </h3>
-
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-white/10 text-white/40 transition-all group-hover:border-white group-hover:bg-white group-hover:text-[#011810]">
-
-                        <ArrowUpRight size={16} />
+                        </div>
 
                       </div>
-
-                    </div>
-
-                    {item.description && (
-                      <p className="mt-4 whitespace-pre-line text-sm leading-7 text-white/40">
-                        {item.description}
-                      </p>
                     )}
 
-                    <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-5">
+                    <div className="p-6">
 
-                      <span className="text-xs font-bold uppercase tracking-[0.12em] text-white/35">
-                        Contact Us
-                      </span>
+                      <div className="flex items-start justify-between gap-4">
 
-                      <ArrowRight
-                        size={15}
-                        className="text-white transition-transform group-hover:translate-x-2"
-                      />
+                        <h3 className="text-xl font-bold text-white">
+                          {item.title}
+                        </h3>
+
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-white/10 text-white/40 transition-all group-hover:border-white group-hover:bg-white group-hover:text-[#011810]">
+
+                          <ArrowUpRight size={16} />
+
+                        </div>
+
+                      </div>
+
+                      {item.description && (
+                        <p className="mt-4 whitespace-pre-line text-sm leading-7 text-white/40">
+                          {item.description}
+                        </p>
+                      )}
+
+                      <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-5">
+
+                        <span className="text-xs font-bold uppercase tracking-[0.12em] text-white/35">
+                          Contact Us
+                        </span>
+
+                        <ArrowRight
+                          size={15}
+                          className="text-white transition-transform group-hover:translate-x-2"
+                        />
+
+                      </div>
 
                     </div>
 
-                  </div>
+                  </Link>
 
-                </Link>
-
-              ))}
+                ))}
 
             </div>
 
@@ -465,18 +487,20 @@ export default function ManageConsultancy() {
 
       {/* =====================================================
           WHY CHOOSE US
-          WHITE
+          ONLY REAL ITEMS WILL BE SHOWN
       ===================================================== */}
 
       {hasWhySection && (
         <section className="relative overflow-hidden bg-white py-20 text-[#011810] sm:py-24 lg:py-28">
 
+          {/* Decorative Background */}
           <div className="absolute -left-40 -top-40 h-96 w-96 rounded-full bg-[#011810]/5 blur-3xl" />
 
           <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-[#011810]/5 blur-3xl" />
 
           <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
+            {/* Section Heading */}
             <div className="max-w-3xl">
 
               <div className="flex items-center gap-3">
@@ -495,15 +519,23 @@ export default function ManageConsultancy() {
 
             </div>
 
-            <div className="mt-14 grid gap-px overflow-hidden border border-[#011810]/10 bg-[#011810]/10 sm:grid-cols-2">
+            {/* Why Items */}
+            <div
+              className={`mt-14 grid gap-px overflow-hidden border border-[#011810]/10 p-3 ${
+                whyItems.length > 1
+                  ? "sm:grid-cols-2"
+                  : "grid-cols-1"
+              }`}
+            >
 
               {whyItems.map((item, index) => (
 
                 <div
                   key={`${item.title}-${index}`}
-                  className="group bg-white p-7 transition-all duration-500 hover:bg-[#f4f8f6] sm:p-8 lg:p-10"
+                  className="group bg-white p-7 border-black-500 transition-all duration-500 hover:bg-[#f4f8f6] sm:p-8 lg:p-10"
                 >
 
+                  {/* Number + Icon */}
                   <div className="mb-7 flex items-center justify-between">
 
                     <span className="text-xs font-bold tracking-[0.15em] text-[#011810]/25">
@@ -518,16 +550,19 @@ export default function ManageConsultancy() {
 
                   </div>
 
+                  {/* Title */}
                   <h3 className="text-xl font-bold">
                     {item.title}
                   </h3>
 
+                  {/* Description */}
                   {item.description && (
                     <p className="mt-4 whitespace-pre-line text-sm leading-7 text-[#011810]/50">
                       {item.description}
                     </p>
                   )}
 
+                  {/* Bottom Line */}
                   <div className="mt-7 h-px w-10 bg-[#011810]/20 transition-all duration-500 group-hover:w-full group-hover:bg-[#011810]" />
 
                 </div>
@@ -536,9 +571,11 @@ export default function ManageConsultancy() {
 
             </div>
 
+            {/* CTA */}
             <div className="mt-12 flex flex-col justify-between gap-6 border-t border-[#011810]/10 pt-8 md:flex-row md:items-center">
 
               <div>
+
                 <p className="text-sm font-semibold">
                   Ready to move forward?
                 </p>
@@ -546,6 +583,7 @@ export default function ManageConsultancy() {
                 <p className="mt-1 text-sm text-[#011810]/50">
                   Let's discuss your business requirements.
                 </p>
+
               </div>
 
               <Link
@@ -568,8 +606,12 @@ export default function ManageConsultancy() {
         </section>
       )}
 
-      <Enquiry/>
-     
+      {/* =====================================================
+          ENQUIRY
+      ===================================================== */}
+
+      <Enquiry />
+
     </main>
   );
 }

@@ -24,6 +24,10 @@ import FSSAI from "./pages/certifications/FSSAI";
 import ISICertification from "./pages/certifications/ISICertification";
 import SocialLabourCompliance from "./pages/certifications/SocialLabourCompliance";
 import TrademarkRegistration from "./pages/certifications/TrademarkRegistration";
+// import SingIn from "./ourproducts/auth/SingIn";
+import ProductListing from "./ourproducts/products/ProductListing";
+import ProductDetails from "./ourproducts/products/ProductDetails";
+import AddToCart from "./ourproducts/cart/AddToCart"
 
 
 
@@ -87,8 +91,6 @@ function App() {
         <Route path="/management-consultancy" element={<ManagementCounsultancy/>}/>
         <Route path="/itconsultancy" element={<ItCounsultancyfooter/>}/>
         <Route path="/certifications" element={<Certifications/>}/>
-
-        
           <Route path="/certifications/iso-certifications" element={<ISOCertifications/>}/>
             <Route path="/certifications/trademark-registration" element={<TrademarkRegistration/>}/>
               <Route path="/certifications/fssai" element={<FSSAI/>}/>
@@ -96,6 +98,12 @@ function App() {
                   <Route path="/certifications/esg-certification" element={<ESGCertification/>}/>
                     <Route path="/certifications/social-labour-compliance" element={<SocialLabourCompliance/>}/>
 
+{/* Ourproducts */}
+
+{/* <Route path="/singin" element={<SingIn/>}/> */}
+<Route path="/products" element={<ProductListing/>}/>
+<Route path="/products/:slug" element = {<ProductDetails/>}/>
+<Route path ="/cart" element = {<AddToCart/>}/>
       </Route>
 
     </Routes>
