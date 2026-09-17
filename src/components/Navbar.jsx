@@ -280,6 +280,11 @@ const Navbar = () => {
               path:
                 "/it-consultancy/payment-gateway-integration",
             },
+             {
+              name: "Our Products",
+              path:
+                "/products",
+            },
           ],
         },
       ],

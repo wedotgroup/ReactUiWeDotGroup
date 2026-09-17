@@ -1,7 +1,9 @@
-
 import React, { useMemo, useState } from "react";
-import { Search, Star } from "lucide-react";
-import {Link} from "react-router-dom"
+import { Search } from "lucide-react";
+import { Link } from "react-router-dom";
+
+import SignInModal from "../auth/SignInModal";
+import SignUpModal from "../auth/SignUpModal";
 
 const products = [
   {
@@ -103,6 +105,11 @@ const products = [
 ];
 
 const ProductListing = () => {
+  // ================= AUTH MODAL =================
+  const [showSignIn, setShowSignIn] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
+
+  // ================= SEARCH =================
   const [search, setSearch] = useState("");
 
   const filteredProducts = useMemo(() => {
@@ -111,150 +118,223 @@ const ProductListing = () => {
     );
   }, [search]);
 
+  // ================= OPEN SIGN IN =================
+  const handleSignIn = () => {
+    setShowSignUp(false);
+    setShowSignIn(true);
+  };
+
+  // ================= OPEN SIGN UP =================
+  const handleSignUp = () => {
+    setShowSignIn(false);
+    setShowSignUp(true);
+  };
+
+  // ================= CLOSE ALL MODALS =================
+  const handleCloseModals = () => {
+    setShowSignIn(false);
+    setShowSignUp(false);
+  };
+
   return (
-    <div className="min-h-screen bg-[#011810] text-white">
+    <>
+      <div className="min-h-screen bg-[#011810] text-white">
 
-      {/* ================= HERO ================= */}
-      <section className="relative overflow-hidden border-b border-[#d4af37]/15">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#011810] via-[#011810] to-[#0b3024]" />
+        {/* ================= HERO ================= */}
+        <section className="relative overflow-hidden border-b border-[#d4af37]/15">
 
-        <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-[#d4af37]/10 blur-3xl" />
+          {/* Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#011810] via-[#011810] to-[#0b3024]" />
 
-        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <div className="mx-auto max-w-3xl text-center">
+          {/* Glow */}
+          <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-[#d4af37]/10 blur-3xl" />
 
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-[#d4af37]">
-              Our Collection
+          <div className="absolute -bottom-32 -left-32 h-80 w-80 rounded-full bg-[#d4af37]/5 blur-3xl" />
+
+          {/* Content */}
+          <div className="relative mx-auto flex min-h-[600px] max-w-7xl items-center justify-center px-4 py-20 sm:px-6 lg:px-8">
+
+            <div className="mx-auto max-w-3xl text-center">
+
+              {/* Small Heading */}
+              <p className="mb-5 text-sm font-semibold uppercase tracking-[0.35em] text-[#d4af37]">
+                Our Products
+              </p>
+
+              {/* Main Heading */}
+              <h1 className="text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
+                Discover Our
+                <span className="block text-[#d4af37]">
+                  Premium Products
+                </span>
+              </h1>
+
+              {/* Description */}
+              <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/60 sm:text-lg">
+                Explore our carefully selected collection of premium products
+                designed with quality, style and exceptional value in mind.
+              </p>
+
+              {/* ================= AUTH BUTTONS ================= */}
+              <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+
+                {/* Sign In */}
+                <button
+                  type="button"
+                  onClick={handleSignIn}
+                  className="w-full rounded-lg border border-[#d4af37] px-8 py-3.5 text-sm font-semibold text-[#d4af37] transition-all duration-300 hover:bg-[#d4af37] hover:text-[#011810] sm:w-auto"
+                >
+                  Sign In
+                </button>
+
+                {/* Sign Up */}
+                <button
+                  type="button"
+                  onClick={handleSignUp}
+                  className="w-full rounded-lg bg-[#d4af37] px-8 py-3.5 text-sm font-semibold text-[#011810] shadow-lg shadow-[#d4af37]/10 transition-all duration-300 hover:bg-[#e6c65c] hover:shadow-[#d4af37]/20 sm:w-auto"
+                >
+                  Sign Up
+                </button>
+
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* ================= PRODUCTS ================= */}
+        <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+
+          {/* ================= SEARCH ================= */}
+          <div className="mx-auto max-w-2xl">
+            <div className="relative">
+
+              <Search
+                size={21}
+                className="absolute left-5 top-1/2 -translate-y-1/2 text-[#d4af37]"
+              />
+
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search products..."
+                className="w-full rounded-xl border border-[#d4af37]/25 bg-[#08251c] py-4 pl-14 pr-5 text-white outline-none placeholder:text-white/35 transition focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37]/30"
+              />
+
+            </div>
+          </div>
+
+          {/* ================= TITLE ================= */}
+          <div className="mb-8 mt-14">
+
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#d4af37]">
+              Collection
             </p>
 
-            <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
-              Discover Our
-              <span className="block text-[#d4af37]">
-                Premium Products
-              </span>
-            </h1>
+            <div className="mt-2 flex items-end justify-between">
 
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/60 sm:text-lg">
-              Explore our carefully selected collection of premium products
-              designed with quality, style and exceptional value in mind.
-            </p>
+              <h2 className="text-2xl font-bold sm:text-3xl">
+                All Products
+              </h2>
 
-          </div>
-        </div>
-      </section>
+              <p className="text-sm text-white/40">
+                {filteredProducts.length} Products
+              </p>
 
-      {/* ================= PRODUCTS ================= */}
-      <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-
-        {/* ================= SEARCH ================= */}
-        <div className="mx-auto max-w-2xl">
-
-          <div className="relative">
-            <Search
-              size={21}
-              className="absolute left-5 top-1/2 -translate-y-1/2 text-[#d4af37]"
-            />
-
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search products..."
-              className="w-full rounded-xl border border-[#d4af37]/25 bg-[#08251c] py-4 pl-14 pr-5 text-white outline-none placeholder:text-white/35 transition focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37]/30"
-            />
+            </div>
           </div>
 
-        </div>
+          {/* ================= PRODUCT GRID ================= */}
+          {filteredProducts.length > 0 ? (
 
-        {/* ================= TITLE ================= */}
-        <div className="mb-8 mt-14">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#d4af37]">
-            Collection
-          </p>
+              {filteredProducts.map((product) => (
 
-          <div className="mt-2 flex items-end justify-between">
+                <div
+                  key={product.id}
+                  className="group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]"
+                >
 
-            <h2 className="text-2xl font-bold sm:text-3xl">
-              All Products
-            </h2>
+                  {/* Product Image */}
+                  <div className="h-72 overflow-hidden">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
 
-            <p className="text-sm text-white/40">
-              {filteredProducts.length} Products
-            </p>
+                  {/* Product Info */}
+                  <div className="p-5">
 
-          </div>
+                    <h3 className="text-lg font-semibold text-white">
+                      {product.name}
+                    </h3>
 
-        </div>
+                    <div className="mt-3 flex items-center justify-between">
 
-        {/* ================= PRODUCT GRID ================= */}
-        {filteredProducts.length > 0 ? (
+                      <span className="text-xl font-bold text-[#d4af37]">
+                        ${product.price}
+                      </span>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-  {filteredProducts.map((product) => (
-    <div
-      key={product.id}
-      className="group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]"
-    >
-      {/* Product Image */}
-      <div className="h-72 overflow-hidden">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
+                      <Link
+                        to={`/products/${product.slug}`}
+                        className="text-sm font-medium text-[#d4af37] transition hover:text-white"
+                      >
+                        Explore →
+                      </Link>
+
+                    </div>
+                  </div>
+
+                </div>
+
+              ))}
+
+            </div>
+
+          ) : (
+
+            /* ================= NO RESULT ================= */
+            <div className="flex min-h-[300px] flex-col items-center justify-center rounded-2xl border border-[#d4af37]/15 bg-[#08251c]">
+
+              <Search
+                size={40}
+                className="text-[#d4af37]"
+              />
+
+              <h3 className="mt-4 text-xl font-semibold">
+                No Products Found
+              </h3>
+
+              <p className="mt-2 text-sm text-white/40">
+                Try searching for another product.
+              </p>
+
+            </div>
+
+          )}
+
+        </main>
       </div>
 
-      {/* Product Info */}
-      <div className="p-5">
-        <h3 className="text-lg font-semibold text-white">
-          {product.name}
-        </h3>
+      {/* ================= SIGN IN MODAL ================= */}
+      <SignInModal
+        isOpen={showSignIn}
+        onClose={handleCloseModals}
+        onSwitchToSignUp={handleSignUp}
+      />
 
-        <div className="mt-3 flex items-center justify-between">
-          <span className="text-xl font-bold text-[#d4af37]">
-            ${product.price}
-          </span>
-
-          <Link
-            to={`/products/${product.slug}`}
-            className="text-sm font-medium text-[#d4af37] transition hover:text-white"
-          >
-            Explore →
-          </Link>
-        </div>
-      </div>
-    </div>
-  ))}
-</div>
-
-        ) : (
-
-          /* ================= NO RESULT ================= */
-          <div className="flex min-h-[300px] flex-col items-center justify-center rounded-2xl border border-[#d4af37]/15 bg-[#08251c]">
-
-            <Search
-              size={40}
-              className="text-[#d4af37]"
-            />
-
-            <h3 className="mt-4 text-xl font-semibold">
-              No Products Found
-            </h3>
-
-            <p className="mt-2 text-sm text-white/40">
-              Try searching for another product.
-            </p>
-
-          </div>
-
-        )}
-
-      </main>
-
-    </div>
+      {/* ================= SIGN UP MODAL ================= */}
+      <SignUpModal
+        isOpen={showSignUp}
+        onClose={handleCloseModals}
+        onSwitchToSignIn={handleSignIn}
+      />
+    </>
   );
 };
 
 export default ProductListing;
-

@@ -17,7 +17,6 @@ import Disclaimer from "./pages/footers/Disclaimer";
 import ManagementCounsultancy from "./pages/footers/ManagementCounsultancy";
 import ItCounsultancyfooter from "./pages/footers/ItCounsultancyfooter"
 import Certifications from "./pages/Certifications";
-
 import ISOCertifications from "./pages/certifications/ISOCertifications";
 import ESGCertification from "./pages/certifications/ESGCertification";
 import FSSAI from "./pages/certifications/FSSAI";
@@ -28,6 +27,7 @@ import TrademarkRegistration from "./pages/certifications/TrademarkRegistration"
 import ProductListing from "./ourproducts/products/ProductListing";
 import ProductDetails from "./ourproducts/products/ProductDetails";
 import AddToCart from "./ourproducts/cart/AddToCart"
+import ProtectedRoute from "./middleware/ProtectedRoute";
 
 
 
@@ -103,7 +103,10 @@ function App() {
 {/* <Route path="/singin" element={<SingIn/>}/> */}
 <Route path="/products" element={<ProductListing/>}/>
 <Route path="/products/:slug" element = {<ProductDetails/>}/>
+<Route element={<ProtectedRoute/>}>
 <Route path ="/cart" element = {<AddToCart/>}/>
+</Route>
+
       </Route>
 
     </Routes>

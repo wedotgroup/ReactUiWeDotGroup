@@ -1,6 +1,6 @@
 
-import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useState } from "react";
+import { Link, Navigate, useParams } from "react-router-dom";
 import {
   ArrowLeft,
   Check,
@@ -983,9 +983,7 @@ const ProductDetails = () => {
   ======================================================= */
 
   const addToCart = () => {
-    showMessage(
-      `${product.name} added to cart.`
-    );
+    <Navigate to="/cart"/>
   };
 
   /* =======================================================
@@ -1257,14 +1255,13 @@ const ProductDetails = () => {
 
               {/* ADD CART */}
 
-              <button
-                type="button"
-                onClick={addToCart}
+              <Link
+              to={'/cart'}
                 className="flex h-14 flex-1 items-center justify-center gap-2 rounded-xl border border-[#d4af37] bg-[#d4af37] px-6 font-semibold text-[#011810] transition hover:bg-[#e3c45a]"
               >
                 <ShoppingBag size={19} />
                 Add to Cart
-              </button>
+              </Link>
 
               {/* BUY NOW */}
 
