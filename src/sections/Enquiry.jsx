@@ -315,9 +315,7 @@ const Enquery = () => {
 
       resetForm();
     } catch (error) {
-    console.log("Status:", error.response?.status);
-    console.log("Response data:", error.response?.data);
-    console.log("Response headers:", error.response?.headers);
+   
 
       toast.error(
         error?.response?.data?.message ||

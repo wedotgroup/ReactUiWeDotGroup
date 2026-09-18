@@ -1,6 +1,5 @@
-
-import { useState } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import {
   ArrowLeft,
   Check,
@@ -10,191 +9,12 @@ import {
   Star,
   X,
 } from "lucide-react";
-
-
-const products = [
-  {
-    id: 1,
-    name: "Premium Leather Watch",
-    slug: "premium-leather-watch",
-    category: "Accessories",
-    price: 129,
-    oldPrice: 169,
-    rating: 4.8,
-    reviews: 124,
-    image:
-      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=1200&q=80",
-    description:
-      "A premium leather watch designed for modern style and everyday elegance.",
-    features: [
-      "Premium genuine leather strap",
-      "Classic analog dial",
-      "Scratch-resistant glass",
-      "Comfortable everyday design",
-      "Adjustable strap",
-    ],
-  },
-
-  {
-    id: 2,
-    name: "Classic Black Sneakers",
-    slug: "classic-black-sneakers",
-    category: "Shoes",
-    price: 89,
-    oldPrice: 119,
-    rating: 4.6,
-    reviews: 89,
-    image:
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=80",
-    description:
-      "Classic black sneakers designed for comfort and everyday performance.",
-    features: [
-      "Lightweight construction",
-      "Breathable upper",
-      "Comfortable cushioning",
-      "Durable rubber sole",
-      "Everyday casual design",
-    ],
-  },
-
-  {
-    id: 3,
-    name: "Luxury Sunglasses",
-    slug: "luxury-sunglasses",
-    category: "Accessories",
-    price: 79,
-    oldPrice: 99,
-    rating: 4.7,
-    reviews: 76,
-    image:
-      "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=1200&q=80",
-    description:
-      "Luxury sunglasses combining modern style with reliable eye protection.",
-    features: [
-      "UV protection",
-      "Lightweight frame",
-      "Premium lens",
-      "Modern design",
-      "Comfortable nose bridge",
-    ],
-  },
-
-  {
-    id: 4,
-    name: "Premium Cotton Shirt",
-    slug: "premium-cotton-shirt",
-    category: "Fashion",
-    price: 59,
-    oldPrice: 79,
-    rating: 4.5,
-    reviews: 65,
-    image:
-      "https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=1200&q=80",
-    description:
-      "Premium cotton shirt made for a clean and comfortable everyday look.",
-    features: [
-      "100% premium cotton",
-      "Soft and breathable fabric",
-      "Comfortable fit",
-      "Durable stitching",
-      "Easy to style",
-    ],
-  },
-
-  {
-    id: 5,
-    name: "Minimalist Backpack",
-    slug: "minimalist-backpack",
-    category: "Bags",
-    price: 69,
-    oldPrice: 89,
-    rating: 4.8,
-    reviews: 102,
-    image:
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1200&q=80",
-    description:
-      "A minimalist backpack designed for work, travel and everyday use.",
-    features: [
-      "Large main compartment",
-      "Laptop storage",
-      "Adjustable shoulder straps",
-      "Water-resistant material",
-      "Lightweight design",
-    ],
-  },
-
-  {
-    id: 6,
-    name: "Premium Headphones",
-    slug: "premium-headphones",
-    category: "Electronics",
-    price: 149,
-    oldPrice: 189,
-    rating: 4.9,
-    reviews: 211,
-    image:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80",
-    description:
-      "Premium wireless headphones delivering immersive sound and comfort.",
-    features: [
-      "High-quality audio",
-      "Wireless connectivity",
-      "Long battery life",
-      "Comfortable ear cushions",
-      "Built-in microphone",
-    ],
-  },
-
-  {
-    id: 7,
-    name: "Elegant Handbag",
-    slug: "elegant-handbag",
-    category: "Bags",
-    price: 119,
-    oldPrice: 149,
-    rating: 4.7,
-    reviews: 94,
-    image:
-      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=1200&q=80",
-    description:
-      "Elegant handbag designed to add a sophisticated touch to your style.",
-    features: [
-      "Premium finish",
-      "Spacious interior",
-      "Multiple compartments",
-      "Comfortable handles",
-      "Elegant design",
-    ],
-  },
-
-  {
-    id: 8,
-    name: "Smart Fitness Watch",
-    slug: "smart-fitness-watch",
-    category: "Electronics",
-    price: 199,
-    oldPrice: 249,
-    rating: 4.8,
-    reviews: 156,
-    image:
-      "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=1200&q=80",
-    description:
-      "Smart fitness watch designed to track daily activity and workouts.",
-    features: [
-      "Fitness tracking",
-      "Heart rate monitoring",
-      "Activity tracking",
-      "Multiple workout modes",
-      "Smart notifications",
-    ],
-  },
-];
-
-/* =========================================================
-   STAR COMPONENT
-========================================================= */
+import axios from "axios";
+import apiUrl from "../../api/api";
 
 const Stars = ({ rating = 0 }) => {
+  const safeRating = Number(rating) || 0;
+
   return (
     <div className="flex items-center gap-1">
       {[1, 2, 3, 4, 5].map((star) => (
@@ -202,7 +22,7 @@ const Stars = ({ rating = 0 }) => {
           key={star}
           size={17}
           className={
-            star <= Math.round(rating)
+            star <= Math.round(safeRating)
               ? "fill-[#d4af37] text-[#d4af37]"
               : "text-white/20"
           }
@@ -211,10 +31,6 @@ const Stars = ({ rating = 0 }) => {
     </div>
   );
 };
-
-/* =========================================================
-   TABBY PLANS
-========================================================= */
 
 const tabbyPlans = [
   {
@@ -242,10 +58,6 @@ const tabbyPlans = [
   },
 ];
 
-/* =========================================================
-   PAYMENT MODAL
-========================================================= */
-
 const PaymentModal = ({
   method,
   product,
@@ -254,11 +66,7 @@ const PaymentModal = ({
   onClose,
   onContinue,
 }) => {
-  if (!method) return null;
-
-  /* =======================================================
-     TABBY POPUP
-  ======================================================= */
+  if (!method || !product) return null;
 
   if (method === "tabby") {
     return (
@@ -310,8 +118,7 @@ const PaymentModal = ({
               {tabbyPlans.map((plan) => {
                 const monthlyFee = plan.monthlyFee || 0;
 
-                const monthlyAmount =
-                  total / plan.months + monthlyFee;
+                const monthlyAmount = total / plan.months + monthlyFee;
 
                 return (
                   <div
@@ -342,9 +149,7 @@ const PaymentModal = ({
           {/* HOW IT WORKS */}
 
           <div className="mt-8 border-t border-gray-100 px-6 pt-7 sm:px-8">
-            <h3 className="text-xl font-bold">
-              How it works
-            </h3>
+            <h3 className="text-xl font-bold">How it works</h3>
 
             <div className="mt-5 space-y-5">
               {[
@@ -365,10 +170,7 @@ const PaymentModal = ({
                   text: "We'll send you a reminder when your next payment is due",
                 },
               ].map((step, index) => (
-                <div
-                  key={step.title}
-                  className="flex gap-4"
-                >
+                <div key={step.title} className="flex gap-4">
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#69f58a] font-bold text-[#171717]">
                     {index + 1}
                   </div>
@@ -389,34 +191,26 @@ const PaymentModal = ({
           <div className="mt-8 border-t border-gray-100 bg-gray-50 px-6 py-7 sm:px-8">
             <div className="flex gap-4">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#69f58a]">
-                <span className="text-lg font-bold">
-                  ✓
-                </span>
+                <span className="text-lg font-bold">✓</span>
               </div>
 
               <div>
-                <h4 className="font-bold">
-                  Trusted by millions
-                </h4>
+                <h4 className="font-bold">Trusted by millions</h4>
 
                 <p className="mt-1 text-sm leading-6 text-gray-500">
-                  Over 20 million shoppers discover products and pay
-                  their way with Tabby
+                  Over 20 million shoppers discover products and pay their way
+                  with Tabby
                 </p>
               </div>
             </div>
 
             <div className="mt-6 flex gap-4">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#69f58a]">
-                <span className="text-lg">
-                  🛡
-                </span>
+                <span className="text-lg">🛡</span>
               </div>
 
               <div>
-                <h4 className="font-bold">
-                  Shop safely with Tabby
-                </h4>
+                <h4 className="font-bold">Shop safely with Tabby</h4>
 
                 <p className="mt-1 text-sm leading-6 text-gray-500">
                   Buyer protection is included with every purchase
@@ -431,14 +225,14 @@ const PaymentModal = ({
             <div className="rounded-xl border border-gray-200 bg-white p-4">
               <div className="flex items-center gap-3">
                 <img
-                  src={product.image}
-                  alt={product.name}
+                  src={`${apiUrl.replace("/api", "")}/${product.image}`}
+                  alt={product.title}
                   className="h-14 w-14 rounded-lg object-cover"
                 />
 
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-semibold">
-                    {product.name}
+                    {product.title}
                   </p>
 
                   <p className="mt-1 text-xs text-gray-500">
@@ -446,9 +240,7 @@ const PaymentModal = ({
                   </p>
                 </div>
 
-                <p className="text-sm font-bold">
-                  AED {total.toFixed(2)}
-                </p>
+                <p className="text-sm font-bold">AED {total.toFixed(2)}</p>
               </div>
             </div>
           </div>
@@ -477,10 +269,6 @@ const PaymentModal = ({
     );
   }
 
-  /* =======================================================
-     TAMARA POPUP
-  ======================================================= */
-
   return (
     <div
       className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/70 px-4 py-5 backdrop-blur-sm"
@@ -501,12 +289,9 @@ const PaymentModal = ({
           <X size={19} />
         </button>
 
-        {/* =================================================
-            TAMARA HEADER
-        ================================================= */}
+        {/* TAMARA HEADER */}
 
         <div className="px-6 pb-6 pt-8 sm:px-8">
-
           <div className="mb-6 flex justify-center">
             <img
               src="https://cdn.tamara.co/widget-v2/assets/lavendar-logo.703d190a.svg"
@@ -518,54 +303,33 @@ const PaymentModal = ({
           <h2 className="text-center text-2xl font-bold tracking-tight sm:text-3xl">
             Your payment, your pace
           </h2>
-
         </div>
 
-        {/* =================================================
-            EXAMPLE PLANS
-        ================================================= */}
+        {/* EXAMPLE PLANS */}
 
         <div className="px-6 sm:px-8">
-
-          <h3 className="mb-4 text-lg font-bold">
-            Example plans
-          </h3>
+          <h3 className="mb-4 text-lg font-bold">Example plans</h3>
 
           <div className="grid gap-3 sm:grid-cols-2">
-
-            {/* 2 PAYMENTS */}
-
             <div className="rounded-xl border border-gray-200 bg-white p-4">
               <p className="text-2xl font-bold">
                 AED {(total / 2).toFixed(2)}/mo
               </p>
 
-              <p className="mt-1 text-sm font-medium text-gray-500">
-                No fees
-              </p>
+              <p className="mt-1 text-sm font-medium text-gray-500">No fees</p>
 
-              <p className="mt-3 text-sm font-semibold">
-                2 Payments
-              </p>
+              <p className="mt-3 text-sm font-semibold">2 Payments</p>
             </div>
-
-            {/* 3 PAYMENTS */}
 
             <div className="rounded-xl border border-gray-200 bg-white p-4">
               <p className="text-2xl font-bold">
                 AED {(total / 3).toFixed(2)}/mo
               </p>
 
-              <p className="mt-1 text-sm font-medium text-gray-500">
-                No fees
-              </p>
+              <p className="mt-1 text-sm font-medium text-gray-500">No fees</p>
 
-              <p className="mt-3 text-sm font-semibold">
-                3 Payments
-              </p>
+              <p className="mt-3 text-sm font-semibold">3 Payments</p>
             </div>
-
-            {/* 4 PAYMENTS */}
 
             <div className="rounded-xl border border-gray-200 bg-white p-4">
               <p className="text-2xl font-bold">
@@ -576,225 +340,121 @@ const PaymentModal = ({
                 Fees may apply
               </p>
 
-              <p className="mt-3 text-sm font-semibold">
-                4 Payments
-              </p>
+              <p className="mt-3 text-sm font-semibold">4 Payments</p>
             </div>
 
-            {/* PAY IN FULL */}
-
             <div className="rounded-xl border border-gray-200 bg-white p-4">
-              <p className="text-2xl font-bold">
-                AED {total.toFixed(2)}
-              </p>
+              <p className="text-2xl font-bold">AED {total.toFixed(2)}</p>
 
               <p className="mt-1 text-sm font-medium text-gray-500">
                 1% cashback and buyer protection
               </p>
 
-              <p className="mt-3 text-sm font-semibold">
-                Pay in Full
-              </p>
+              <p className="mt-3 text-sm font-semibold">Pay in Full</p>
             </div>
-
           </div>
-
         </div>
 
-        {/* =================================================
-            HOW IT WORKS
-        ================================================= */}
+        {/* HOW IT WORKS */}
 
         <div className="mt-8 border-t border-gray-100 px-6 pt-7 sm:px-8">
-
-          <h3 className="text-xl font-bold">
-            How it works?
-          </h3>
+          <h3 className="text-xl font-bold">How it works?</h3>
 
           <div className="mt-6 space-y-6">
+            {[
+              {
+                title: "Pick a plan that works for you",
+                text: "Choose Tamara at checkout and select the payment plan that fits your needs.",
+              },
+              {
+                title: "Pay your first payment securely",
+                text: "Enter your card details to make your first payment safely and instantly.",
+              },
+              {
+                title: "Stay in control",
+                text: "Track and manage all your upcoming payments easily in the Tamara app.",
+              },
+              {
+                title: "We’ve got your back",
+                text: "Get helpful reminders before each payment, no surprises.",
+              },
+            ].map((step, index) => (
+              <div key={step.title} className="flex gap-4">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f0e3f8] font-bold text-[#8d58c7]">
+                  {index + 1}
+                </div>
 
-            {/* STEP 1 */}
+                <div>
+                  <h4 className="font-semibold">{step.title}</h4>
 
-            <div className="flex gap-4">
-
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f0e3f8] font-bold text-[#8d58c7]">
-                1
+                  <p className="mt-1 text-sm leading-6 text-gray-500">
+                    {step.text}
+                  </p>
+                </div>
               </div>
-
-              <div>
-                <h4 className="font-semibold">
-                  Pick a plan that works for you
-                </h4>
-
-                <p className="mt-1 text-sm leading-6 text-gray-500">
-                  Choose Tamara at checkout and select the payment
-                  plan that fits your needs.
-                </p>
-              </div>
-
-            </div>
-
-            {/* STEP 2 */}
-
-            <div className="flex gap-4">
-
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f0e3f8] font-bold text-[#8d58c7]">
-                2
-              </div>
-
-              <div>
-                <h4 className="font-semibold">
-                  Pay your first payment securely
-                </h4>
-
-                <p className="mt-1 text-sm leading-6 text-gray-500">
-                  Enter your card details to make your first payment
-                  safely and instantly.
-                </p>
-              </div>
-
-            </div>
-
-            {/* STEP 3 */}
-
-            <div className="flex gap-4">
-
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f0e3f8] font-bold text-[#8d58c7]">
-                3
-              </div>
-
-              <div>
-                <h4 className="font-semibold">
-                  Stay in control
-                </h4>
-
-                <p className="mt-1 text-sm leading-6 text-gray-500">
-                  Track and manage all your upcoming payments easily
-                  in the Tamara app.
-                </p>
-              </div>
-
-            </div>
-
-            {/* STEP 4 */}
-
-            <div className="flex gap-4">
-
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f0e3f8] font-bold text-[#8d58c7]">
-                4
-              </div>
-
-              <div>
-                <h4 className="font-semibold">
-                  We’ve got your back
-                </h4>
-
-                <p className="mt-1 text-sm leading-6 text-gray-500">
-                  Get helpful reminders before each payment, no
-                  surprises.
-                </p>
-              </div>
-
-            </div>
-
+            ))}
           </div>
-
         </div>
 
-        {/* =================================================
-            WHY TAMARA
-        ================================================= */}
+        {/* WHY TAMARA */}
 
         <div className="mt-8 border-t border-gray-100 px-6 pt-7 sm:px-8">
-
-          <h3 className="text-xl font-bold">
-            Why Tamara?
-          </h3>
+          <h3 className="text-xl font-bold">Why Tamara?</h3>
 
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
-
-            {/* BUYER PROTECTION */}
-
             <div className="rounded-xl border border-gray-100 bg-gray-50 p-4 text-center">
-
               <img
                 src="https://cdn.tamara.co/widget-v2/assets/user.6682854e.svg"
                 alt="Buyer protection"
                 className="mx-auto h-9 w-9"
               />
 
-              <p className="mt-3 text-lg font-bold">
-                100%
-              </p>
+              <p className="mt-3 text-lg font-bold">100%</p>
 
-              <p className="text-sm text-gray-500">
-                buyer protection
-              </p>
-
+              <p className="text-sm text-gray-500">buyer protection</p>
             </div>
 
-            {/* SHARIA */}
-
             <div className="rounded-xl border border-gray-100 bg-gray-50 p-4 text-center">
-
               <img
                 src="https://cdn.tamara.co/widget-v2/assets/sharia.fe9fc99c.svg"
                 alt="Sharia compliant"
                 className="mx-auto h-9 w-9"
               />
 
-              <p className="mt-3 text-lg font-bold">
-                Sharia
-              </p>
+              <p className="mt-3 text-lg font-bold">Sharia</p>
 
-              <p className="text-sm text-gray-500">
-                compliant
-              </p>
-
+              <p className="text-sm text-gray-500">compliant</p>
             </div>
 
-            {/* NO LATE FEES */}
-
             <div className="rounded-xl border border-gray-100 bg-gray-50 p-4 text-center">
-
               <img
                 src="https://cdn.tamara.co/widget-v2/assets/no-late-fees.8a0c997c.svg"
                 alt="No late fees"
                 className="mx-auto h-9 w-9"
               />
 
-              <p className="mt-3 text-lg font-bold">
-                No late
-              </p>
+              <p className="mt-3 text-lg font-bold">No late</p>
 
-              <p className="text-sm text-gray-500">
-                fees
-              </p>
-
+              <p className="text-sm text-gray-500">fees</p>
             </div>
-
           </div>
-
         </div>
 
-        {/* =================================================
-            DISCLAIMER
-        ================================================= */}
+        {/* DISCLAIMER */}
 
         <div className="mt-7 border-t border-gray-100 px-6 pt-6 sm:px-8">
-
           <p className="text-[12px] leading-5 text-gray-500">
-            Payment plans shown are estimates. Actual offers may vary
-            based on your eligibility and order details. Not all
-            merchants or products qualify for every plan, including
-            Tamara’s long-term financing options.
+            Payment plans shown are estimates. Actual offers may vary based on
+            your eligibility and order details. Not all merchants or products
+            qualify for every plan, including Tamara’s long-term financing
+            options.
           </p>
 
           <p className="mt-3 text-[12px] leading-5 text-gray-500">
-            Approval is subject to eligibility checks and may require
-            a down payment. Final terms, including monthly payment
-            amounts, may change after checkout review and may exclude
-            taxes, shipping, or other charges.
+            Approval is subject to eligibility checks and may require a down
+            payment. Final terms, including monthly payment amounts, may change
+            after checkout review and may exclude taxes, shipping, or other
+            charges.
           </p>
 
           <p className="mt-3 text-[12px] leading-5 text-gray-500">
@@ -809,17 +469,12 @@ const PaymentModal = ({
             </a>
             .
           </p>
-
         </div>
 
-        {/* =================================================
-            PAYMENT METHODS
-        ================================================= */}
+        {/* PAYMENT METHODS */}
 
         <div className="mt-6 border-t border-gray-100 px-6 py-5 sm:px-8">
-
           <div className="flex items-center justify-center gap-4">
-
             <img
               src="https://cdn.tamara.co/widget-v2/assets/apple.58715d0c.svg"
               alt="Apple Pay"
@@ -831,55 +486,36 @@ const PaymentModal = ({
               alt="Mastercard"
               className="h-7 w-auto"
             />
-
           </div>
-
         </div>
 
-        {/* =================================================
-            PRODUCT
-        ================================================= */}
+        {/* PRODUCT */}
 
         <div className="border-t border-gray-100 px-6 py-5 sm:px-8">
-
           <div className="rounded-xl border border-gray-200 bg-white p-4">
-
             <div className="flex items-center gap-3">
-
               <img
-                src={product.image}
+                src={`${apiUrl.replace("/api", "")}/${product.image}`}
                 alt={product.name}
                 className="h-14 w-14 rounded-lg object-cover"
               />
 
               <div className="min-w-0 flex-1">
-
-                <p className="truncate text-sm font-semibold">
-                  {product.name}
-                </p>
+                <p className="truncate text-sm font-semibold">{product.name}</p>
 
                 <p className="mt-1 text-xs text-gray-500">
                   Quantity: {quantity}
                 </p>
-
               </div>
 
-              <p className="text-sm font-bold">
-                AED {total.toFixed(2)}
-              </p>
-
+              <p className="text-sm font-bold">AED {total.toFixed(2)}</p>
             </div>
-
           </div>
-
         </div>
 
-        {/* =================================================
-            BUTTON
-        ================================================= */}
+        {/* BUTTON */}
 
         <div className="border-t border-gray-100 px-6 py-5 sm:px-8">
-
           <button
             type="button"
             onClick={onContinue}
@@ -895,40 +531,94 @@ const PaymentModal = ({
           >
             Close
           </button>
-
         </div>
-
       </div>
     </div>
   );
 };
 
-/* =========================================================
-   PRODUCT DETAILS
-========================================================= */
-
 const ProductDetails = () => {
   const { slug } = useParams();
 
-  const product = products.find(
-    (item) => item.slug === slug
-  );
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const [quantity, setQuantity] = useState(1);
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [message, setMessage] = useState("");
 
-  /* =======================================================
-     PRODUCT NOT FOUND
-  ======================================================= */
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        setLoading(true);
+
+        const res = await axios.get(`${apiUrl}/products/${slug}`);
+
+        const data = res.data?.data;
+
+        if (!data) {
+          setProduct(null);
+          return;
+        }
+
+        setProduct({
+          id: data.id,
+
+          name: data.title ?? data.product_name ?? "",
+
+          slug: data.slug ?? slug,
+
+          price: Number(data.price ?? data.product_price ?? 0),
+
+          oldPrice: Number(
+            data.stock_price ?? data.old_price ?? data.discount_price ?? 0,
+          ),
+
+          rating: Number(data.rating ?? 0),
+
+          reviews: Number(data.reviews ?? data.review_count ?? 0),
+
+          category:
+            typeof data.category === "object"
+              ? data.category?.name
+              : (data.category ?? ""),
+
+          image: data.images ?? data.product_image ?? "",
+
+          description: data.description ?? "",
+
+          features: Array.isArray(data.package_includes)
+            ? data.package_includes
+            : [],
+        });
+      } catch (error) {
+        setProduct(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (slug) {
+      getProduct();
+    }
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-[#011810] text-white">
+        <div className="text-center">
+          <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-white/20 border-t-[#d4af37]" />
+
+          <p className="mt-4 text-white/60">Loading product...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!product) {
     return (
       <div className="min-h-screen bg-[#011810] px-6 py-32 text-center text-white">
-
-        <h1 className="text-4xl font-semibold">
-          Product Not Found
-        </h1>
+        <h1 className="text-4xl font-semibold">Product Not Found</h1>
 
         <p className="mt-4 text-white/50">
           The product you are looking for does not exist.
@@ -941,34 +631,27 @@ const ProductDetails = () => {
           <ArrowLeft size={18} />
           Back to Products
         </Link>
-
       </div>
     );
   }
 
-  /* =======================================================
-     TOTAL
-  ======================================================= */
+  const productPrice = Number(product.price || 0);
 
-  const total = product.price * quantity;
+  const oldPrice = Number(product.oldPrice || 0);
 
-  /* =======================================================
-     QUANTITY
-  ======================================================= */
+  const rating = Number(product.rating || 0);
+
+  const reviews = Number(product.reviews || 0);
+
+  const total = productPrice * quantity;
 
   const increaseQuantity = () => {
     setQuantity((prev) => prev + 1);
   };
 
   const decreaseQuantity = () => {
-    setQuantity((prev) =>
-      Math.max(1, prev - 1)
-    );
+    setQuantity((prev) => Math.max(1, prev - 1));
   };
-
-  /* =======================================================
-     MESSAGE
-  ======================================================= */
 
   const showMessage = (text) => {
     setMessage(text);
@@ -978,17 +661,57 @@ const ProductDetails = () => {
     }, 3000);
   };
 
-  /* =======================================================
-     ADD TO CART
-  ======================================================= */
+  const addToCart = async () => {
+    try {
+      if (!product?.id) {
+        showMessage("Product not found.");
+        return;
+      }
 
-  const addToCart = () => {
-    <Navigate to="/cart"/>
+      const storedUser = localStorage.getItem("user");
+      const token = localStorage.getItem("token");
+
+      if (!storedUser || !token) {
+        showMessage("Please login first.");
+        return;
+      }
+
+      const user = JSON.parse(storedUser);
+
+      if (!user?.id) {
+        showMessage("User ID not found.");
+        return;
+      }
+
+      const res = await axios.post(
+        `${apiUrl}/addtocart/${user.id}`,
+        {
+          product_id: product.id,
+          quantity: quantity,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+          },
+        },
+      );
+
+
+      if (res.data?.status) {
+        showMessage(`${product.name} added to cart.`);
+      } else {
+        showMessage(res.data?.message || "Unable to add product to cart.");
+      }
+    } catch (error) {
+      console.error("Add To Cart Error:", error);
+
+      showMessage(
+        error.response?.data?.message ||
+          "Something went wrong while adding product to cart.",
+      );
+    }
   };
-
-  /* =======================================================
-     BUY NOW
-  ======================================================= */
 
   const buyNow = () => {
     setPaymentMethod("tabby");
@@ -998,20 +721,19 @@ const ProductDetails = () => {
      PAYMENT CONTINUE
   ======================================================= */
 
-  const handlePaymentContinue = () => {
+  const handlePaymentContinue = async () => {
     /*
-      IMPORTANT:
-
-      Yahan actual Laravel API call karna hoga.
+      Actual Laravel payment API can be connected here.
 
       Example:
 
       const response = await axios.post(
-        "/api/payment/create",
+        `${apiUrl}/payment/create`,
         {
           provider: paymentMethod,
           product_id: product.id,
           quantity: quantity,
+          amount: total,
         }
       );
 
@@ -1020,57 +742,47 @@ const ProductDetails = () => {
     */
 
     showMessage(
-      `${paymentMethod === "tabby" ? "Tabby" : "Tamara"} checkout selected.`
+      `${paymentMethod === "tabby" ? "Tabby" : "Tamara"} checkout selected.`,
     );
 
     setPaymentMethod(null);
   };
 
+  /* =======================================================
+     RETURN UI
+  ======================================================= */
+
   return (
     <div className="min-h-screen bg-[#011810] text-white">
-
       {/* =====================================================
           HERO
       ===================================================== */}
 
       <section className="relative overflow-hidden border-b border-white/10">
-
         <div className="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-[#d4af37]/10 blur-[120px]" />
 
         <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-28 sm:px-8 lg:px-10">
-
           {/* BREADCRUMB */}
 
           <div className="mb-6 flex flex-wrap items-center gap-2 text-sm text-white/45">
-
-            <Link
-              to="/"
-              className="transition hover:text-[#d4af37]"
-            >
+            <Link to="/" className="transition hover:text-[#d4af37]">
               Home
             </Link>
 
             <span>/</span>
 
-            <Link
-              to="/products"
-              className="transition hover:text-[#d4af37]"
-            >
+            <Link to="/products" className="transition hover:text-[#d4af37]">
               Products
             </Link>
 
             <span>/</span>
 
-            <span className="text-white/70">
-              {product.name}
-            </span>
-
+            <span className="text-white/70">{product.title}</span>
           </div>
 
           {/* HERO TEXT */}
 
           <div className="max-w-3xl">
-
             <p className="mb-4 text-sm uppercase tracking-[0.3em] text-[#d4af37]">
               Product Details
             </p>
@@ -1078,11 +790,8 @@ const ProductDetails = () => {
             <h1 className="text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
               Consulting for Every Business
             </h1>
-
           </div>
-
         </div>
-
       </section>
 
       {/* =====================================================
@@ -1090,36 +799,28 @@ const ProductDetails = () => {
       ===================================================== */}
 
       <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-10 lg:py-24">
-
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
-
           {/* =================================================
-              IMAGE
+              PRODUCT IMAGE
           ================================================= */}
 
           <div>
-
-            <div className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03]">
-
+            <div className="group relative overflow-hidden  border border-white/10 bg-white/[0.03]">
               <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/10 via-transparent to-transparent" />
 
               <img
-                src={product.image}
+                src={`${apiUrl.replace("/api", "")}/${product.image}`}
                 alt={product.name}
-                className="relative aspect-square w-full object-cover transition duration-700 group-hover:scale-[1.03]"
+                className="relative h-auto w-full object-contain transition duration-700 group-hover:scale-[1.03]"
               />
-
             </div>
 
             {/* SMALL INFO */}
 
             <div className="mt-5 flex flex-col gap-2 border-b border-white/10 pb-5 sm:flex-row sm:items-center sm:justify-between">
-
               <span className="text-sm text-white/40">
                 Category:{" "}
-                <span className="text-white/70">
-                  {product.category}
-                </span>
+                <span className="text-white/70">{product.category}</span>
               </span>
 
               <span className="text-sm text-white/40">
@@ -1128,17 +829,10 @@ const ProductDetails = () => {
                   #{String(product.id).padStart(4, "0")}
                 </span>
               </span>
-
             </div>
-
           </div>
 
-          {/* =================================================
-              PRODUCT CONTENT
-          ================================================= */}
-
           <div>
-
             <p className="text-sm uppercase tracking-[0.25em] text-[#d4af37]">
               Premium Package
             </p>
@@ -1150,33 +844,31 @@ const ProductDetails = () => {
             {/* RATING */}
 
             <div className="mt-5 flex flex-wrap items-center gap-4">
-
-              <Stars rating={product.rating} />
+              <Stars rating={rating} />
 
               <span className="text-sm text-white/50">
-                {product.rating.toFixed(1)} out of 5
+                {rating.toFixed(1)} out of 5
               </span>
 
               <span className="h-1 w-1 rounded-full bg-white/20" />
 
               <span className="text-sm text-white/50">
-                Based on {product.reviews} customer ratings
+                Based on {reviews} customer ratings
               </span>
-
             </div>
 
             {/* PRICE */}
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
-
               <span className="text-3xl font-semibold text-[#d4af37]">
-                AED {product.price.toFixed(2)}
+                AED {productPrice.toFixed(2)}
               </span>
 
-              <span className="text-lg text-white/30 line-through">
-                AED {product.oldPrice.toFixed(2)}
-              </span>
-
+              {oldPrice > 0 && (
+                <span className="text-lg text-white/30 line-through">
+                  AED {oldPrice.toFixed(2)}
+                </span>
+              )}
             </div>
 
             {/* DESCRIPTION */}
@@ -1188,47 +880,30 @@ const ProductDetails = () => {
             {/* FEATURES */}
 
             <div className="mt-8">
-
               <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-white">
                 Package Includes
               </h3>
 
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
-
-                {product.features.map((feature) => (
+                {(product.features || []).map((feature, index) => (
                   <div
-                    key={feature}
+                    key={`${feature}-${index}`}
                     className="flex items-center gap-3 text-sm text-white/65"
                   >
-
                     <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#d4af37]/10">
-
-                      <Check
-                        size={14}
-                        className="text-[#d4af37]"
-                      />
-
+                      <Check size={14} className="text-[#d4af37]" />
                     </span>
 
                     {feature}
-
                   </div>
                 ))}
-
               </div>
-
             </div>
 
-            {/* =================================================
-                QUANTITY + BUTTONS
-            ================================================= */}
-
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-
               {/* QUANTITY */}
 
               <div className="flex h-14 w-fit items-center rounded-xl border border-white/10 bg-white/[0.03]">
-
                 <button
                   type="button"
                   onClick={decreaseQuantity}
@@ -1238,9 +913,7 @@ const ProductDetails = () => {
                   <Minus size={18} />
                 </button>
 
-                <span className="w-12 text-center font-medium">
-                  {quantity}
-                </span>
+                <span className="w-12 text-center font-medium">{quantity}</span>
 
                 <button
                   type="button"
@@ -1250,18 +923,18 @@ const ProductDetails = () => {
                 >
                   <Plus size={18} />
                 </button>
-
               </div>
 
-              {/* ADD CART */}
+              {/* ADD TO CART */}
 
-              <Link
-              to={'/cart'}
+              <button
+                type="button"
+                onClick={addToCart}
                 className="flex h-14 flex-1 items-center justify-center gap-2 rounded-xl border border-[#d4af37] bg-[#d4af37] px-6 font-semibold text-[#011810] transition hover:bg-[#e3c45a]"
               >
                 <ShoppingBag size={19} />
                 Add to Cart
-              </Link>
+              </button>
 
               {/* BUY NOW */}
 
@@ -1272,58 +945,36 @@ const ProductDetails = () => {
               >
                 Buy Now
               </button>
-
             </div>
 
-            {/* =================================================
-                TOTAL
-            ================================================= */}
+            {/* TOTAL */}
 
             <div className="mt-5 flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.02] px-5 py-4">
-
-              <span className="text-sm text-white/45">
-                Total
-              </span>
+              <span className="text-sm text-white/45">Total</span>
 
               <span className="font-semibold text-[#d4af37]">
                 AED {total.toFixed(2)}
               </span>
-
             </div>
 
-            {/* =================================================
-                PAYMENT METHODS
-            ================================================= */}
-
             <div className="mt-8 space-y-4">
-
-              {/* =================================================
-                  TABBY
-              ================================================= */}
+              {/* TABBY */}
 
               <button
                 type="button"
-                onClick={() =>
-                  setPaymentMethod("tabby")
-                }
+                onClick={() => setPaymentMethod("tabby")}
                 className="flex min-h-[62px] w-full items-center justify-between gap-3 rounded-[11px] border border-[#d9dfe8] bg-white px-4 py-3 text-left transition-all hover:border-[#b8c1ce] hover:shadow-sm sm:px-5"
               >
-
                 <div className="min-w-0 flex-1">
-
                   <p className="text-[13px] leading-6 text-[#171717] sm:text-[14px]">
-
-                    <span>
-                      As low as{" "}
-                    </span>
+                    <span>As low as </span>
 
                     <span className="font-bold">
-                      AED {(total / 4).toFixed(2)}/month
+                      AED {(total / 4).toFixed(2)}
+                      /month
                     </span>
 
-                    <span>
-                      {" "}or 4 interest-free payments.{" "}
-                    </span>
+                    <span> or 4 interest-free payments. </span>
 
                     <span
                       className="cursor-pointer font-semibold text-[#2875d0] underline underline-offset-2"
@@ -1334,50 +985,34 @@ const ProductDetails = () => {
                     >
                       Learn more
                     </span>
-
                   </p>
-
                 </div>
 
                 <div className="flex shrink-0 items-center justify-center rounded-[8px] bg-[#69f58a] px-2.5 py-1">
-
                   <img
                     src="/logo/tabby.png"
                     alt="Tabby"
                     className="h-6 w-auto max-w-[75px] object-contain"
                   />
-
                 </div>
-
               </button>
 
-              {/* =================================================
-                  TAMARA
-              ================================================= */}
+              {/* TAMARA */}
 
               <button
                 type="button"
-                onClick={() =>
-                  setPaymentMethod("tamara")
-                }
+                onClick={() => setPaymentMethod("tamara")}
                 className="flex min-h-[62px] w-full items-center justify-between gap-3 rounded-[11px] border border-[#d9dfe8] bg-white px-4 py-3 text-left transition-all hover:border-[#b8c1ce] hover:shadow-sm sm:px-5"
               >
-
                 <div className="min-w-0 flex-1">
-
                   <p className="text-[13px] leading-6 text-[#171717] sm:text-[14px]">
-
-                    <span>
-                      Or split in 4 payments of{" "}
-                    </span>
+                    <span>Or split in 4 payments of </span>
 
                     <span className="font-bold">
                       AED {(total / 4).toFixed(2)}
                     </span>
 
-                    <span>
-                      {" "}- No late fees.{" "}
-                    </span>
+                    <span> - No late fees. </span>
 
                     <span
                       className="cursor-pointer font-semibold text-[#171717] underline underline-offset-2"
@@ -1388,29 +1023,20 @@ const ProductDetails = () => {
                     >
                       More options
                     </span>
-
                   </p>
-
                 </div>
 
                 <div className="flex shrink-0 items-center justify-center rounded-[5px] bg-gradient-to-r from-[#ffd7e8] to-[#cba8e8] px-2 py-1">
-
                   <img
                     src="/logo/tamara.png"
                     alt="Tamara"
                     className="h-5 w-auto max-w-[70px] object-contain"
                   />
-
                 </div>
-
               </button>
-
             </div>
-
           </div>
-
         </div>
-
       </section>
 
       {/* =====================================================
@@ -1419,22 +1045,13 @@ const ProductDetails = () => {
 
       {message && (
         <div className="fixed bottom-6 right-6 z-[10000] max-w-sm rounded-xl border border-[#d4af37]/30 bg-[#011810] px-5 py-4 text-sm text-white shadow-2xl">
-
           <div className="flex items-center gap-3">
-
             <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#d4af37]/10">
-
-              <Check
-                size={15}
-                className="text-[#d4af37]"
-              />
-
+              <Check size={15} className="text-[#d4af37]" />
             </span>
 
             {message}
-
           </div>
-
         </div>
       )}
 
@@ -1447,15 +1064,11 @@ const ProductDetails = () => {
         product={product}
         quantity={quantity}
         total={total}
-        onClose={() =>
-          setPaymentMethod(null)
-        }
+        onClose={() => setPaymentMethod(null)}
         onContinue={handlePaymentContinue}
       />
-
     </div>
   );
 };
 
 export default ProductDetails;
-

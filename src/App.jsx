@@ -28,6 +28,7 @@ import ProductListing from "./ourproducts/products/ProductListing";
 import ProductDetails from "./ourproducts/products/ProductDetails";
 import AddToCart from "./ourproducts/cart/AddToCart"
 import ProtectedRoute from "./middleware/ProtectedRoute";
+import Profile from "./ourproducts/auth/Profile";
 
 
 
@@ -68,16 +69,10 @@ function App() {
           path="/hr-consultancy"
           element={<HrConsultancy />}
         />
-
-       
-
         <Route
           path="/management-consultancy/:slug"
           element={<ManageConsultancy />}
         />
-
-        
-
         <Route
           path="/it-consultancy/:slug"
           element={<ItConsultancy />}
@@ -91,21 +86,19 @@ function App() {
         <Route path="/management-consultancy" element={<ManagementCounsultancy/>}/>
         <Route path="/itconsultancy" element={<ItCounsultancyfooter/>}/>
         <Route path="/certifications" element={<Certifications/>}/>
-          <Route path="/certifications/iso-certifications" element={<ISOCertifications/>}/>
-            <Route path="/certifications/trademark-registration" element={<TrademarkRegistration/>}/>
-              <Route path="/certifications/fssai" element={<FSSAI/>}/>
-                <Route path="/certifications/isi-certification" element={<ISICertification/>}/>
-                  <Route path="/certifications/esg-certification" element={<ESGCertification/>}/>
-                    <Route path="/certifications/social-labour-compliance" element={<SocialLabourCompliance/>}/>
+        <Route path="/certifications/iso-certifications" element={<ISOCertifications/>}/>
+        <Route path="/certifications/trademark-registration" element={<TrademarkRegistration/>}/>
+        <Route path="/certifications/fssai" element={<FSSAI/>}/>
+        <Route path="/certifications/isi-certification" element={<ISICertification/>}/>
+        <Route path="/certifications/esg-certification" element={<ESGCertification/>}/>
+        <Route path="/certifications/social-labour-compliance" element={<SocialLabourCompliance/>}/>
+        <Route path="/products" element={<ProductListing/>}/>
+        <Route path="/products/:slug" element = {<ProductDetails/>}/>
 
-{/* Ourproducts */}
-
-{/* <Route path="/singin" element={<SingIn/>}/> */}
-<Route path="/products" element={<ProductListing/>}/>
-<Route path="/products/:slug" element = {<ProductDetails/>}/>
-<Route element={<ProtectedRoute/>}>
-<Route path ="/cart" element = {<AddToCart/>}/>
-</Route>
+        <Route element={<ProtectedRoute/>}>
+        <Route path ="/cart" element = {<AddToCart/>}/>
+        <Route path="/profile" element={<Profile/>}/>
+        </Route>
 
       </Route>
 

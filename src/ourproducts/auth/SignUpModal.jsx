@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
+import apiUrl from "../../api/api";
 
 const SignUpModal = ({ isOpen, onClose, onSwitchToSignIn }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     password: "",
     password_confirmation: "",
   });
@@ -19,30 +21,81 @@ const SignUpModal = ({ isOpen, onClose, onSwitchToSignIn }) => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+
+    if (error) {
+      setError("");
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setError("");
+
+    // Password confirmation
+    if (formData.password !== formData.password_confirmation) {
+      setError("Password and confirm password do not match.");
+      return;
+    }
+
     setLoading(true);
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/register",
+        `${apiUrl}/singin`,
         formData
       );
 
-      setFormData({
-        name: "",
-        email: "",
-        password: "",
-        password_confirmation: "",
-      });
 
-      onClose();
+      // Registration successful
+      if (response.data?.status) {
+
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          password: "",
+          password_confirmation: "",
+        });
+
+        // Close Signup Modal
+        onClose();
+
+        // Open Sign In Modal
+        onSwitchToSignIn();
+
+        return;
+      }
+
+      setError(
+        response.data?.message ||
+        "Registration failed. Please try again."
+      );
+
     } catch (err) {
-      
+      console.error("Signup Error:", err);
+
+
+      // Laravel validation errors
+      if (err.response?.data?.errors) {
+        const errors = err.response.data.errors;
+
+        const firstError = Object.values(errors)[0];
+
+        if (Array.isArray(firstError)) {
+          setError(firstError[0]);
+        } else {
+          setError(firstError);
+        }
+      } else {
+        setError(
+          err.response?.data?.error ||
+          err.response?.data?.message ||
+          "Something went wrong. Please try again."
+        );
+      }
+
     } finally {
       setLoading(false);
     }
@@ -58,6 +111,7 @@ const SignUpModal = ({ isOpen, onClose, onSwitchToSignIn }) => {
         className="relative w-full max-w-md rounded-2xl border border-[#d4af37]/20 bg-[#011810] p-6 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
+
         {/* Close */}
         <button
           type="button"
@@ -126,6 +180,23 @@ const SignUpModal = ({ isOpen, onClose, onSwitchToSignIn }) => {
             />
           </div>
 
+          {/* Phone */}
+          <div>
+            <label className="mb-1 block text-xs font-medium text-white/80">
+              Phone Number
+            </label>
+
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder="Enter your phone number"
+              required
+              className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white outline-none placeholder:text-white/30 focus:border-[#d4af37]"
+            />
+          </div>
+
           {/* Password */}
           <div>
             <label className="mb-1 block text-xs font-medium text-white/80">
@@ -157,6 +228,7 @@ const SignUpModal = ({ isOpen, onClose, onSwitchToSignIn }) => {
               onChange={handleChange}
               placeholder="Confirm your password"
               required
+              minLength={8}
               className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white outline-none placeholder:text-white/30 focus:border-[#d4af37]"
             />
           </div>
@@ -167,7 +239,9 @@ const SignUpModal = ({ isOpen, onClose, onSwitchToSignIn }) => {
             disabled={loading}
             className="mt-2 w-full rounded-lg bg-[#d4af37] py-3 text-sm font-semibold text-[#011810] transition hover:bg-[#e6c65c] disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {loading ? "Creating Account..." : "Create Account"}
+            {loading
+              ? "Creating Account..."
+              : "Create Account"}
           </button>
         </form>
 
@@ -176,7 +250,10 @@ const SignUpModal = ({ isOpen, onClose, onSwitchToSignIn }) => {
           Already have an account?{" "}
           <button
             type="button"
-            onClick={onSwitchToSignIn}
+            onClick={() => {
+              onClose();
+              onSwitchToSignIn();
+            }}
             className="font-semibold text-[#d4af37] hover:underline"
           >
             Sign In

@@ -158,7 +158,6 @@ export default function HrConsultancy() {
         }
       );
 
-      console.log("Success:", response.data);
 
       // Reset form
       setFormData({

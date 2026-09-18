@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
-
+import apiUrl from "../../api/api";
+import { useNavigate } from "react-router-dom";
 const SignInModal = ({ isOpen, onClose, onSwitchToSignUp }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -31,37 +33,53 @@ const SignInModal = ({ isOpen, onClose, onSwitchToSignUp }) => {
     setError("");
 
     try {
-      // const response = await axios.post(
-      //   "http://127.0.0.1:8000/api/login",
-      //   formData
-      // );
+      const response = await axios.post(`${apiUrl}/login`, formData);
 
-      console.log("Login Response:", response.data);
+      // Login success
+      if (response.data?.status) {
+        // Save token
+        if (response.data?.token) {
+          localStorage.setItem("token", response.data.token);
+        }
 
-      // Save token
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
+        // Save user
+        if (response.data?.user) {
+          localStorage.setItem("user", JSON.stringify(response.data.user));
+        }
+
+        // Reset form
+        setFormData({
+          email: "",
+          password: "",
+        });
+
+        
+        onClose();
+        navigate("/profile");
+        return;
       }
 
-      // Save user
-      if (response.data.user) {
-        localStorage.setItem(
-          "user",
-          JSON.stringify(response.data.user)
+     
+      setError(response.data?.message || "Login failed. Please try again.");
+    } catch (err) {
+
+      // Laravel validation errors
+      if (err.response?.data?.error) {
+        const errors = err.response.data.error;
+
+        const firstError = Object.values(errors)[0];
+
+        if (Array.isArray(firstError)) {
+          setError(firstError[0]);
+        } else {
+          setError(firstError);
+        }
+      } else {
+        setError(
+          err.response?.data?.message ||
+            "Something went wrong. Please try again.",
         );
       }
-
-      // Reset form
-      setFormData({
-        email: "",
-        password: "",
-      });
-
-      // Close modal
-      onClose();
-
-    } catch (err) {
-     
     } finally {
       setLoading(false);
     }
@@ -77,7 +95,6 @@ const SignInModal = ({ isOpen, onClose, onSwitchToSignUp }) => {
         className="relative w-full max-w-md rounded-2xl border border-[#d4af37]/20 bg-[#011810] p-6 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
-
         {/* Close */}
         <button
           type="button"
@@ -89,19 +106,15 @@ const SignInModal = ({ isOpen, onClose, onSwitchToSignUp }) => {
 
         {/* Header */}
         <div className="mb-5 text-center">
-
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#d4af37]">
             Welcome Back
           </p>
 
-          <h2 className="mt-1 text-2xl font-bold text-white">
-            Sign In
-          </h2>
+          <h2 className="mt-1 text-2xl font-bold text-white">Sign In</h2>
 
           <p className="mt-1 text-xs text-white/50">
             Sign in to continue to your account
           </p>
-
         </div>
 
         {/* Error */}
@@ -113,7 +126,6 @@ const SignInModal = ({ isOpen, onClose, onSwitchToSignUp }) => {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-3">
-
           {/* Email */}
           <div>
             <label className="mb-1 block text-xs font-medium text-white/80">
@@ -166,14 +178,11 @@ const SignInModal = ({ isOpen, onClose, onSwitchToSignUp }) => {
           >
             {loading ? "Signing In..." : "Sign In"}
           </button>
-
         </form>
 
         {/* Switch */}
         <div className="mt-4 text-center text-xs text-white/50">
-
           Don't have an account?{" "}
-
           <button
             type="button"
             onClick={onSwitchToSignUp}
@@ -181,9 +190,7 @@ const SignInModal = ({ isOpen, onClose, onSwitchToSignUp }) => {
           >
             Sign Up
           </button>
-
         </div>
-
       </div>
     </div>
   );

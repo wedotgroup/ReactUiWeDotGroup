@@ -1,4 +1,6 @@
+
 import { useEffect, useState } from "react";
+import axios from "axios";
 import {
   Menu,
   X,
@@ -7,8 +9,11 @@ import {
   BriefcaseBusiness,
   Cpu,
   Award,
+  User,
+  ShoppingCart,
 } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
+import apiUrl from "../api/api";
 
 const COLORS = {
   primary: "#E1C562",
@@ -23,7 +28,90 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
 
-  // Lock body scroll when mobile menu is open
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+
+  // =========================================================
+  // CHECK LOGIN + FETCH CART COUNT
+  // =========================================================
+
+  useEffect(() => {
+    const checkUser = () => {
+      const user = localStorage.getItem("user");
+      const token = localStorage.getItem("token");
+
+      const loggedIn = !!user && !!token;
+
+      setIsLoggedIn(loggedIn);
+
+      if (loggedIn) {
+        fetchCartCount();
+      } else {
+        setCartCount(0);
+      }
+    };
+
+    checkUser();
+
+    window.addEventListener("storage", checkUser);
+    window.addEventListener("cartUpdated", checkUser);
+
+    return () => {
+      window.removeEventListener("storage", checkUser);
+      window.removeEventListener("cartUpdated", checkUser);
+    };
+  }, []);
+
+ 
+  const fetchCartCount = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        setCartCount(0);
+        return;
+      }
+
+      const response = await axios.get(
+        `${apiUrl}/my/cart/items`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+          },
+        }
+      );
+
+
+      if (response.data?.status) {
+        const items = response.data?.data || [];
+
+        // Total quantity of all cart products
+        const totalQuantity = items.reduce((total, item) => {
+          return total + Number(item.quentity || 0);
+        }, 0);
+
+        setCartCount(totalQuantity);
+      } else {
+        setCartCount(0);
+      }
+    } catch (error) {
+      console.error("Navbar Cart Count Error:", error);
+
+      if (error.response?.status === 401) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
+        setIsLoggedIn(false);
+        setCartCount(0);
+      }
+    }
+  };
+
+  // =========================================================
+  // LOCK BODY SCROLL
+  // =========================================================
+
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
 
@@ -32,7 +120,10 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
-  // Close menus with Escape key
+  // =========================================================
+  // ESCAPE KEY
+  // =========================================================
+
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === "Escape") {
@@ -47,6 +138,10 @@ const Navbar = () => {
       window.removeEventListener("keydown", handleEscape);
     };
   }, []);
+
+  // =========================================================
+  // MEGA MENUS
+  // =========================================================
 
   const megaMenus = {
     management: {
@@ -82,13 +177,11 @@ const Navbar = () => {
             },
             {
               name: "Ras Al Khaimah Free Zones",
-              path:
-                "/management-consultancy/ras-al-khaimah-free-zones",
+              path: "/management-consultancy/ras-al-khaimah-free-zones",
             },
             {
               name: "Umm Al Quwain Free Zones",
-              path:
-                "/management-consultancy/umm-al-quwain-free-zones",
+              path: "/management-consultancy/umm-al-quwain-free-zones",
             },
           ],
         },
@@ -96,11 +189,9 @@ const Navbar = () => {
         {
           heading: "Offshore & Mainland",
           items: [
-            
             {
               name: "Ras Al Khaimah Offshore",
-              path:
-                "/management-consultancy/ras-al-khaimah-offshore",
+              path: "/management-consultancy/ras-al-khaimah-offshore",
             },
             {
               name: "Ajman Offshore",
@@ -108,8 +199,7 @@ const Navbar = () => {
             },
             {
               name: "Jebel Ali Offshore",
-              path:
-                "/management-consultancy/jebel-ali-offshore",
+              path: "/management-consultancy/jebel-ali-offshore",
             },
           ],
         },
@@ -139,8 +229,7 @@ const Navbar = () => {
             },
             {
               name: "Risk Consulting Services",
-              path:
-                "/management-consultancy/risk-consulting-services",
+              path: "/management-consultancy/risk-consulting-services",
             },
           ],
         },
@@ -154,8 +243,7 @@ const Navbar = () => {
             },
             {
               name: "Financial Management",
-              path:
-                "/management-consultancy/financial-management",
+              path: "/management-consultancy/financial-management",
             },
             {
               name: "Cost Accounting",
@@ -163,18 +251,15 @@ const Navbar = () => {
             },
             {
               name: "Payroll Accounting",
-              path:
-                "/management-consultancy/payroll-accounting",
+              path: "/management-consultancy/payroll-accounting",
             },
             {
               name: "Accounting Advisory",
-              path:
-                "/management-consultancy/accounting-advisory",
+              path: "/management-consultancy/accounting-advisory",
             },
             {
               name: "Cloud Computing",
-              path:
-                "/management-consultancy/cloud-computing",
+              path: "/management-consultancy/cloud-computing",
             },
           ],
         },
@@ -232,18 +317,15 @@ const Navbar = () => {
             },
             {
               name: "Content Writing Services",
-              path:
-                "/it-consultancy/content-writing-services",
+              path: "/it-consultancy/content-writing-services",
             },
             {
               name: "Bulk Email Marketing",
-              path:
-                "/it-consultancy/bulk-email-marketing",
+              path: "/it-consultancy/bulk-email-marketing",
             },
             {
               name: "Bulk SMS Marketing",
-              path:
-                "/it-consultancy/bulk-sms-marketing",
+              path: "/it-consultancy/bulk-sms-marketing",
             },
           ],
         },
@@ -257,33 +339,27 @@ const Navbar = () => {
             },
             {
               name: "Web Hosting / Server",
-              path:
-                "/it-consultancy/web-hosting-server",
+              path: "/it-consultancy/web-hosting-server",
             },
             {
               name: "SSL Certification",
-              path:
-                "/it-consultancy/ssl-certification",
+              path: "/it-consultancy/ssl-certification",
             },
             {
               name: "WhatsApp API Integration",
-              path:
-                "/it-consultancy/whatsapp-api-integration",
+              path: "/it-consultancy/whatsapp-api-integration",
             },
             {
               name: "Logistic Integration",
-              path:
-                "/it-consultancy/logistic-integration",
+              path: "/it-consultancy/logistic-integration",
             },
             {
               name: "Payment Gateway Integration",
-              path:
-                "/it-consultancy/payment-gateway-integration",
+              path: "/it-consultancy/payment-gateway-integration",
             },
-             {
+            {
               name: "Our Products",
-              path:
-                "/products",
+              path: "/products",
             },
           ],
         },
@@ -323,8 +399,7 @@ const Navbar = () => {
             },
             {
               name: "Social & Labour Compliance",
-              path:
-                "#",
+              path: "#",
             },
           ],
         },
@@ -332,10 +407,18 @@ const Navbar = () => {
     },
   };
 
+  // =========================================================
+  // CLOSE MENU
+  // =========================================================
+
   const closeMenu = () => {
     setIsOpen(false);
     setActiveMenu(null);
   };
+
+  // =========================================================
+  // NAV LINK CLASS
+  // =========================================================
 
   const navLinkClass = ({ isActive }) => `
     relative
@@ -358,9 +441,9 @@ const Navbar = () => {
 
   return (
     <>
-      {/* =========================
+      {/* =====================================================
           DESKTOP NAVBAR
-      ========================== */}
+      ====================================================== */}
 
       <nav
         className="
@@ -372,13 +455,7 @@ const Navbar = () => {
           bg-[#360a0a]
         "
       >
-        <div
-          className="
-            mx-auto
-            w-full
-            bg-[#011810]
-          "
-        >
+        <div className="mx-auto w-full bg-[#011810]">
           <div
             className="
               mx-auto
@@ -422,6 +499,7 @@ const Navbar = () => {
               {/* DESKTOP NAV */}
 
               <div className="hidden items-center lg:flex">
+
                 {/* HOME */}
 
                 <NavLink
@@ -522,7 +600,9 @@ const Navbar = () => {
                       }
                     `}
                   >
-                    <Link to="/management-consultancy">Management Consultancy</Link>
+                    <Link to="/management-consultancy">
+                      Management Consultancy
+                    </Link>
 
                     <ChevronDown
                       size={15}
@@ -579,7 +659,9 @@ const Navbar = () => {
                       }
                     `}
                   >
-                   <Link to="/itconsultancy"> IT Consultancy</Link>
+                    <Link to="/itconsultancy">
+                      IT Consultancy
+                    </Link>
 
                     <ChevronDown
                       size={15}
@@ -643,7 +725,9 @@ const Navbar = () => {
                 <div
                   className="relative"
                   onMouseEnter={() =>
-                    setActiveMenu("certifications")
+                    setActiveMenu(
+                      "certifications"
+                    )
                   }
                   onMouseLeave={() =>
                     setActiveMenu(null)
@@ -662,7 +746,8 @@ const Navbar = () => {
                       transition-all
                       duration-300
                       ${
-                        activeMenu === "certifications"
+                        activeMenu ===
+                        "certifications"
                           ? "text-white"
                           : "text-white/70 hover:text-white"
                       }
@@ -676,7 +761,8 @@ const Navbar = () => {
                         transition-transform
                         duration-300
                         ${
-                          activeMenu === "certifications"
+                          activeMenu ===
+                          "certifications"
                             ? "rotate-180 text-[#E1C562]"
                             : ""
                         }
@@ -685,9 +771,12 @@ const Navbar = () => {
                   </button>
 
                   <MegaMenu
-                    menu={megaMenus.certifications}
+                    menu={
+                      megaMenus.certifications
+                    }
                     isOpen={
-                      activeMenu === "certifications"
+                      activeMenu ===
+                      "certifications"
                     }
                     onClose={() =>
                       setActiveMenu(null)
@@ -732,6 +821,115 @@ const Navbar = () => {
                     "
                   />
                 </Link>
+
+                {/* =================================================
+                    PROFILE + CART
+                ================================================== */}
+
+                {isLoggedIn && (
+                  <div className="ml-3 flex items-center gap-2">
+
+                    {/* PROFILE */}
+
+                    <Link
+                      to="/profile"
+                      onClick={closeMenu}
+                      title="Profile"
+                      className="
+                        group
+                        flex
+                        h-10
+                        w-10
+                        items-center
+                        justify-center
+                        rounded-full
+                        border
+                        border-white/10
+                        bg-white/[0.04]
+                        text-white/70
+                        transition-all
+                        duration-300
+                        hover:border-[#E1C562]/40
+                        hover:bg-[#E1C562]/10
+                        hover:text-[#E1C562]
+                        hover:-translate-y-0.5
+                      "
+                    >
+                      <User
+                        size={18}
+                        className="
+                          transition-transform
+                          duration-300
+                          group-hover:scale-110
+                        "
+                      />
+                    </Link>
+
+                    {/* CART */}
+
+                    <Link
+                      to="/cart"
+                      onClick={closeMenu}
+                      title="Cart"
+                      className="
+                        group
+                        relative
+                        flex
+                        h-10
+                        w-10
+                        items-center
+                        justify-center
+                        rounded-full
+                        border
+                        border-white/10
+                        bg-white/[0.04]
+                        text-white/70
+                        transition-all
+                        duration-300
+                        hover:border-[#E1C562]/40
+                        hover:bg-[#E1C562]/10
+                        hover:text-[#E1C562]
+                        hover:-translate-y-0.5
+                      "
+                    >
+                      <ShoppingCart
+                        size={18}
+                        className="
+                          transition-transform
+                          duration-300
+                          group-hover:scale-110
+                        "
+                      />
+
+                      {/* CART COUNT */}
+
+                      {cartCount > 0 && (
+                        <span
+                          className="
+                            absolute
+                            -right-1
+                            -top-1
+                            flex
+                            h-4
+                            min-w-4
+                            items-center
+                            justify-center
+                            rounded-full
+                            bg-[#E1C562]
+                            px-1
+                            text-[9px]
+                            font-bold
+                            text-[#080808]
+                          "
+                        >
+                          {cartCount > 99
+                            ? "99+"
+                            : cartCount}
+                        </span>
+                      )}
+                    </Link>
+                  </div>
+                )}
               </div>
 
               {/* MOBILE BUTTON */}
@@ -779,9 +977,9 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* =========================
+      {/* =====================================================
           MOBILE MENU
-      ========================== */}
+      ====================================================== */}
 
       <div
         className={`
@@ -815,7 +1013,7 @@ const Navbar = () => {
           `}
         />
 
-        {/* MOBILE DRAWER */}
+        {/* DRAWER */}
 
         <div
           className={`
@@ -842,8 +1040,6 @@ const Navbar = () => {
             }
           `}
         >
-          {/* TOP GOLD LINE */}
-
           <div className="absolute left-0 right-0 top-0 h-[2px] bg-[#E1C562]" />
 
           {/* MOBILE HEADER */}
@@ -909,7 +1105,6 @@ const Navbar = () => {
             "
           >
             <div className="space-y-1">
-              {/* HOME */}
 
               <MobileLink
                 to="/"
@@ -917,15 +1112,11 @@ const Navbar = () => {
                 onClick={closeMenu}
               />
 
-              {/* ABOUT */}
-
               <MobileLink
                 to="/about"
                 label="About"
                 onClick={closeMenu}
               />
-
-              {/* MANAGEMENT */}
 
               <MobileDropdown
                 title="Management Consultancy"
@@ -935,7 +1126,8 @@ const Navbar = () => {
                 }
                 onClick={() =>
                   setActiveMenu(
-                    activeMenu === "management"
+                    activeMenu ===
+                      "management"
                       ? null
                       : "management"
                   )
@@ -949,8 +1141,6 @@ const Navbar = () => {
                   activeMenu === "management"
                 }
               />
-
-              {/* IT */}
 
               <MobileDropdown
                 title="IT Consultancy"
@@ -973,25 +1163,23 @@ const Navbar = () => {
                 }
               />
 
-              {/* HR */}
-
               <MobileLink
                 to="/hr-consultancy"
                 label="HR Consultancy"
                 onClick={closeMenu}
               />
 
-              {/* CERTIFICATIONS */}
-
               <MobileDropdown
                 title="Certifications"
                 icon={Award}
                 open={
-                  activeMenu === "certifications"
+                  activeMenu ===
+                  "certifications"
                 }
                 onClick={() =>
                   setActiveMenu(
-                    activeMenu === "certifications"
+                    activeMenu ===
+                      "certifications"
                       ? null
                       : "certifications"
                   )
@@ -999,18 +1187,17 @@ const Navbar = () => {
               />
 
               <MobileSubMenu
-                menu={megaMenus.certifications}
+                menu={
+                  megaMenus.certifications
+                }
                 closeMenu={closeMenu}
                 isOpen={
-                  activeMenu === "certifications"
+                  activeMenu ===
+                  "certifications"
                 }
               />
 
-              {/* DIVIDER */}
-
               <div className="my-5 h-px bg-white/[0.08]" />
-
-              {/* CONTACT */}
 
               <Link
                 to="/contact"
@@ -1046,6 +1233,82 @@ const Navbar = () => {
                   "
                 />
               </Link>
+
+              {/* MOBILE PROFILE + CART */}
+
+              {isLoggedIn && (
+                <div className="grid grid-cols-2 gap-3 pt-3">
+
+                  <Link
+                    to="/profile"
+                    onClick={closeMenu}
+                    className="
+                      flex
+                      items-center
+                      justify-center
+                      gap-2
+                      rounded-xl
+                      border
+                      border-white/10
+                      bg-white/[0.04]
+                      py-3
+                      text-sm
+                      text-white/70
+                      hover:border-[#E1C562]/30
+                      hover:text-[#E1C562]
+                    "
+                  >
+                    <User size={17} />
+                    Profile
+                  </Link>
+
+                  <Link
+                    to="/cart"
+                    onClick={closeMenu}
+                    className="
+                      relative
+                      flex
+                      items-center
+                      justify-center
+                      gap-2
+                      rounded-xl
+                      border
+                      border-white/10
+                      bg-white/[0.04]
+                      py-3
+                      text-sm
+                      text-white/70
+                      hover:border-[#E1C562]/30
+                      hover:text-[#E1C562]
+                    "
+                  >
+                    <ShoppingCart size={17} />
+                    Cart
+
+                    {cartCount > 0 && (
+                      <span
+                        className="
+                          flex
+                          min-w-5
+                          h-5
+                          items-center
+                          justify-center
+                          rounded-full
+                          bg-[#E1C562]
+                          px-1
+                          text-[9px]
+                          font-bold
+                          text-black
+                        "
+                      >
+                        {cartCount > 99
+                          ? "99+"
+                          : cartCount}
+                      </span>
+                    )}
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
 
@@ -1093,7 +1356,9 @@ const Navbar = () => {
   );
 };
 
-
+// =========================================================
+// MEGA MENU
+// =========================================================
 
 const MegaMenu = ({
   menu,
@@ -1103,8 +1368,8 @@ const MegaMenu = ({
   const Icon = menu.icon;
   const columnCount = menu.columns.length;
 
-  // Certifications needs a smaller, compact mega menu
-  const isCompactMenu = menu.slug === "certifications";
+  const isCompactMenu =
+    menu.slug === "certifications";
 
   const gridClass =
     columnCount === 4
@@ -1154,8 +1419,6 @@ const MegaMenu = ({
           shadow-[0_30px_90px_rgba(0,0,0,0.65)]
         "
       >
-        {/* TOP GOLD LINE */}
-
         <div
           className="
             absolute
@@ -1190,20 +1453,8 @@ const MegaMenu = ({
                 ? "py-4"
                 : "py-5"
             }
-
-            transition-all
-            duration-500
-            ease-out
-
-            ${
-              isOpen
-                ? "translate-y-0 opacity-100"
-                : "-translate-y-2 opacity-0"
-            }
           `}
         >
-          {/* ICON */}
-
           <div
             className="
               flex
@@ -1221,8 +1472,6 @@ const MegaMenu = ({
           >
             <Icon size={21} />
           </div>
-
-          {/* TITLE + DESCRIPTION */}
 
           <div className="min-w-0">
             <h3 className="text-[17px] font-bold text-white">
@@ -1260,27 +1509,21 @@ const MegaMenu = ({
               (column, columnIndex) => (
                 <div
                   key={column.heading}
-                  className={`
+                  className="
                     min-w-0
-
                     transition-all
                     duration-500
                     ease-out
-
-                    ${
-                      isOpen
-                        ? "translate-y-0 opacity-100"
-                        : "translate-y-4 opacity-0"
-                    }
-                  `}
+                  "
                   style={{
                     transitionDelay: isOpen
-                      ? `${100 + columnIndex * 70}ms`
+                      ? `${
+                          100 +
+                          columnIndex * 70
+                        }ms`
                       : "0ms",
                   }}
                 >
-                  {/* COLUMN HEADING */}
-
                   <div className="mb-3 flex items-center gap-2">
                     <span
                       className="
@@ -1304,8 +1547,6 @@ const MegaMenu = ({
                     </p>
                   </div>
 
-                  {/* ITEMS */}
-
                   <div className="space-y-1">
                     {column.items.map((item) => (
                       <Link
@@ -1327,10 +1568,8 @@ const MegaMenu = ({
                           text-[13px]
                           font-medium
                           text-white/55
-
                           transition-all
                           duration-200
-
                           hover:translate-x-1
                           hover:border-[#E1C562]/10
                           hover:bg-[#E1C562]/[0.06]
@@ -1348,10 +1587,8 @@ const MegaMenu = ({
                             -translate-x-1
                             text-[#E1C562]
                             opacity-0
-
                             transition-all
                             duration-200
-
                             group-hover:translate-x-0
                             group-hover:opacity-100
                           "
@@ -1396,10 +1633,8 @@ const MegaMenu = ({
               text-xs
               font-bold
               text-[#E1C562]
-
               transition-colors
               duration-200
-
               hover:text-[#F0D77D]
             "
           >
@@ -1410,7 +1645,6 @@ const MegaMenu = ({
               className="
                 transition-transform
                 duration-200
-
                 group-hover:translate-x-0.5
                 group-hover:-translate-y-0.5
               "
@@ -1422,8 +1656,9 @@ const MegaMenu = ({
   );
 };
 
-
-
+// =========================================================
+// MOBILE LINK
+// =========================================================
 
 const MobileLink = ({
   to,
@@ -1446,18 +1681,8 @@ const MobileLink = ({
         duration-300
         ${
           isActive
-            ? `
-                border-[#E1C562]/15
-                bg-[#E1C562]/10
-                text-[#E1C562]
-              `
-            : `
-                border-transparent
-                text-white/65
-                hover:border-white/[0.06]
-                hover:bg-white/[0.04]
-                hover:text-white
-              `
+            ? "border-[#E1C562]/15 bg-[#E1C562]/10 text-[#E1C562]"
+            : "border-transparent text-white/65 hover:border-white/[0.06] hover:bg-white/[0.04] hover:text-white"
         }
       `}
     >
@@ -1466,7 +1691,9 @@ const MobileLink = ({
   );
 };
 
-
+// =========================================================
+// MOBILE DROPDOWN
+// =========================================================
 
 const MobileDropdown = ({
   title,
@@ -1493,18 +1720,8 @@ const MobileDropdown = ({
         duration-300
         ${
           open
-            ? `
-                border-[#E1C562]/15
-                bg-[#E1C562]/10
-                text-[#E1C562]
-              `
-            : `
-                border-transparent
-                text-white/65
-                hover:border-white/[0.06]
-                hover:bg-white/[0.04]
-                hover:text-white
-              `
+            ? "border-[#E1C562]/15 bg-[#E1C562]/10 text-[#E1C562]"
+            : "border-transparent text-white/65 hover:border-white/[0.06] hover:bg-white/[0.04] hover:text-white"
         }
       `}
     >
@@ -1525,6 +1742,9 @@ const MobileDropdown = ({
   );
 };
 
+// =========================================================
+// MOBILE SUB MENU
+// =========================================================
 
 const MobileSubMenu = ({
   menu,
