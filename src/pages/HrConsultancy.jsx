@@ -413,7 +413,7 @@ export default function HrConsultancy() {
           </a>
 
           <a
-            href="mailto:info@wedotgroup.com"
+            href="mailto:info@wedotgroup.in"
             className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white transition hover:border-[#E1C562]/40 hover:text-[#E1C562]"
           >
             <Mail size={16} />
@@ -528,9 +528,9 @@ export default function HrConsultancy() {
 
                 <div className="mt-5 space-y-3">
                   <ContactItem
-                    href="mailto:info@wedotgroup.com"
+                    href="mailto:info@wedotgroup.in"
                     icon={Mail}
-                    text="info@wedotgroup.com"
+                    text="info@wedotgroup.in"
                   />
 
                   <ContactItem

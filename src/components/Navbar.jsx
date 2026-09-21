@@ -96,7 +96,6 @@ const Navbar = () => {
         setCartCount(0);
       }
     } catch (error) {
-      console.error("Navbar Cart Count Error:", error);
 
       if (error.response?.status === 401) {
         localStorage.removeItem("token");

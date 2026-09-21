@@ -15,7 +15,7 @@ import {
   Code2,
   Users,
   BarChart3,
-  BadgeCheck
+  BadgeCheck,
 } from "lucide-react";
 import axios from "axios";
 import apiUrl from "../api/api";
@@ -170,10 +170,10 @@ const serviceCategories = {
       },
     ],
   },
-  "certifications": {
+  certifications: {
     title: "Certifications",
     description: "Talent & workforce solutions",
-    icon: BadgeCheck ,
+    icon: BadgeCheck,
 
     services: [
       {
@@ -200,14 +200,12 @@ const serviceCategories = {
         value: "social-&-labour-compliance",
         label: "Social & Labour Compliance",
       },
-     
     ],
   },
 };
 
 const Enquery = () => {
-  const [activeCategory, setActiveCategory] =
-    useState("it-consultancy");
+  const [activeCategory, setActiveCategory] = useState("it-consultancy");
 
   const [formData, setFormData] = useState({
     firstname: "",
@@ -220,8 +218,7 @@ const Enquery = () => {
   });
 
   const [search, setSearch] = useState("");
-  const [showServiceDropdown, setShowServiceDropdown] =
-    useState(false);
+  const [showServiceDropdown, setShowServiceDropdown] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -230,7 +227,7 @@ const Enquery = () => {
   const CategoryIcon = currentCategory?.icon;
 
   const selectedService = currentCategory?.services?.find(
-    (service) => service.value === formData.service
+    (service) => service.value === formData.service,
   );
 
   const filteredServices = useMemo(() => {
@@ -241,9 +238,7 @@ const Enquery = () => {
     }
 
     return services.filter((service) =>
-      service.label
-        .toLowerCase()
-        .includes(search.toLowerCase())
+      service.label.toLowerCase().includes(search.toLowerCase()),
     );
   }, [currentCategory, search]);
 
@@ -296,35 +291,49 @@ const Enquery = () => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    if (!formData.service) {
-      toast.error("Please select a service.");
-      return;
-    }
+  // Service validation
+  if (!formData.service) {
+    toast.error("Please select a service.");
+    return;
+  }
 
-    try {
-      setIsSubmitting(true);
+  // Prevent multiple submissions
+  if (isSubmitting) {
+    return;
+  }
 
-      const response = await axios.post(`${apiUrl}/contact`,formData);
+  try {
+    setIsSubmitting(true);
+    const response = await axios.post(
+      `${apiUrl}/contact`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        timeout: 30000,
+      }
+    );
+    toast.success(
+      response?.data?.message ||
+        "Your enquiry has been submitted successfully!"
+    );
 
-      toast.success(
-        response?.data?.message ||
-          "Your enquiry has been submitted successfully!"
-      );
+    resetForm();
 
-      resetForm();
-    } catch (error) {
-   
-
+  } catch (error) {
       toast.error(
-        error?.response?.data?.message ||
-          "Something went wrong. Please try again."
+        error.response.data?.message ||
+          "Server error. Please try again."
       );
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <main
@@ -514,11 +523,7 @@ const Enquery = () => {
                   sm:text-xs
                 "
               >
-                <Sparkles
-                  size={13}
-                  className="text-[#E1C562]"
-                />
-
+                <Sparkles size={13} className="text-[#E1C562]" />
                 Let's Connect
               </div>
 
@@ -535,7 +540,6 @@ const Enquery = () => {
                 "
               >
                 What are you
-
                 <span
                   className="
                     block
@@ -559,8 +563,7 @@ const Enquery = () => {
                   text-white/60
                 "
               >
-                Select a consultancy category and
-                choose the service you need.
+                Select a consultancy category and choose the service you need.
               </p>
 
               {/* CATEGORY BUTTONS */}
@@ -568,11 +571,7 @@ const Enquery = () => {
                 {/* MANAGEMENT */}
                 <button
                   type="button"
-                  onClick={() =>
-                    handleCategoryChange(
-                      "management-consultancy"
-                    )
-                  }
+                  onClick={() => handleCategoryChange("management-consultancy")}
                   className={`
                     flex
                     min-h-[70px]
@@ -588,8 +587,7 @@ const Enquery = () => {
                     duration-300
 
                     ${
-                      activeCategory ===
-                      "management-consultancy"
+                      activeCategory === "management-consultancy"
                         ? "border-[#E1C562]/50 bg-white text-slate-900 shadow-xl"
                         : "border-white/10 bg-white/[0.07] text-white hover:border-white/20 hover:bg-white/[0.12]"
                     }
@@ -607,8 +605,7 @@ const Enquery = () => {
                         rounded-xl
 
                         ${
-                          activeCategory ===
-                          "management-consultancy"
+                          activeCategory === "management-consultancy"
                             ? "bg-gradient-to-br from-[#E1C562] to-[#B89B3E] text-white"
                             : "bg-[#E1C562]/10 text-[#E1C562]"
                         }
@@ -627,8 +624,7 @@ const Enquery = () => {
                           mt-1 text-[11px]
 
                           ${
-                            activeCategory ===
-                            "management-consultancy"
+                            activeCategory === "management-consultancy"
                               ? "text-slate-500"
                               : "text-white/40"
                           }
@@ -647,8 +643,7 @@ const Enquery = () => {
                       transition-transform
 
                       ${
-                        activeCategory ===
-                        "management-consultancy"
+                        activeCategory === "management-consultancy"
                           ? "translate-x-1 text-[#B89B3E]"
                           : "text-white/30"
                       }
@@ -659,11 +654,7 @@ const Enquery = () => {
                 {/* IT */}
                 <button
                   type="button"
-                  onClick={() =>
-                    handleCategoryChange(
-                      "it-consultancy"
-                    )
-                  }
+                  onClick={() => handleCategoryChange("it-consultancy")}
                   className={`
                     flex
                     min-h-[70px]
@@ -697,8 +688,7 @@ const Enquery = () => {
                         rounded-xl
 
                         ${
-                          activeCategory ===
-                          "it-consultancy"
+                          activeCategory === "it-consultancy"
                             ? "bg-gradient-to-br from-[#E1C562] to-[#B89B3E] text-white"
                             : "bg-[#E1C562]/10 text-[#E1C562]"
                         }
@@ -708,17 +698,14 @@ const Enquery = () => {
                     </div>
 
                     <div className="min-w-0">
-                      <p className="text-sm font-bold">
-                        IT Consultancy
-                      </p>
+                      <p className="text-sm font-bold">IT Consultancy</p>
 
                       <p
                         className={`
                           mt-1 text-[11px]
 
                           ${
-                            activeCategory ===
-                            "it-consultancy"
+                            activeCategory === "it-consultancy"
                               ? "text-slate-500"
                               : "text-white/40"
                           }
@@ -748,11 +735,7 @@ const Enquery = () => {
                 {/* HR */}
                 <button
                   type="button"
-                  onClick={() =>
-                    handleCategoryChange(
-                      "hr-consultancy"
-                    )
-                  }
+                  onClick={() => handleCategoryChange("hr-consultancy")}
                   className={`
                     flex
                     min-h-[70px]
@@ -786,8 +769,7 @@ const Enquery = () => {
                         rounded-xl
 
                         ${
-                          activeCategory ===
-                          "hr-consultancy"
+                          activeCategory === "hr-consultancy"
                             ? "bg-gradient-to-br from-[#E1C562] to-[#B89B3E] text-white"
                             : "bg-[#E1C562]/10 text-[#E1C562]"
                         }
@@ -797,17 +779,14 @@ const Enquery = () => {
                     </div>
 
                     <div className="min-w-0">
-                      <p className="text-sm font-bold">
-                        HR Consultancy
-                      </p>
+                      <p className="text-sm font-bold">HR Consultancy</p>
 
                       <p
                         className={`
                           mt-1 text-[11px]
 
                           ${
-                            activeCategory ===
-                            "hr-consultancy"
+                            activeCategory === "hr-consultancy"
                               ? "text-slate-500"
                               : "text-white/40"
                           }
@@ -834,13 +813,9 @@ const Enquery = () => {
                   />
                 </button>
 
-                  <button
+                <button
                   type="button"
-                  onClick={() =>
-                    handleCategoryChange(
-                      "certifications"
-                    )
-                  }
+                  onClick={() => handleCategoryChange("certifications")}
                   className={`
                     flex
                     min-h-[62px]
@@ -859,13 +834,13 @@ const Enquery = () => {
                     sm:rounded-2xl
                     sm:px-4
 
-                    ${activeCategory ===
-                      "certifications"
-                      ? "border-[#E1C562]/50 bg-white text-slate-900 shadow-xl"
-                      : "border-white/10 bg-white/[0.07] text-white hover:border-white/25 hover:bg-white/[0.12]"
+                    ${
+                      activeCategory === "certifications"
+                        ? "border-[#E1C562]/50 bg-white text-slate-900 shadow-xl"
+                        : "border-white/10 bg-white/[0.07] text-white hover:border-white/25 hover:bg-white/[0.12]"
                     }
                   `}
-                     >
+                >
                   <div
                     className="
                       flex
@@ -884,10 +859,10 @@ const Enquery = () => {
                         justify-center
                         rounded-xl
 
-                        ${activeCategory ===
-                          "certifications"
-                          ? "bg-gradient-to-br from-[#E1C562] to-[#B89B3E] text-white"
-                          : "bg-[#E1C562]/10 text-[#E1C562]"
+                        ${
+                          activeCategory === "certifications"
+                            ? "bg-gradient-to-br from-[#E1C562] to-[#B89B3E] text-white"
+                            : "bg-[#E1C562]/10 text-[#E1C562]"
                         }
                       `}
                     >
@@ -905,10 +880,10 @@ const Enquery = () => {
                           text-[9px]
                           sm:text-[11px]
 
-                          ${activeCategory ===
-                            "certifications"
-                            ? "text-slate-500"
-                            : "text-white/40"
+                          ${
+                            activeCategory === "certifications"
+                              ? "text-slate-500"
+                              : "text-white/40"
                           }
                         `}
                       >
@@ -924,17 +899,16 @@ const Enquery = () => {
                       shrink-0
                       transition-transform
 
-                      ${activeCategory ===
-                        "certifications"
-                        ? "translate-x-1 text-[#B89B3E]"
-                        : "text-white/30"
+                      ${
+                        activeCategory === "certifications"
+                          ? "translate-x-1 text-[#B89B3E]"
+                          : "text-white/30"
                       }
                     `}
                   />
                 </button>
-                      </div>
+              </div>
 
-          
               {/* PRIVACY */}
               <p
                 className="
@@ -944,9 +918,8 @@ const Enquery = () => {
                   text-white/30
                 "
               >
-                Your information is confidential
-                and will only be used to respond to
-                your enquiry.
+                Your information is confidential and will only be used to
+                respond to your enquiry.
               </p>
             </div>
           </div>
@@ -1000,15 +973,12 @@ const Enquery = () => {
                   text-slate-500
                 "
               >
-                Tell us about your requirement and
-                our team will get back to you.
+                Tell us about your requirement and our team will get back to
+                you.
               </p>
             </div>
 
-            <form
-              onSubmit={handleSubmit}
-              className="space-y-5"
-            >
+            <form onSubmit={handleSubmit} className="space-y-5">
               {/* FIRST + LAST NAME */}
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {/* FIRST NAME */}
@@ -1269,9 +1239,7 @@ const Enquery = () => {
                       text-[#0b684a]
                     "
                   >
-                    {CategoryIcon && (
-                      <CategoryIcon size={16} />
-                    )}
+                    {CategoryIcon && <CategoryIcon size={16} />}
                   </div>
 
                   <span
@@ -1388,11 +1356,7 @@ const Enquery = () => {
                         transition-transform
                         duration-200
 
-                        ${
-                          showServiceDropdown
-                            ? "rotate-180"
-                            : ""
-                        }
+                        ${showServiceDropdown ? "rotate-180" : ""}
                       `}
                     />
                   </button>
@@ -1420,19 +1384,13 @@ const Enquery = () => {
                   >
                     {filteredServices.length > 0 ? (
                       filteredServices.map((service) => {
-                        const selected =
-                          formData.service ===
-                          service.value;
+                        const selected = formData.service === service.value;
 
                         return (
                           <button
                             key={service.value}
                             type="button"
-                            onClick={() =>
-                              handleServiceSelect(
-                                service
-                              )
-                            }
+                            onClick={() => handleServiceSelect(service)}
                             className={`
                               flex
                               w-full
@@ -1455,10 +1413,7 @@ const Enquery = () => {
                             <span>{service.label}</span>
 
                             {selected && (
-                              <Check
-                                size={16}
-                                className="text-[#0b684a]"
-                              />
+                              <Check size={16} className="text-[#0b684a]" />
                             )}
                           </button>
                         );
@@ -1592,13 +1547,11 @@ const Enquery = () => {
                         border-t-white
                       "
                     />
-
                     Sending...
                   </>
                 ) : (
                   <>
                     Submit Enquiry
-
                     <Send
                       size={16}
                       className="
@@ -1618,9 +1571,8 @@ const Enquery = () => {
                   text-slate-400
                 "
               >
-                By submitting this form, you agree
-                to be contacted regarding your
-                enquiry.
+                By submitting this form, you agree to be contacted regarding
+                your enquiry.
               </p>
             </form>
           </div>

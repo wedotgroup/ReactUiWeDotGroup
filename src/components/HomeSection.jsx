@@ -23,7 +23,7 @@ const HeroSection = () => {
           loop
           playsInline
           preload="auto"
-          poster="/images/hero-poster.jpg"
+          
         >
           <source
             src="/videos/banner.mp4"

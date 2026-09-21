@@ -31,8 +31,8 @@ export default function ContactUs() {
       "+91 00000 00000",
     ],
     email: [
-      "info@wedotgroup.com",
-      "support@wedotgroup.com",
+      "info@wedotgroup.in",
+      "support@wedotgroup.in",
     ],
     mapQuery:
       "101 Spaze Tristar Mall Sec 92 Gurgaon Haryana India",
@@ -60,8 +60,8 @@ export default function ContactUs() {
           "+971 58 508 7199",
         ],
         email: [
-          "info@wedotgroup.com",
-          "support@wedotgroup.com",
+          "info@wedotgroup.in",
+          "support@wedotgroup.in",
         ],
         mapQuery:
           "Office 403 Al Owasis Building Port Saeed Deira Dubai UAE",
@@ -81,8 +81,8 @@ export default function ContactUs() {
           "+971 58 508 7199",
         ],
         email: [
-          "info@wedotgroup.com",
-          "support@wedotgroup.com",
+          "info@wedotgroup.in",
+          "support@wedotgroup.in",
         ],
         mapQuery:
           "Building C1 Ajman Free Zone Ajman UAE",
@@ -817,7 +817,7 @@ export default function ContactUs() {
 
         {/* Email */}
         <a
-          href="mailto:info@wedotgroup.com"
+          href="mailto:info@wedotgroup.in"
           className="group inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-[#080808]/20 bg-white/30 px-7 font-semibold text-[#080808] transition-all duration-300 hover:border-[#080808]/40 hover:bg-white/60"
         >
           <Mail
