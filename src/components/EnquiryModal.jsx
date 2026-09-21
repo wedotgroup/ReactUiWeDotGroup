@@ -409,7 +409,6 @@ const EnquiryModal = ({ isOpen, onClose }) => {
         onClose();
       }, 700);
     } catch (error) {
-      console.error("Enquiry submit error:", error);
 
       const errorMessage =
         error?.response?.data?.message ||

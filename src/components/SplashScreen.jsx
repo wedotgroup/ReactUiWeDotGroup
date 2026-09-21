@@ -114,10 +114,10 @@ const SplashScreen = ({ onFinish }) => {
             text-gray-400
           "
         >
-          <p>+971 4 261 9694</p>
+          {/* <p>+971 4 261 9694</p> */}
 
           <p className="mt-1">
-            info@wedotgroup.com
+            info@wedotgroup.in
           </p>
         </div>
 

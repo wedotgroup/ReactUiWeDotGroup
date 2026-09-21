@@ -482,15 +482,15 @@ const Footer = () => {
               <ContactItem
                 icon={<Mail size={18} />}
                 label="Sales Enquiry"
-                value="info@wedotgroup.com"
-                href="mailto:info@wedotgroup.com"
+                value="info@wedotgroup.in"
+                href="mailto:info@wedotgroup.in"
               />
 
               <ContactItem
                 icon={<Mail size={18} />}
                 label="Support Enquiry"
-                value="support@wedotgroup.com"
-                href="mailto:support@wedotgroup.com"
+                value="support@wedotgroup.in"
+                href="mailto:support@wedotgroup.in"
               />
 
               <ContactItem

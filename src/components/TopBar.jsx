@@ -1,126 +1,43 @@
-import { Mail } from "lucide-react";
-import taddyLogo from "../../public/logo/tabby.png";
-import tamaraLogo from "../../public/logo/tamara.png";
+
+import { Mail, Phone } from "lucide-react";
 
 const TopBar = () => {
   return (
-    <div
-  className="
-    fixed
-    left-0
-    top-0
-    z-[10000]
-    h-[42px]
-    w-full
-    bg-[#E1C562]
-    text-[#080808]
-  "
->
-  <div
-    className="
-      mx-auto
-      flex
-      h-full
-      max-w-[1440px]
-      items-center
-      justify-center
-      px-4
-      sm:justify-between
-      sm:px-6
-      lg:px-12
-    "
-  >
-    {/* Left */}
-    <div className="flex items-center gap-1.5">
-      <span className="whitespace-nowrap text-xs font-semibold leading-none sm:text-sm">
-        We Accept
-      </span>
+    <div className="fixed inset-x-0 top-0 z-[10000] h-10 bg-[#E1C562] text-[#080808]">
+      <div className="mx-auto flex h-full max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-12">
 
-      <div className="flex items-center gap-0.5">
-        {/* Tamara */}
+        {/* Phone */}
         <a
-          href="#"
-          aria-label="Tamara"
-          className="
-            flex
-            h-8
-            w-[75px]
-            items-center
-            justify-center
-            overflow-hidden
-            px-1
-            transition-all
-            duration-300
-            hover:-translate-y-0.5
-          "
+          href="tel:+971585087199"
+          className="flex items-center gap-1.5 text-[12px] font-medium tracking-[0.1px] transition-colors duration-200 hover:text-white sm:text-[13px]"
         >
-          <img
-            src={tamaraLogo}
-            alt="Tamara"
-            className="
-              block
-              max-h-6
-              w-auto
-              max-w-full
-              object-contain
-            "
-          />
+          <Phone size={14} strokeWidth={1.8} />
+          <span>+971 58 508 7199</span>
         </a>
 
-        {/* Tabby */}
+        {/* Email */}
         <a
-          href="#"
-          aria-label="Tabby"
+          href="mailto:sales@wedotgroup.in"
           className="
-            flex
-            h-8
-            w-[75px]
-            items-center
-            justify-center
-            overflow-hidden
-            px-1
-            transition-all
-            duration-300
-            hover:-translate-y-0.5
+            flex items-center gap-1.5
+            border-l border-[#080808]/25
+            pl-3
+            text-[12px] font-medium
+            tracking-[0.1px]
+            transition-colors duration-200
+            hover:text-white
+            sm:border-0 sm:pl-0
+            sm:text-[13px]
           "
         >
-          <img
-            src={taddyLogo}
-            alt="Tabby"
-            className="
-              block
-              max-h-6
-              w-auto
-              max-w-full
-              object-contain
-            "
-          />
+          <Mail size={14} strokeWidth={1.8} />
+          <span>sales@wedotgroup.in</span>
         </a>
+
       </div>
     </div>
-
-    {/* Email */}
-    <a
-      href="mailto:info@wedotgroup.com"
-      className="
-        hidden
-        items-center
-        gap-2
-        whitespace-nowrap
-        text-sm
-        font-medium
-        transition-colors
-        duration-300
-        hover:text-white
-        sm:flex
-      "
-    >
-      <Mail size={15} />
-      <span>info@wedotgroup.com</span>
-    </a>
-  </div>
-</div>
   );
 };
 
 export default TopBar;
+
