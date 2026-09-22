@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { CreditCard, Lock, X, ChevronRight } from "lucide-react";
 
@@ -6,7 +6,6 @@ const Checkout = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  
   const {
     cartItems = [],
     subtotal = 0,
@@ -15,7 +14,6 @@ const Checkout = () => {
     total = 0,
     coupon = null,
   } = location.state || {};
-
 
   const [formData, setFormData] = useState({
     first_name: "",
@@ -29,7 +27,6 @@ const Checkout = () => {
 
   const [errors, setErrors] = useState({});
 
-
   const [paymentMethod, setPaymentMethod] = useState("");
 
   const [showTabbyModal, setShowTabbyModal] = useState(false);
@@ -40,8 +37,6 @@ const Checkout = () => {
 
   const [loading, setLoading] = useState(false);
 
-
-  
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -56,7 +51,6 @@ const Checkout = () => {
     }));
   };
 
- 
   const validateForm = () => {
     const newErrors = {};
 
@@ -95,7 +89,6 @@ const Checkout = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  
   const handlePaymentMethod = (method) => {
     setPaymentMethod(method);
 
@@ -122,7 +115,6 @@ const Checkout = () => {
     }
   };
 
-  
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
 
@@ -196,7 +188,6 @@ const Checkout = () => {
     }
   };
 
-  
   if (!cartItems || cartItems.length === 0) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
@@ -223,8 +214,6 @@ const Checkout = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-       
-
         <div className="mb-8">
           <div className="flex items-center gap-2 text-sm text-gray-500">
             <span
@@ -244,10 +233,7 @@ const Checkout = () => {
 
         <form onSubmit={handlePlaceOrder}>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-           
             <div className="lg:col-span-2 space-y-6">
-             
-
               <div className="bg-white rounded-2xl p-6 shadow-sm">
                 <h2 className="text-xl font-semibold text-[#011810]">
                   Customer Information
@@ -443,8 +429,6 @@ const Checkout = () => {
                 </div>
               </div>
 
-        
-
               <div className="bg-white rounded-2xl p-6 shadow-sm">
                 <h2 className="text-xl font-semibold text-[#011810]">
                   Payment Method
@@ -486,7 +470,11 @@ const Checkout = () => {
                         : "border-gray-200 hover:border-gray-400"
                     }`}
                   >
-                    <div className="font-bold text-lg">tabby</div>
+                    <img
+                      src="/logo/tabby.png"
+                      alt="Tabby"
+                      className="w-[100px] h-[100px] object-contain"
+                    />
 
                     <h3 className="font-semibold mt-3">Pay with Tabby</h3>
 
@@ -506,7 +494,13 @@ const Checkout = () => {
                         : "border-gray-200 hover:border-gray-400"
                     }`}
                   >
-                    <div className="font-bold text-lg">tamara</div>
+                    <div className="font-bold text-lg">
+                       <img
+                      src="/logo/tamara.png"
+                      alt="Tabby"
+                      className="w-[100px] h-[100px] object-contain"
+                    />
+                    </div>
 
                     <h3 className="font-semibold mt-3">Pay with Tamara</h3>
 
@@ -541,14 +535,11 @@ const Checkout = () => {
               </div>
             </div>
 
-
             <div className="lg:col-span-1">
               <div className="bg-white rounded-2xl p-6 shadow-sm sticky top-6">
                 <h2 className="text-xl font-semibold text-[#011810]">
                   Order Summary
                 </h2>
-
-                
 
                 <div className="mt-6 space-y-4 max-h-[400px] overflow-y-auto pr-1">
                   {cartItems.map((item, index) => {
@@ -604,8 +595,6 @@ const Checkout = () => {
                     );
                   })}
                 </div>
-
-              
 
                 <div className="border-t border-gray-200 mt-5 pt-5 space-y-3">
                   <div className="flex justify-between text-sm">
@@ -680,7 +669,9 @@ const Checkout = () => {
         </form>
       </div>
 
-     
+      {/* =========================================================
+    TABBY MODAL
+========================================================= */}
 
       {showTabbyModal && (
         <div
@@ -692,15 +683,14 @@ const Checkout = () => {
             onClick={(e) => e.stopPropagation()}
           >
             {/* HEADER */}
-
             <div className="sticky top-0 z-20 bg-white px-6 pt-6 pb-4 border-b border-gray-100">
-              <div className="flex items-start justify-between">
+              <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h2 className="text-2xl font-bold text-[#011810]">
+                  <h2 className="text-2xl font-bold leading-8 text-[#011810]">
                     Get more time to pay
                   </h2>
 
-                  <p className="text-sm text-gray-500 mt-1">
+                  <p className="text-sm font-normal leading-5 text-gray-500 mt-1">
                     Split your purchase in up to 12 payments
                   </p>
                 </div>
@@ -708,7 +698,7 @@ const Checkout = () => {
                 <button
                   type="button"
                   onClick={() => setShowTabbyModal(false)}
-                  className="w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center shrink-0"
+                  className="w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center shrink-0 transition"
                 >
                   <X size={20} />
                 </button>
@@ -716,13 +706,10 @@ const Checkout = () => {
             </div>
 
             {/* CONTENT */}
-
             <div className="px-6 py-5">
               {/* PAYMENT PLANS */}
-
               <div className="space-y-3">
                 {/* 4 PAYMENTS */}
-
                 <button
                   type="button"
                   onClick={() =>
@@ -739,23 +726,23 @@ const Checkout = () => {
                       : "border-gray-200 hover:border-gray-400"
                   }`}
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-4">
                     <div>
-                      <h3 className="font-semibold text-[#011810]">
+                      <h3 className="text-sm font-semibold leading-5 text-[#011810]">
                         4 payments
                       </h3>
 
-                      <p className="text-sm text-gray-500 mt-1">
+                      <p className="text-sm font-normal leading-5 text-gray-500 mt-1">
                         AED {(Number(total) / 4).toFixed(2)}/mo
                       </p>
 
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className="text-xs font-normal leading-5 text-gray-500 mt-1">
                         No interest. No fees.
                       </p>
                     </div>
 
                     <div
-                      className={`w-5 h-5 rounded-full border flex items-center justify-center ${
+                      className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ${
                         selectedTabbyPlan?.id === 4
                           ? "border-[#011810]"
                           : "border-gray-300"
@@ -769,7 +756,6 @@ const Checkout = () => {
                 </button>
 
                 {/* 6 PAYMENTS */}
-
                 <button
                   type="button"
                   onClick={() =>
@@ -786,23 +772,23 @@ const Checkout = () => {
                       : "border-gray-200 hover:border-gray-400"
                   }`}
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-4">
                     <div>
-                      <h3 className="font-semibold text-[#011810]">
+                      <h3 className="text-sm font-semibold leading-5 text-[#011810]">
                         6 payments
                       </h3>
 
-                      <p className="text-sm text-gray-500 mt-1">
+                      <p className="text-sm font-normal leading-5 text-gray-500 mt-1">
                         AED {(Number(total) / 6).toFixed(2)}/mo
                       </p>
 
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className="text-xs font-normal leading-5 text-gray-500 mt-1">
                         Includes AED 8.32 monthly fee
                       </p>
                     </div>
 
                     <div
-                      className={`w-5 h-5 rounded-full border flex items-center justify-center ${
+                      className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ${
                         selectedTabbyPlan?.id === 6
                           ? "border-[#011810]"
                           : "border-gray-300"
@@ -816,7 +802,6 @@ const Checkout = () => {
                 </button>
 
                 {/* 8 PAYMENTS */}
-
                 <button
                   type="button"
                   onClick={() =>
@@ -833,23 +818,23 @@ const Checkout = () => {
                       : "border-gray-200 hover:border-gray-400"
                   }`}
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-4">
                     <div>
-                      <h3 className="font-semibold text-[#011810]">
+                      <h3 className="text-sm font-semibold leading-5 text-[#011810]">
                         8 payments
                       </h3>
 
-                      <p className="text-sm text-gray-500 mt-1">
+                      <p className="text-sm font-normal leading-5 text-gray-500 mt-1">
                         AED {(Number(total) / 8).toFixed(2)}/mo
                       </p>
 
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className="text-xs font-normal leading-5 text-gray-500 mt-1">
                         Includes AED 11.23 monthly fee
                       </p>
                     </div>
 
                     <div
-                      className={`w-5 h-5 rounded-full border flex items-center justify-center ${
+                      className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ${
                         selectedTabbyPlan?.id === 8
                           ? "border-[#011810]"
                           : "border-gray-300"
@@ -863,7 +848,6 @@ const Checkout = () => {
                 </button>
 
                 {/* 12 PAYMENTS */}
-
                 <button
                   type="button"
                   onClick={() =>
@@ -880,23 +864,23 @@ const Checkout = () => {
                       : "border-gray-200 hover:border-gray-400"
                   }`}
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-4">
                     <div>
-                      <h3 className="font-semibold text-[#011810]">
+                      <h3 className="text-sm font-semibold leading-5 text-[#011810]">
                         12 payments
                       </h3>
 
-                      <p className="text-sm text-gray-500 mt-1">
+                      <p className="text-sm font-normal leading-5 text-gray-500 mt-1">
                         AED {(Number(total) / 12).toFixed(2)}/mo
                       </p>
 
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className="text-xs font-normal leading-5 text-gray-500 mt-1">
                         Includes AED 14.15 monthly fee
                       </p>
                     </div>
 
                     <div
-                      className={`w-5 h-5 rounded-full border flex items-center justify-center ${
+                      className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ${
                         selectedTabbyPlan?.id === 12
                           ? "border-[#011810]"
                           : "border-gray-300"
@@ -911,50 +895,53 @@ const Checkout = () => {
               </div>
 
               {/* HOW IT WORKS */}
-
               <div className="mt-8">
-                <h3 className="text-lg font-bold text-[#011810]">
+                <h3 className="text-lg font-bold leading-6 text-[#011810]">
                   How it works
                 </h3>
 
                 <div className="mt-4 space-y-5">
+                  {/* STEP 1 */}
                   <div className="flex gap-4">
-                    <div className="w-7 h-7 rounded-full bg-[#011810] text-white flex items-center justify-center text-sm font-semibold shrink-0">
+                    <div className="w-7 h-7 rounded-full bg-[#011810] text-white flex items-center justify-center text-sm font-semibold leading-5 shrink-0">
                       1
                     </div>
 
-                    <p className="text-sm text-gray-600 leading-6">
+                    <p className="text-sm font-normal leading-6 text-gray-600">
                       Choose Tabby at checkout to select a payment plan
                     </p>
                   </div>
 
+                  {/* STEP 2 */}
                   <div className="flex gap-4">
-                    <div className="w-7 h-7 rounded-full bg-[#011810] text-white flex items-center justify-center text-sm font-semibold shrink-0">
+                    <div className="w-7 h-7 rounded-full bg-[#011810] text-white flex items-center justify-center text-sm font-semibold leading-5 shrink-0">
                       2
                     </div>
 
-                    <p className="text-sm text-gray-600 leading-6">
+                    <p className="text-sm font-normal leading-6 text-gray-600">
                       Enter your information and add your debit or credit card
                     </p>
                   </div>
 
+                  {/* STEP 3 */}
                   <div className="flex gap-4">
-                    <div className="w-7 h-7 rounded-full bg-[#011810] text-white flex items-center justify-center text-sm font-semibold shrink-0">
+                    <div className="w-7 h-7 rounded-full bg-[#011810] text-white flex items-center justify-center text-sm font-semibold leading-5 shrink-0">
                       3
                     </div>
 
-                    <p className="text-sm text-gray-600 leading-6">
+                    <p className="text-sm font-normal leading-6 text-gray-600">
                       Depending on your plan, you may or may not make a down
                       payment
                     </p>
                   </div>
 
+                  {/* STEP 4 */}
                   <div className="flex gap-4">
-                    <div className="w-7 h-7 rounded-full bg-[#011810] text-white flex items-center justify-center text-sm font-semibold shrink-0">
+                    <div className="w-7 h-7 rounded-full bg-[#011810] text-white flex items-center justify-center text-sm font-semibold leading-5 shrink-0">
                       4
                     </div>
 
-                    <p className="text-sm text-gray-600 leading-6">
+                    <p className="text-sm font-normal leading-6 text-gray-600">
                       We'll send you a reminder when your next payment is due
                     </p>
                   </div>
@@ -962,7 +949,6 @@ const Checkout = () => {
               </div>
 
               {/* TRUSTED BY MILLIONS */}
-
               <div className="mt-8 pt-6 border-t border-gray-100">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-xl bg-[#011810]/5 flex items-center justify-center shrink-0">
@@ -977,11 +963,11 @@ const Checkout = () => {
                   </div>
 
                   <div>
-                    <h4 className="font-semibold text-[#011810]">
+                    <h4 className="text-sm font-semibold leading-5 text-[#011810]">
                       Trusted by millions
                     </h4>
 
-                    <p className="text-xs text-gray-500 mt-1 leading-5">
+                    <p className="text-xs font-normal leading-5 text-gray-500 mt-1">
                       Over 20 million shoppers discover products and pay their
                       way with Tabby
                     </p>
@@ -990,7 +976,6 @@ const Checkout = () => {
               </div>
 
               {/* SHOP SAFELY */}
-
               <div className="mt-5">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-xl bg-[#011810]/5 flex items-center justify-center shrink-0">
@@ -1012,11 +997,11 @@ const Checkout = () => {
                   </div>
 
                   <div>
-                    <h4 className="font-semibold text-[#011810]">
+                    <h4 className="text-sm font-semibold leading-5 text-[#011810]">
                       Shop safely with Tabby
                     </h4>
 
-                    <p className="text-xs text-gray-500 mt-1 leading-5">
+                    <p className="text-xs font-normal leading-5 text-gray-500 mt-1">
                       Buyer protection is included with every purchase
                     </p>
                   </div>
@@ -1024,7 +1009,6 @@ const Checkout = () => {
               </div>
 
               {/* CONTINUE */}
-
               <button
                 type="button"
                 disabled={!selectedTabbyPlan}
@@ -1035,7 +1019,7 @@ const Checkout = () => {
 
                   console.log("Selected Tabby Plan:", selectedTabbyPlan);
                 }}
-                className="w-full mt-7 bg-[#011810] text-white py-3.5 rounded-xl font-semibold disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[#02281c] transition"
+                className="w-full mt-7 bg-[#011810] text-white py-3.5 rounded-xl text-sm font-semibold leading-5 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[#02281c] transition"
               >
                 Continue with Tabby
               </button>
@@ -1044,7 +1028,10 @@ const Checkout = () => {
         </div>
       )}
 
-  
+      {/* =========================================================
+    TAMARA MODAL
+========================================================= */}
+
       {showTamaraModal && (
         <div
           className="fixed mt-8 inset-0 z-[9999] bg-black/60 flex items-center justify-center p-4 overflow-y-auto"
@@ -1055,20 +1042,26 @@ const Checkout = () => {
             onClick={(e) => e.stopPropagation()}
           >
             {/* HEADER */}
-
-            <div className="sticky top-0 z-20 bg-white px-6 pt-5 pb-4 border-b border-gray-100">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  {/* Tamara Logo */}
-                  <div className="font-bold text-2xl text-[#3f2a72]">
-                    Tamara
+            <div className="sticky top-0 z-20 bg-white px-6 pt-6 pb-4 border-b border-gray-100">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <div className="mb-3">
+                    <img
+                      src="https://cdn.tamara.co/widget-v2/assets/lavendar-logo.703d190a.svg"
+                      alt="Tamara"
+                      className="h-7 w-auto"
+                    />
                   </div>
+
+                  <h2 className="text-2xl font-bold leading-8 text-[#011810]">
+                    Your payment, your pace
+                  </h2>
                 </div>
 
                 <button
                   type="button"
                   onClick={() => setShowTamaraModal(false)}
-                  className="w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center shrink-0"
+                  className="w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center shrink-0 transition"
                 >
                   <X size={20} />
                 </button>
@@ -1076,226 +1069,219 @@ const Checkout = () => {
             </div>
 
             {/* CONTENT */}
-
             <div className="px-6 py-5">
-             
+              {/* EXAMPLE PLANS */}
               <div>
-                <h2 className="text-2xl font-bold text-[#011810]">
-                  Your payment, your pace
-                </h2>
+                <h3 className="text-lg font-bold leading-6 text-[#011810]">
+                  Example plans
+                </h3>
 
-                <p className="text-sm text-gray-500 mt-1">Example plans</p>
+                <div className="mt-4 space-y-3">
+                  {/* 2 PAYMENTS */}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setSelectedTamaraPlan({
+                        id: 2,
+                        title: "2 Payments",
+                        amount: Number(total) / 2,
+                        fee: 0,
+                      })
+                    }
+                    className={`w-full text-left rounded-xl border p-4 transition ${
+                      selectedTamaraPlan?.id === 2
+                        ? "border-[#011810] bg-[#011810]/5"
+                        : "border-gray-200 hover:border-gray-400"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <div>
+                        <h4 className="text-sm font-semibold leading-5 text-[#011810]">
+                          2 Payments
+                        </h4>
+
+                        <p className="text-sm font-normal leading-5 text-gray-500 mt-1">
+                          AED {(Number(total) / 2).toFixed(2)}/mo
+                        </p>
+
+                        <p className="text-xs font-normal leading-5 text-gray-500 mt-1">
+                          No fees
+                        </p>
+                      </div>
+
+                      <div
+                        className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ${
+                          selectedTamaraPlan?.id === 2
+                            ? "border-[#011810]"
+                            : "border-gray-300"
+                        }`}
+                      >
+                        {selectedTamaraPlan?.id === 2 && (
+                          <div className="w-2.5 h-2.5 rounded-full bg-[#011810]" />
+                        )}
+                      </div>
+                    </div>
+                  </button>
+
+                  {/* 3 PAYMENTS */}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setSelectedTamaraPlan({
+                        id: 3,
+                        title: "3 Payments",
+                        amount: Number(total) / 3,
+                        fee: 0,
+                      })
+                    }
+                    className={`w-full text-left rounded-xl border p-4 transition ${
+                      selectedTamaraPlan?.id === 3
+                        ? "border-[#011810] bg-[#011810]/5"
+                        : "border-gray-200 hover:border-gray-400"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <div>
+                        <h4 className="text-sm font-semibold leading-5 text-[#011810]">
+                          3 Payments
+                        </h4>
+
+                        <p className="text-sm font-normal leading-5 text-gray-500 mt-1">
+                          AED {(Number(total) / 3).toFixed(2)}/mo
+                        </p>
+
+                        <p className="text-xs font-normal leading-5 text-gray-500 mt-1">
+                          No fees
+                        </p>
+                      </div>
+
+                      <div
+                        className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ${
+                          selectedTamaraPlan?.id === 3
+                            ? "border-[#011810]"
+                            : "border-gray-300"
+                        }`}
+                      >
+                        {selectedTamaraPlan?.id === 3 && (
+                          <div className="w-2.5 h-2.5 rounded-full bg-[#011810]" />
+                        )}
+                      </div>
+                    </div>
+                  </button>
+
+                  {/* 4 PAYMENTS */}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setSelectedTamaraPlan({
+                        id: 4,
+                        title: "4 Payments",
+                        amount: Number(total) / 4,
+                        fee: null,
+                      })
+                    }
+                    className={`w-full text-left rounded-xl border p-4 transition ${
+                      selectedTamaraPlan?.id === 4
+                        ? "border-[#011810] bg-[#011810]/5"
+                        : "border-gray-200 hover:border-gray-400"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <div>
+                        <h4 className="text-sm font-semibold leading-5 text-[#011810]">
+                          4 Payments
+                        </h4>
+
+                        <p className="text-sm font-normal leading-5 text-gray-500 mt-1">
+                          AED {(Number(total) / 4).toFixed(2)}/mo
+                        </p>
+
+                        <p className="text-xs font-normal leading-5 text-gray-500 mt-1">
+                          Fees may apply
+                        </p>
+                      </div>
+
+                      <div
+                        className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ${
+                          selectedTamaraPlan?.id === 4
+                            ? "border-[#011810]"
+                            : "border-gray-300"
+                        }`}
+                      >
+                        {selectedTamaraPlan?.id === 4 && (
+                          <div className="w-2.5 h-2.5 rounded-full bg-[#011810]" />
+                        )}
+                      </div>
+                    </div>
+                  </button>
+
+                  {/* PAY IN FULL */}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setSelectedTamaraPlan({
+                        id: "full",
+                        title: "Pay in Full",
+                        amount: Number(total),
+                        fee: 0,
+                      })
+                    }
+                    className={`w-full text-left rounded-xl border p-4 transition ${
+                      selectedTamaraPlan?.id === "full"
+                        ? "border-[#011810] bg-[#011810]/5"
+                        : "border-gray-200 hover:border-gray-400"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <div>
+                        <h4 className="text-sm font-semibold leading-5 text-[#011810]">
+                          Pay in Full
+                        </h4>
+
+                        <p className="text-sm font-normal leading-5 text-gray-500 mt-1">
+                          AED {Number(total).toFixed(2)}
+                        </p>
+
+                        <p className="text-xs font-normal leading-5 text-gray-500 mt-1">
+                          1% cashback and buyer protection
+                        </p>
+                      </div>
+
+                      <div
+                        className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ${
+                          selectedTamaraPlan?.id === "full"
+                            ? "border-[#011810]"
+                            : "border-gray-300"
+                        }`}
+                      >
+                        {selectedTamaraPlan?.id === "full" && (
+                          <div className="w-2.5 h-2.5 rounded-full bg-[#011810]" />
+                        )}
+                      </div>
+                    </div>
+                  </button>
+                </div>
               </div>
 
-             
-
-              <div className="mt-5 space-y-3">
-                {/* 2 PAYMENTS */}
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    setSelectedTamaraPlan({
-                      id: 2,
-                      title: "2 Payments",
-                      amount: Number(total) / 2,
-                      fee: 0,
-                    })
-                  }
-                  className={`w-full text-left border rounded-xl p-4 transition ${
-                    selectedTamaraPlan?.id === 2
-                      ? "border-[#011810] bg-[#011810]/5"
-                      : "border-gray-200 hover:border-gray-400"
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xl font-bold text-[#011810]">
-                        AED {(Number(total) / 2).toFixed(2)}/mo
-                      </p>
-
-                      <h3 className="font-semibold text-gray-800 mt-1">
-                        2 Payments
-                      </h3>
-
-                      <p className="text-xs text-gray-500 mt-1">No fees</p>
-                    </div>
-
-                    <div
-                      className={`w-5 h-5 rounded-full border flex items-center justify-center ${
-                        selectedTamaraPlan?.id === 2
-                          ? "border-[#011810]"
-                          : "border-gray-300"
-                      }`}
-                    >
-                      {selectedTamaraPlan?.id === 2 && (
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#011810]" />
-                      )}
-                    </div>
-                  </div>
-                </button>
-
-                {/* 3 PAYMENTS */}
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    setSelectedTamaraPlan({
-                      id: 3,
-                      title: "3 Payments",
-                      amount: Number(total) / 3,
-                      fee: 0,
-                    })
-                  }
-                  className={`w-full text-left border rounded-xl p-4 transition ${
-                    selectedTamaraPlan?.id === 3
-                      ? "border-[#011810] bg-[#011810]/5"
-                      : "border-gray-200 hover:border-gray-400"
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xl font-bold text-[#011810]">
-                        AED {(Number(total) / 3).toFixed(2)}/mo
-                      </p>
-
-                      <h3 className="font-semibold text-gray-800 mt-1">
-                        3 Payments
-                      </h3>
-
-                      <p className="text-xs text-gray-500 mt-1">No fees</p>
-                    </div>
-
-                    <div
-                      className={`w-5 h-5 rounded-full border flex items-center justify-center ${
-                        selectedTamaraPlan?.id === 3
-                          ? "border-[#011810]"
-                          : "border-gray-300"
-                      }`}
-                    >
-                      {selectedTamaraPlan?.id === 3 && (
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#011810]" />
-                      )}
-                    </div>
-                  </div>
-                </button>
-
-                {/* 4 PAYMENTS */}
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    setSelectedTamaraPlan({
-                      id: 4,
-                      title: "4 Payments",
-                      amount: Number(total) / 4,
-                      fee: 0,
-                    })
-                  }
-                  className={`w-full text-left border rounded-xl p-4 transition ${
-                    selectedTamaraPlan?.id === 4
-                      ? "border-[#011810] bg-[#011810]/5"
-                      : "border-gray-200 hover:border-gray-400"
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xl font-bold text-[#011810]">
-                        AED {(Number(total) / 4).toFixed(2)}/mo
-                      </p>
-
-                      <h3 className="font-semibold text-gray-800 mt-1">
-                        4 Payments
-                      </h3>
-
-                      <p className="text-xs text-gray-500 mt-1">
-                        Fees may apply
-                      </p>
-                    </div>
-
-                    <div
-                      className={`w-5 h-5 rounded-full border flex items-center justify-center ${
-                        selectedTamaraPlan?.id === 4
-                          ? "border-[#011810]"
-                          : "border-gray-300"
-                      }`}
-                    >
-                      {selectedTamaraPlan?.id === 4 && (
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#011810]" />
-                      )}
-                    </div>
-                  </div>
-                </button>
-
-                {/* PAY IN FULL */}
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    setSelectedTamaraPlan({
-                      id: "full",
-                      title: "Pay in Full",
-                      amount: Number(total),
-                      fee: 0,
-                    })
-                  }
-                  className={`w-full text-left border rounded-xl p-4 transition ${
-                    selectedTamaraPlan?.id === "full"
-                      ? "border-[#011810] bg-[#011810]/5"
-                      : "border-gray-200 hover:border-gray-400"
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xl font-bold text-[#011810]">
-                        AED {Number(total).toFixed(2)}
-                      </p>
-
-                      <h3 className="font-semibold text-gray-800 mt-1">
-                        Pay in Full
-                      </h3>
-
-                      <p className="text-xs text-green-600 mt-1">
-                        1% cashback and buyer protection
-                      </p>
-                    </div>
-
-                    <div
-                      className={`w-5 h-5 rounded-full border flex items-center justify-center ${
-                        selectedTamaraPlan?.id === "full"
-                          ? "border-[#011810]"
-                          : "border-gray-300"
-                      }`}
-                    >
-                      {selectedTamaraPlan?.id === "full" && (
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#011810]" />
-                      )}
-                    </div>
-                  </div>
-                </button>
-              </div>
-
-             
-
+              {/* HOW IT WORKS */}
               <div className="mt-8">
-                <h3 className="text-lg font-bold text-[#011810]">
+                <h3 className="text-lg font-bold leading-6 text-[#011810]">
                   How it works?
                 </h3>
 
-                <div className="mt-5 space-y-5">
+                <div className="mt-4 space-y-5">
                   {/* STEP 1 */}
-
                   <div className="flex gap-4">
-                    <div className="w-8 h-8 rounded-full bg-[#011810] text-white flex items-center justify-center text-sm font-semibold shrink-0">
+                    <div className="w-7 h-7 rounded-full bg-[#011810] text-white flex items-center justify-center text-sm font-semibold leading-5 shrink-0">
                       1
                     </div>
 
                     <div>
-                      <h4 className="font-semibold text-[#011810]">
+                      <h4 className="text-sm font-semibold leading-5 text-[#011810]">
                         Pick a plan that works for you
                       </h4>
 
-                      <p className="text-sm text-gray-500 mt-1 leading-5">
+                      <p className="text-sm font-normal leading-6 text-gray-600 mt-1">
                         Choose Tamara at checkout and select the payment plan
                         that fits your needs.
                       </p>
@@ -1303,18 +1289,17 @@ const Checkout = () => {
                   </div>
 
                   {/* STEP 2 */}
-
                   <div className="flex gap-4">
-                    <div className="w-8 h-8 rounded-full bg-[#011810] text-white flex items-center justify-center text-sm font-semibold shrink-0">
+                    <div className="w-7 h-7 rounded-full bg-[#011810] text-white flex items-center justify-center text-sm font-semibold leading-5 shrink-0">
                       2
                     </div>
 
                     <div>
-                      <h4 className="font-semibold text-[#011810]">
+                      <h4 className="text-sm font-semibold leading-5 text-[#011810]">
                         Pay your first payment securely
                       </h4>
 
-                      <p className="text-sm text-gray-500 mt-1 leading-5">
+                      <p className="text-sm font-normal leading-6 text-gray-600 mt-1">
                         Enter your card details to make your first payment
                         safely and instantly.
                       </p>
@@ -1322,18 +1307,17 @@ const Checkout = () => {
                   </div>
 
                   {/* STEP 3 */}
-
                   <div className="flex gap-4">
-                    <div className="w-8 h-8 rounded-full bg-[#011810] text-white flex items-center justify-center text-sm font-semibold shrink-0">
+                    <div className="w-7 h-7 rounded-full bg-[#011810] text-white flex items-center justify-center text-sm font-semibold leading-5 shrink-0">
                       3
                     </div>
 
                     <div>
-                      <h4 className="font-semibold text-[#011810]">
+                      <h4 className="text-sm font-semibold leading-5 text-[#011810]">
                         Stay in control
                       </h4>
 
-                      <p className="text-sm text-gray-500 mt-1 leading-5">
+                      <p className="text-sm font-normal leading-6 text-gray-600 mt-1">
                         Track and manage all your upcoming payments easily in
                         the Tamara app.
                       </p>
@@ -1341,18 +1325,17 @@ const Checkout = () => {
                   </div>
 
                   {/* STEP 4 */}
-
                   <div className="flex gap-4">
-                    <div className="w-8 h-8 rounded-full bg-[#011810] text-white flex items-center justify-center text-sm font-semibold shrink-0">
+                    <div className="w-7 h-7 rounded-full bg-[#011810] text-white flex items-center justify-center text-sm font-semibold leading-5 shrink-0">
                       4
                     </div>
 
                     <div>
-                      <h4 className="font-semibold text-[#011810]">
+                      <h4 className="text-sm font-semibold leading-5 text-[#011810]">
                         We’ve got your back
                       </h4>
 
-                      <p className="text-sm text-gray-500 mt-1 leading-5">
+                      <p className="text-sm font-normal leading-6 text-gray-600 mt-1">
                         Get helpful reminders before each payment, no surprises.
                       </p>
                     </div>
@@ -1360,136 +1343,59 @@ const Checkout = () => {
                 </div>
               </div>
 
-              
-
+              {/* WHY TAMARA */}
               <div className="mt-8 pt-6 border-t border-gray-100">
-                <h3 className="text-lg font-bold text-[#011810]">
+                <h3 className="text-lg font-bold leading-6 text-[#011810]">
                   Why Tamara?
                 </h3>
 
-                <div className="grid grid-cols-3 gap-3 mt-5">
-                  {/* BUYER PROTECTION */}
-
-                  <div className="text-center">
-                    <div className="w-12 h-12 mx-auto rounded-xl bg-[#011810]/5 flex items-center justify-center">
-                      <svg
-                        width="25"
-                        height="25"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <path
-                          d="M12 3L19 6V11C19 15.5 16.2 19.3 12 21C7.8 19.3 5 15.5 5 11V6L12 3Z"
-                          stroke="#011810"
-                          strokeWidth="1.5"
-                        />
-
-                        <path
-                          d="M9 12L11 14L15 10"
-                          stroke="#011810"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
+                <div className="mt-4 space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[#011810] flex items-center justify-center shrink-0">
+                      <span className="text-white text-xs">✓</span>
                     </div>
 
-                    <p className="text-lg font-bold text-[#011810] mt-3">
-                      100%
+                    <p className="text-sm font-normal leading-5 text-gray-600">
+                      100% buyer protection
                     </p>
-
-                    <p className="text-xs text-gray-500">buyer protection</p>
                   </div>
 
-                  {/* SHARIA */}
-
-                  <div className="text-center">
-                    <div className="w-12 h-12 mx-auto rounded-xl bg-[#011810]/5 flex items-center justify-center">
-                      <svg
-                        width="25"
-                        height="25"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <circle
-                          cx="12"
-                          cy="12"
-                          r="8"
-                          stroke="#011810"
-                          strokeWidth="1.5"
-                        />
-
-                        <path
-                          d="M12 7V17M9 10H15M9 14H15"
-                          stroke="#011810"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                        />
-                      </svg>
+                  <div className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[#011810] flex items-center justify-center shrink-0">
+                      <span className="text-white text-xs">✓</span>
                     </div>
 
-                    <p className="text-lg font-bold text-[#011810] mt-3">
-                      Sharia
+                    <p className="text-sm font-normal leading-5 text-gray-600">
+                      Sharia compliant
                     </p>
-
-                    <p className="text-xs text-gray-500">compliant</p>
                   </div>
 
-                  {/* NO LATE FEES */}
-
-                  <div className="text-center">
-                    <div className="w-12 h-12 mx-auto rounded-xl bg-[#011810]/5 flex items-center justify-center">
-                      <svg
-                        width="25"
-                        height="25"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <circle
-                          cx="12"
-                          cy="12"
-                          r="8"
-                          stroke="#011810"
-                          strokeWidth="1.5"
-                        />
-
-                        <path
-                          d="M12 8V12L14.5 14"
-                          stroke="#011810"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                        />
-                      </svg>
+                  <div className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[#011810] flex items-center justify-center shrink-0">
+                      <span className="text-white text-xs">✓</span>
                     </div>
 
-                    <p className="text-lg font-bold text-[#011810] mt-3">
-                      No late
+                    <p className="text-sm font-normal leading-5 text-gray-600">
+                      No late fees
                     </p>
-
-                    <p className="text-xs text-gray-500">fees</p>
                   </div>
                 </div>
               </div>
 
-             
-
-              <div className="mt-7 rounded-xl bg-gray-50 p-4">
-                <p className="text-[11px] leading-5 text-gray-500">
+              {/* DISCLAIMER */}
+              <div className="mt-6 rounded-xl bg-gray-50 p-4">
+                <p className="text-xs font-normal leading-5 text-gray-500">
                   Payment plans shown are estimates. Actual offers may vary
                   based on your eligibility and order details. Not all merchants
                   or products qualify for every plan, including Tamara’s
                   long-term financing options.
                 </p>
 
-                <p className="text-[11px] leading-5 text-gray-500 mt-3">
+                <p className="text-xs font-normal leading-5 text-gray-500 mt-3">
                   Approval is subject to eligibility checks and may require a
                   down payment. Final terms, including monthly payment amounts,
                   may change after checkout review and may exclude taxes,
-                  shipping, or other charges.
-                </p>
-
-                <p className="text-[11px] leading-5 text-gray-500 mt-3">
-                  For more information, see our{" "}
+                  shipping, or other charges. For more information, see our{" "}
                   <a
                     href="https://tamara.co/en-AE/terms-and-conditions"
                     target="_blank"
@@ -1501,26 +1407,28 @@ const Checkout = () => {
                 </p>
               </div>
 
-            
+              {/* PAYMENT LOGOS */}
+              <div className="mt-6 flex items-center justify-center gap-4">
+                <img
+                  src="https://cdn.tamara.co/widget-v2/assets/apple.58715d0c.svg"
+                  alt="Apple Pay"
+                  className="h-7 w-auto object-contain"
+                />
 
-              <div className="mt-6 pt-5 border-t border-gray-100">
-                <div className="flex items-center justify-center gap-4">
-                  <div className="px-4 py-2 border border-gray-200 rounded-lg text-xs font-semibold text-gray-500">
-                    Apple Pay
-                  </div>
+                <img
+                  src="https://cdn.tamara.co/widget-v2/assets/master.56491a74.svg"
+                  alt="Mastercard"
+                  className="h-7 w-auto object-contain"
+                />
 
-                  <div className="px-4 py-2 border border-gray-200 rounded-lg text-xs font-semibold text-gray-500">
-                    Mastercard
-                  </div>
-
-                  <div className="px-4 py-2 border border-gray-200 rounded-lg text-xs font-semibold text-gray-500">
-                    VISA
-                  </div>
-                </div>
+                <img
+                  src="https://cdn.tamara.co/widget-v2/assets/visa.76c481f0.svg"
+                  alt="Visa"
+                  className="h-7 w-auto object-contain"
+                />
               </div>
 
-             
-
+              {/* CONTINUE */}
               <button
                 type="button"
                 disabled={!selectedTamaraPlan}
@@ -1531,7 +1439,7 @@ const Checkout = () => {
 
                   console.log("Selected Tamara Plan:", selectedTamaraPlan);
                 }}
-                className="w-full mt-6 bg-[#011810] text-white py-3.5 rounded-xl font-semibold disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[#02281c] transition"
+                className="w-full mt-7 bg-[#011810] text-white py-3.5 rounded-xl text-sm font-semibold leading-5 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[#02281c] transition"
               >
                 Continue with Tamara
               </button>

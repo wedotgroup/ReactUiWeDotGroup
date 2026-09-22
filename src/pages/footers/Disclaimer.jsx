@@ -22,14 +22,14 @@ function Disclaimer() {
               <p>
                 The information provided on this website,{" "}
                 <a
-                  href="https://www.wedotgroup.com"
+                  href="https://www.wedotgroup.in"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-medium text-[#011810] underline underline-offset-4 hover:opacity-70"
                 >
-                  https://www.wedotgroup.com
+                  https://www.wedotgroup.in
                 </a>
-                , is intended for general informational purposes only. We DoT
+                ,is intended for general informational purposes only. We DoT
                 Group serves as an intermediary on behalf of the Government of
                 the United Arab Emirates (UAE). While we strive to ensure the
                 accuracy and timeliness of the information presented, please
@@ -39,7 +39,7 @@ function Disclaimer() {
               </p>
 
               <p>
-                we doT group cannot guarantee the completeness, reliability, or
+                We Dot Group cannot guarantee the completeness, reliability, or
                 ongoing accuracy of the information. Visitors are encouraged
                 to verify all details directly with the relevant government
                 authorities, as changes may occur at any time. By using this

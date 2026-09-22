@@ -378,27 +378,27 @@ const Navbar = () => {
           items: [
             {
               name: "ISO Certifications",
-              path: "#",
+              path: "",
             },
             {
               name: "Trademark Registration",
-              path: "#",
+              path: "",
             },
             {
               name: "FSSAI",
-              path: "#",
+              path: "",
             },
             {
               name: "ISI Certification",
-              path: "#",
+              path: "",
             },
             {
               name: "ESG Certification",
-              path: "#",
+              path: "",
             },
             {
               name: "Social & Labour Compliance",
-              path: "#",
+              path: "",
             },
           ],
         },
@@ -406,18 +406,13 @@ const Navbar = () => {
     },
   };
 
-  // =========================================================
-  // CLOSE MENU
-  // =========================================================
-
+ 
   const closeMenu = () => {
     setIsOpen(false);
     setActiveMenu(null);
   };
 
-  // =========================================================
-  // NAV LINK CLASS
-  // =========================================================
+ 
 
   const navLinkClass = ({ isActive }) => `
     relative
@@ -440,10 +435,7 @@ const Navbar = () => {
 
   return (
     <>
-      {/* =====================================================
-          DESKTOP NAVBAR
-      ====================================================== */}
-
+      
       <nav
         className="
           fixed
