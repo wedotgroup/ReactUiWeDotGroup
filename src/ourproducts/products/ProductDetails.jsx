@@ -672,7 +672,14 @@ const ProductDetails = () => {
       const token = localStorage.getItem("token");
 
       if (!storedUser || !token) {
-        showMessage("Please login first.");
+        showMessage(
+          <>
+            Please login first.{" "}
+            <Link to="/products" className="text-blue-600 underline font-medium">
+              Click Here
+            </Link>
+          </>,
+        );
         return;
       }
 
@@ -697,7 +704,6 @@ const ProductDetails = () => {
         },
       );
 
-
       if (res.data?.status) {
         showMessage(`${product.name} added to cart.`);
       } else {
@@ -717,9 +723,7 @@ const ProductDetails = () => {
     setPaymentMethod("tabby");
   };
 
-  /* =======================================================
-     PAYMENT CONTINUE
-  ======================================================= */
+  
 
   const handlePaymentContinue = async () => {
     /*
