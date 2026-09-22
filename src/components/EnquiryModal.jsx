@@ -421,9 +421,6 @@ const EnquiryModal = ({ isOpen, onClose }) => {
     }
   };
 
-  /* ---------------------------------------------------------
-     CLOSE MODAL
-  --------------------------------------------------------- */
 
   const handleClose = () => {
     if (isSubmitting) return;

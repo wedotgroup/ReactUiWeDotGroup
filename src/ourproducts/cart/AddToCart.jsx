@@ -324,7 +324,7 @@ const AddToCart = () => {
   const handleCheckout = () => {
     if (cartItems.length === 0) return;
 
-    navigate("/", {
+    navigate("/checkout", {
       state: {
         cartItems,
         subtotal,

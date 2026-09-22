@@ -29,6 +29,7 @@ import ProductDetails from "./ourproducts/products/ProductDetails";
 import AddToCart from "./ourproducts/cart/AddToCart"
 import ProtectedRoute from "./middleware/ProtectedRoute";
 import Profile from "./ourproducts/auth/Profile";
+import Checkout from "./ourproducts/cart/Checkout";
 
 
 
@@ -98,6 +99,7 @@ function App() {
         <Route element={<ProtectedRoute/>}>
         <Route path ="/cart" element = {<AddToCart/>}/>
         <Route path="/profile" element={<Profile/>}/>
+        <Route path="/checkout"  element={<Checkout/>}/>
         </Route>
 
       </Route>

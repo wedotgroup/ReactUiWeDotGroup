@@ -204,6 +204,7 @@ export const servicesdata = {
             title: "Why Choose Our Software Development Services?",
             services: [
                 {
+                    slug:"custom-software-development",
                     title: "Custom Software Development",
                     description:
                         "Create tailor-made software solutions to address your unique business needs. Our team works closely with you to design and implement solutions that align perfectly with your objectives.",
@@ -211,6 +212,7 @@ export const servicesdata = {
                         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=85",
                 },
                 {
+                    slug:"mobile-app-development",
                     title: "Mobile App Development",
                     description:
                         "Reach your audience on their smartphones with robust and intuitive mobile applications. We build apps for both iOS and Android platforms, ensuring seamless performance and user experience.",

@@ -389,13 +389,12 @@ export default function ITConsultancy() {
 
                 <Link
                   key={item.slug}
-                  to={`/it-consultancy/${item.slug}`}
+                to="/contact"
                   className="group relative block overflow-hidden border border-white/10 bg-[#06251D] transition-all duration-500 hover:-translate-y-2 hover:border-white/30 hover:shadow-[0_25px_70px_rgba(0,0,0,0.35)]"
                 >
 
                   {/* Card Image */}
                   <div className="relative h-[280px] overflow-hidden">
-
                     <img
                       src={item.introduction?.image || item.image}
                       alt={item.title}
