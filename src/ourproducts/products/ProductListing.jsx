@@ -15,7 +15,6 @@ const ProductListing = () => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // ================= GET PRODUCTS =================
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -53,7 +52,6 @@ const ProductListing = () => {
     );
   }, [products, search]);
 
-  // ================= MODALS =================
   const handleSignIn = () => {
     setShowSignUp(false);
     setShowSignIn(true);
@@ -72,8 +70,7 @@ const ProductListing = () => {
   return (
     <>
       <div className="min-h-screen bg-[#011810] text-white">
-        {/* ================= HERO ================= */}
-        <section className="relative overflow-hidden border-b border-[#d4af37]/15">
+         <section className="relative overflow-hidden border-b border-[#d4af37]/15">
           <div className="absolute inset-0 bg-gradient-to-br from-[#011810] via-[#011810] to-[#0b3024]" />
 
           <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-[#d4af37]/10 blur-3xl" />
@@ -152,7 +149,6 @@ const ProductListing = () => {
             </div>
           </div>
 
-          {/* ================= LOADING ================= */}
           {loading ? (
             <div className="flex min-h-[300px] items-center justify-center">
               <p className="text-[#d4af37]">Loading products...</p>

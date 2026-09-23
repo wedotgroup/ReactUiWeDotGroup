@@ -752,15 +752,11 @@ const ProductDetails = () => {
     setPaymentMethod(null);
   };
 
-  /* =======================================================
-     RETURN UI
-  ======================================================= */
+ 
 
   return (
     <div className="min-h-screen bg-[#011810] text-white">
-      {/* =====================================================
-          HERO
-      ===================================================== */}
+     
 
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-[#d4af37]/10 blur-[120px]" />
@@ -798,16 +794,10 @@ const ProductDetails = () => {
         </div>
       </section>
 
-      {/* =====================================================
-          PRODUCT SECTION
-      ===================================================== */}
+   
 
       <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-10 lg:py-24">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
-          {/* =================================================
-              PRODUCT IMAGE
-          ================================================= */}
-
           <div>
             <div className="group relative overflow-hidden  border border-white/10 bg-white/[0.03]">
               <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/10 via-transparent to-transparent" />
