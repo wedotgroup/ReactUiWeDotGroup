@@ -31,22 +31,17 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cartCount, setCartCount] = useState(0);
 
-  // =========================================================
-  // CHECK LOGIN + FETCH CART COUNT
-  // =========================================================
 
+  // Keep authentication state synced when login/logout happens in the same tab.
   useEffect(() => {
     const checkUser = () => {
       const user = localStorage.getItem("user");
       const token = localStorage.getItem("token");
-
-      const loggedIn = !!user && !!token;
+      const loggedIn = Boolean(user && token);
 
       setIsLoggedIn(loggedIn);
 
-      if (loggedIn) {
-        fetchCartCount();
-      } else {
+      if (!loggedIn) {
         setCartCount(0);
       }
     };
@@ -54,11 +49,46 @@ const Navbar = () => {
     checkUser();
 
     window.addEventListener("storage", checkUser);
-    window.addEventListener("cartUpdated", checkUser);
+    window.addEventListener("authUpdated", checkUser);
+
+    // localStorage does not trigger the storage event in the same browser tab.
+    // This keeps the navbar synced immediately after a successful login.
+    const authSync = window.setInterval(checkUser, 500);
 
     return () => {
       window.removeEventListener("storage", checkUser);
-      window.removeEventListener("cartUpdated", checkUser);
+      window.removeEventListener("authUpdated", checkUser);
+      window.clearInterval(authSync);
+    };
+  }, []);
+
+  // Load cart as soon as the user becomes logged in.
+  useEffect(() => {
+    if (isLoggedIn) {
+      fetchCartCount();
+    } else {
+      setCartCount(0);
+    }
+  }, [isLoggedIn]);
+
+  // Refresh only the cart count when Add to Cart/Remove Cart happens.
+  useEffect(() => {
+    const handleCartUpdated = () => {
+      const token = localStorage.getItem("token");
+
+      if (token) {
+        setIsLoggedIn(true);
+        fetchCartCount();
+      } else {
+        setIsLoggedIn(false);
+        setCartCount(0);
+      }
+    };
+
+    window.addEventListener("cartUpdated", handleCartUpdated);
+
+    return () => {
+      window.removeEventListener("cartUpdated", handleCartUpdated);
     };
   }, []);
 
@@ -86,7 +116,6 @@ const Navbar = () => {
       if (response.data?.status) {
         const items = response.data?.data || [];
 
-        // Total quantity of all cart products
         const totalQuantity = items.reduce((total, item) => {
           return total + Number(item.quentity || 0);
         }, 0);
@@ -107,10 +136,7 @@ const Navbar = () => {
     }
   };
 
-  // =========================================================
-  // LOCK BODY SCROLL
-  // =========================================================
-
+ 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
 
@@ -119,10 +145,7 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
-  // =========================================================
-  // ESCAPE KEY
-  // =========================================================
-
+ 
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === "Escape") {
@@ -138,9 +161,6 @@ const Navbar = () => {
     };
   }, []);
 
-  // =========================================================
-  // MEGA MENUS
-  // =========================================================
 
   const megaMenus = {
     management: {
@@ -923,6 +943,9 @@ const Navbar = () => {
                 )}
               </div>
 
+              {/* MOBILE PROFILE + CART ICONS */}
+
+              
               {/* MOBILE BUTTON */}
 
               <button
@@ -1058,30 +1081,64 @@ const Navbar = () => {
               />
             </Link>
 
-            <button
-              type="button"
-              onClick={closeMenu}
-              className="
-                flex
-                h-10
-                w-10
-                items-center
-                justify-center
-                rounded-xl
-                border
-                border-white/10
-                bg-white/[0.04]
-                text-white
-                transition
-                duration-300
-                hover:border-[#E1C562]/40
-                hover:bg-[#E1C562]/10
-                hover:text-[#E1C562]
-                hover:rotate-90
-              "
-            >
-              <X size={21} />
-            </button>
+            <div className="flex items-center gap-2">
+              {/* PROFILE + CART - visible inside mobile drawer header */}
+              {isLoggedIn && (
+                <>
+                  <Link
+                    to="/profile"
+                    onClick={closeMenu}
+                    aria-label="Profile"
+                    title="Profile"
+                    className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-white/80 transition hover:border-[#E1C562]/40 hover:bg-[#E1C562]/10 hover:text-[#E1C562]"
+                  >
+                    <User size={19} />
+                  </Link>
+
+                  <Link
+                    to="/cart"
+                    onClick={closeMenu}
+                    aria-label="Cart"
+                    title="Cart"
+                    className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-white/80 transition hover:border-[#E1C562]/40 hover:bg-[#E1C562]/10 hover:text-[#E1C562]"
+                  >
+                    <ShoppingCart size={19} />
+
+                    {cartCount > 0 && (
+                      <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#E1C562] px-1 text-[10px] font-bold leading-none text-[#080808]">
+                        {cartCount > 99 ? "99+" : cartCount}
+                      </span>
+                    )}
+                  </Link>
+                </>
+              )}
+
+              {/* CLOSE */}
+              <button
+                type="button"
+                onClick={closeMenu}
+                aria-label="Close navigation"
+                className="
+                  flex
+                  h-10
+                  w-10
+                  items-center
+                  justify-center
+                  rounded-xl
+                  border
+                  border-white/10
+                  bg-white/[0.04]
+                  text-white
+                  transition
+                  duration-300
+                  hover:border-[#E1C562]/40
+                  hover:bg-[#E1C562]/10
+                  hover:text-[#E1C562]
+                "
+              >
+                <X size={21} />
+              </button>
+            </div>
           </div>
 
           {/* MOBILE LINKS */}
@@ -1227,79 +1284,7 @@ const Navbar = () => {
 
               {/* MOBILE PROFILE + CART */}
 
-              {isLoggedIn && (
-                <div className="grid grid-cols-2 gap-3 pt-3">
-
-                  <Link
-                    to="/profile"
-                    onClick={closeMenu}
-                    className="
-                      flex
-                      items-center
-                      justify-center
-                      gap-2
-                      rounded-xl
-                      border
-                      border-white/10
-                      bg-white/[0.04]
-                      py-3
-                      text-sm
-                      text-white/70
-                      hover:border-[#E1C562]/30
-                      hover:text-[#E1C562]
-                    "
-                  >
-                    <User size={17} />
-                    Profile
-                  </Link>
-
-                  <Link
-                    to="/cart"
-                    onClick={closeMenu}
-                    className="
-                      relative
-                      flex
-                      items-center
-                      justify-center
-                      gap-2
-                      rounded-xl
-                      border
-                      border-white/10
-                      bg-white/[0.04]
-                      py-3
-                      text-sm
-                      text-white/70
-                      hover:border-[#E1C562]/30
-                      hover:text-[#E1C562]
-                    "
-                  >
-                    <ShoppingCart size={17} />
-                    Cart
-
-                    {cartCount > 0 && (
-                      <span
-                        className="
-                          flex
-                          min-w-5
-                          h-5
-                          items-center
-                          justify-center
-                          rounded-full
-                          bg-[#E1C562]
-                          px-1
-                          text-[9px]
-                          font-bold
-                          text-black
-                        "
-                      >
-                        {cartCount > 99
-                          ? "99+"
-                          : cartCount}
-                      </span>
-                    )}
-                  </Link>
-                </div>
-              )}
+              
             </div>
           </div>
 

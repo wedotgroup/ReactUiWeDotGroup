@@ -160,6 +160,9 @@ const AddToCart = () => {
 
       setCartItems((items) => items.filter((item) => item.id !== cartId));
 
+      // Immediately sync navbar cart count after removing item
+      window.dispatchEvent(new Event("cartUpdated"));
+
       if (couponApplied) {
         setCouponApplied(false);
         setCouponMessage("Cart changed. Please apply the coupon again.");
@@ -197,6 +200,9 @@ const AddToCart = () => {
       });
 
       setCartItems([]);
+
+      // Immediately sync navbar cart count after clearing cart
+      window.dispatchEvent(new Event("cartUpdated"));
 
       setCoupon("");
       setCouponApplied(false);
@@ -380,7 +386,7 @@ const AddToCart = () => {
             </p>
 
             <Link
-              to="/"
+              to="/products"
               className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-[#d4af37] text-black font-semibold hover:bg-[#e6c65c] transition"
             >
               <ShoppingBag size={19} />

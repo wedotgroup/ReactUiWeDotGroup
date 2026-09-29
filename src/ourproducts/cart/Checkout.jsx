@@ -205,14 +205,12 @@ const Checkout = () => {
         throw new Error(data.message || "Payment could not be created.");
       }
 
-      // Tabby/Tamara normally return a checkout URL. Redirect the customer there.
       if (data.redirect_url || data.checkout_url || data.payment_url) {
         window.location.href =
           data.redirect_url || data.checkout_url || data.payment_url;
         return;
       }
 
-      // Some card gateways may return a hosted payment URL in nested data.
       if (
         data.data?.redirect_url ||
         data.data?.checkout_url ||

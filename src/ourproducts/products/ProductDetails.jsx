@@ -706,6 +706,9 @@ const ProductDetails = () => {
 
       if (res.data?.status) {
         showMessage(`${product.name} added to cart.`);
+
+        // Immediately update the Navbar cart badge without page refresh.
+        window.dispatchEvent(new Event("cartUpdated"));
       } else {
         showMessage(res.data?.message || "Unable to add product to cart.");
       }

@@ -12,11 +12,12 @@ import {
   Hash,
   Lock,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -76,7 +77,7 @@ const Profile = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
 
-    window.location.href = "/";
+    navigate("/");
   };
 
   if (!user) {
@@ -85,9 +86,7 @@ const Profile = () => {
         <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8 text-center">
           <User className="mx-auto mb-3 text-[#d4af37]" size={35} />
 
-          <h2 className="text-xl font-bold text-white">
-            Login Required
-          </h2>
+          <h2 className="text-xl font-bold text-white">Login Required</h2>
 
           <p className="mt-2 text-sm text-white/40">
             Please login to view your profile.
@@ -97,25 +96,19 @@ const Profile = () => {
     );
   }
 
-  const initial =
-    user?.name?.charAt(0)?.toUpperCase() || "U";
+  const initial = user?.name?.charAt(0)?.toUpperCase() || "U";
 
   return (
     <div className="min-h-screen bg-[#011810] px-4 py-8 sm:px-6 lg:px-8 mt-4">
-
       <div className="mx-auto max-w-5xl">
-
         {/* ================= HEADER ================= */}
         <div className="mb-6 mt-5 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#d4af37]">
               Account
             </p>
 
-            <h1 className="mt-1 text-2xl font-bold text-white">
-              My Profile
-            </h1>
+            <h1 className="mt-1 text-2xl font-bold text-white">My Profile</h1>
 
             <p className="mt-1 text-xs text-white/40">
               Manage your account information
@@ -123,9 +116,6 @@ const Profile = () => {
           </div>
 
           <div className="flex gap-2">
-
-            
-
             <button
               onClick={handleLogout}
               className="flex items-center gap-2 rounded-lg border border-red-500/20 bg-red-500/10 px-3 py-2 text-xs font-semibold text-red-400 hover:bg-red-500/20"
@@ -133,13 +123,11 @@ const Profile = () => {
               <LogOut size={14} />
               Logout
             </button>
-
           </div>
         </div>
 
         {/* ================= PROFILE MINI CARD ================= */}
         <div className="mb-5 flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-
           {/* Avatar */}
           <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#e6c65c] to-[#b89427]">
             <span className="text-2xl font-black text-[#011810]">
@@ -149,7 +137,6 @@ const Profile = () => {
 
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2">
-
               <h2 className="truncate text-lg font-bold text-white">
                 {user?.name || "User"}
               </h2>
@@ -157,7 +144,6 @@ const Profile = () => {
               <span className="rounded-full bg-[#d4af37]/10 px-2 py-0.5 text-[9px] font-bold uppercase text-[#d4af37]">
                 {user?.role || "User"}
               </span>
-
             </div>
 
             <p className="mt-1 truncate text-xs text-white/40">
@@ -171,34 +157,25 @@ const Profile = () => {
               Active
             </span>
           </div>
-
         </div>
 
         {/* ================= INFORMATION ================= */}
         <div className="mb-5">
-
           <div className="mb-3 flex items-center justify-between">
             <h3 className="text-sm font-bold text-white">
               Personal Information
             </h3>
 
-            <span className="text-[10px] text-white/30">
-              Account Details
-            </span>
+            <span className="text-[10px] text-white/30">Account Details</span>
           </div>
 
           {/* Small Boxes */}
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-
             {/* NAME */}
             <div className="rounded-xl border border-white/10 bg-white/[0.025] p-4 transition hover:border-[#d4af37]/30">
-
               <div className="mb-3 flex items-center justify-between">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#d4af37]/10">
-                  <User
-                    size={15}
-                    className="text-[#d4af37]"
-                  />
+                  <User size={15} className="text-[#d4af37]" />
                 </div>
 
                 <span className="text-[9px] uppercase tracking-wider text-white/30">
@@ -219,18 +196,13 @@ const Profile = () => {
                   {user?.name || "Not available"}
                 </p>
               )}
-
             </div>
 
             {/* EMAIL */}
             <div className="rounded-xl border border-white/10 bg-white/[0.025] p-4 transition hover:border-[#d4af37]/30">
-
               <div className="mb-3 flex items-center justify-between">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#d4af37]/10">
-                  <Mail
-                    size={15}
-                    className="text-[#d4af37]"
-                  />
+                  <Mail size={15} className="text-[#d4af37]" />
                 </div>
 
                 <span className="text-[9px] uppercase tracking-wider text-white/30">
@@ -251,18 +223,13 @@ const Profile = () => {
                   {user?.email || "Not available"}
                 </p>
               )}
-
             </div>
 
             {/* PHONE */}
             <div className="rounded-xl border border-white/10 bg-white/[0.025] p-4 transition hover:border-[#d4af37]/30">
-
               <div className="mb-3 flex items-center justify-between">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#d4af37]/10">
-                  <Phone
-                    size={15}
-                    className="text-[#d4af37]"
-                  />
+                  <Phone size={15} className="text-[#d4af37]" />
                 </div>
 
                 <span className="text-[9px] uppercase tracking-wider text-white/30">
@@ -283,18 +250,13 @@ const Profile = () => {
                   {user?.phone || "Not available"}
                 </p>
               )}
-
             </div>
 
             {/* ROLE */}
             <div className="rounded-xl border border-white/10 bg-white/[0.025] p-4 transition hover:border-[#d4af37]/30">
-
               <div className="mb-3 flex items-center justify-between">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#d4af37]/10">
-                  <Shield
-                    size={15}
-                    className="text-[#d4af37]"
-                  />
+                  <Shield size={15} className="text-[#d4af37]" />
                 </div>
 
                 <span className="text-[9px] uppercase tracking-wider text-white/30">
@@ -307,30 +269,19 @@ const Profile = () => {
                   {user?.role || "User"}
                 </p>
 
-                <CheckCircle2
-                  size={14}
-                  className="text-green-400"
-                />
+                <CheckCircle2 size={14} className="text-green-400" />
               </div>
-
             </div>
-
           </div>
         </div>
 
         {/* ================= ACCOUNT BOXES ================= */}
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-
           {/* ACCOUNT STATUS */}
           <div className="rounded-xl border border-white/10 bg-white/[0.025] p-4">
-
             <div className="flex items-center gap-3">
-
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-green-400/10">
-                <CheckCircle2
-                  size={17}
-                  className="text-green-400"
-                />
+                <CheckCircle2 size={17} className="text-green-400" />
               </div>
 
               <div>
@@ -342,20 +293,14 @@ const Profile = () => {
                   Active
                 </p>
               </div>
-
             </div>
           </div>
 
           {/* SECURITY */}
           <div className="rounded-xl border border-white/10 bg-white/[0.025] p-4">
-
             <div className="flex items-center gap-3">
-
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#d4af37]/10">
-                <Lock
-                  size={17}
-                  className="text-[#d4af37]"
-                />
+                <Lock size={17} className="text-[#d4af37]" />
               </div>
 
               <div>
@@ -367,20 +312,14 @@ const Profile = () => {
                   Protected
                 </p>
               </div>
-
             </div>
           </div>
 
           {/* USER ID */}
           <div className="rounded-xl border border-white/10 bg-white/[0.025] p-4">
-
             <div className="flex items-center gap-3">
-
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#d4af37]/10">
-                <Hash
-                  size={17}
-                  className="text-[#d4af37]"
-                />
+                <Hash size={17} className="text-[#d4af37]" />
               </div>
 
               <div className="min-w-0">
@@ -392,12 +331,9 @@ const Profile = () => {
                   #{user?.id || "N/A"}
                 </p>
               </div>
-
             </div>
           </div>
-
         </div>
-
       </div>
     </div>
   );
