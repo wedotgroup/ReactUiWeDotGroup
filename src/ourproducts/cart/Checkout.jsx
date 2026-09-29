@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { CreditCard, Lock, X, ChevronRight } from "lucide-react";
+import apiUrl from "../../api/api";
+import axios from "axios";
 
 const Checkout = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   const {
     cartItems = [],
@@ -118,73 +121,131 @@ const Checkout = () => {
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
 
+    if (loading) return;
+
     if (!validateForm()) {
       return;
     }
 
-    // TABBY
-    if (paymentMethod === "tabby") {
-      if (!selectedTabbyPlan) {
-        setShowTabbyModal(true);
-        return;
-      }
-
-      // Tabby API integration goes here
-      console.log("Tabby selected:", selectedTabbyPlan);
-
+    // Tabby/Tamara must have a selected plan before submitting.
+    if (paymentMethod === "tabby" && !selectedTabbyPlan) {
+      setShowTabbyModal(true);
       return;
     }
 
-    // TAMARA
-    if (paymentMethod === "tamara") {
-      if (!selectedTamaraPlan) {
-        setShowTamaraModal(true);
-        return;
-      }
-
-      // Tamara API integration goes here
-      console.log("Tamara selected:", selectedTamaraPlan);
-
+    if (paymentMethod === "tamara" && !selectedTamaraPlan) {
+      setShowTamaraModal(true);
       return;
     }
 
-    // CARD
-    if (paymentMethod === "card") {
-      try {
-        setLoading(true);
+    try {
+      setLoading(true);
+      setErrors((prev) => ({ ...prev, paymentMethod: "" }));
 
-        // Your Laravel order API goes here.
+      const selectedPlan =
+        paymentMethod === "tabby"
+          ? selectedTabbyPlan
+          : paymentMethod === "tamara"
+          ? selectedTamaraPlan
+          : null;
 
-        console.log("Order Data:", {
-          customer: formData,
-          cartItems,
-          subtotal,
-          discount,
-          shipping,
-          total,
-          coupon,
-          payment_method: paymentMethod,
-        });
+      
+      const paymentData = {
+        ...formData,
+        cartItems,
+        subtotal: Number(subtotal) || 0,
+        discount: Number(discount) || 0,
+        shipping: Number(shipping) || 0,
+        total: Number(total) || 0,
+        coupon: coupon || null,
+        payment_method: paymentMethod,
 
-        // Example:
-        // const response = await axios.post(
-        //     `${apiUrl}/orders`,
-        //     {
-        //         ...formData,
-        //         cartItems,
-        //         subtotal,
-        //         discount,
-        //         shipping,
-        //         total,
-        //         coupon,
-        //         payment_method: paymentMethod,
-        //     }
-        // );
-      } catch (error) {
-        console.error("Order Error:", error);
-      } finally {
-        setLoading(false);
+        payment_plan: selectedPlan
+          ? {
+              id: selectedPlan.id,
+              title: selectedPlan.title,
+              amount: Number(selectedPlan.amount) || 0,
+              fee: Number(selectedPlan.fee) || 0,
+            }
+          : null,
+
+        payment_plan_id: selectedPlan?.id ?? null,
+        payment_plan_title: selectedPlan?.title ?? null,
+        payment_installments:
+          selectedPlan && selectedPlan.id !== "full"
+            ? Number(selectedPlan.id)
+            : null,
+        payment_plan_amount: selectedPlan
+          ? Number(selectedPlan.amount) || 0
+          : null,
+        payment_plan_fee: selectedPlan
+          ? Number(selectedPlan.fee) || 0
+          : 0,
+      };
+
+      console.log("Payment Request:", paymentData);
+
+      const response = await axios.post(
+        `${apiUrl}/order`,
+        paymentData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+             Authorization: `Bearer ${token}`,
+             Accept: "application/json",
+          },
+        }
+      );
+
+      const data = response?.data || {};
+
+      console.log("Payment Response:", data);
+
+      if (data.success === false) {
+        throw new Error(data.message || "Payment could not be created.");
       }
+
+      // Tabby/Tamara normally return a checkout URL. Redirect the customer there.
+      if (data.redirect_url || data.checkout_url || data.payment_url) {
+        window.location.href =
+          data.redirect_url || data.checkout_url || data.payment_url;
+        return;
+      }
+
+      // Some card gateways may return a hosted payment URL in nested data.
+      if (
+        data.data?.redirect_url ||
+        data.data?.checkout_url ||
+        data.data?.payment_url
+      ) {
+        window.location.href =
+          data.data.redirect_url ||
+          data.data.checkout_url ||
+          data.data.payment_url;
+        return;
+      }
+
+     
+      const successMessage =
+        data.message || "Payment request created successfully.";
+
+      alert(successMessage);
+    } catch (error) {
+      console.error("Payment Error:", error);
+
+      const message =
+        error?.response?.data?.message ||
+        error?.response?.data?.error ||
+        error?.response?.data?.errors?.payment_method?.[0] ||
+        error?.message ||
+        "Something went wrong while creating the payment.";
+
+      setErrors((prev) => ({
+        ...prev,
+        paymentMethod: message,
+      }));
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -1017,7 +1078,6 @@ const Checkout = () => {
 
                   setShowTabbyModal(false);
 
-                  console.log("Selected Tabby Plan:", selectedTabbyPlan);
                 }}
                 className="w-full mt-7 bg-[#011810] text-white py-3.5 rounded-xl text-sm font-semibold leading-5 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[#02281c] transition"
               >
@@ -1437,7 +1497,6 @@ const Checkout = () => {
 
                   setShowTamaraModal(false);
 
-                  console.log("Selected Tamara Plan:", selectedTamaraPlan);
                 }}
                 className="w-full mt-7 bg-[#011810] text-white py-3.5 rounded-xl text-sm font-semibold leading-5 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[#02281c] transition"
               >

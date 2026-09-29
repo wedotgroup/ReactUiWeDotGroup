@@ -1,4 +1,4 @@
-const apiUrl = `https://adminpanel.wedotgroup.in/api`;
+const apiUrl = `http://127.0.0.1:8000/api`;
 export default apiUrl;
 
 
