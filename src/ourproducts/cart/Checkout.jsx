@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { CreditCard, Lock, X, ChevronRight } from "lucide-react";
+import { Lock, X, ChevronRight } from "lucide-react";
 import apiUrl from "../../api/api";
 import axios from "axios";
 
@@ -39,6 +39,7 @@ const Checkout = () => {
   const [selectedTamaraPlan, setSelectedTamaraPlan] = useState(null);
 
   const [loading, setLoading] = useState(false);
+  const [paymentError, setPaymentError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,6 +53,8 @@ const Checkout = () => {
       ...prev,
       [name]: "",
     }));
+
+    setPaymentError("");
   };
 
   const validateForm = () => {
@@ -99,6 +102,7 @@ const Checkout = () => {
       ...prev,
       paymentMethod: "",
     }));
+    setPaymentError("");
 
     if (method === "tabby") {
       setSelectedTabbyPlan(null);
@@ -111,19 +115,22 @@ const Checkout = () => {
       setShowTamaraModal(true);
       setShowTabbyModal(false);
     }
-
-    if (method === "card") {
-      setShowTabbyModal(false);
-      setShowTamaraModal(false);
-    }
   };
 
-  const handlePlaceOrder = async (e) => {
-    e.preventDefault();
-
+  const handlePayment = async () => {
     if (loading) return;
 
+    setPaymentError("");
+
     if (!validateForm()) {
+      return;
+    }
+
+    if (paymentMethod !== "tabby" && paymentMethod !== "tamara") {
+      setErrors((prev) => ({
+        ...prev,
+        paymentMethod: "Please select Tabby or Tamara.",
+      }));
       return;
     }
 
@@ -146,10 +153,9 @@ const Checkout = () => {
         paymentMethod === "tabby"
           ? selectedTabbyPlan
           : paymentMethod === "tamara"
-          ? selectedTamaraPlan
-          : null;
+            ? selectedTamaraPlan
+            : null;
 
-      
       const paymentData = {
         ...formData,
         cartItems,
@@ -178,24 +184,22 @@ const Checkout = () => {
         payment_plan_amount: selectedPlan
           ? Number(selectedPlan.amount) || 0
           : null,
-        payment_plan_fee: selectedPlan
-          ? Number(selectedPlan.fee) || 0
-          : 0,
+        payment_plan_fee: selectedPlan ? Number(selectedPlan.fee) || 0 : 0,
       };
 
       console.log("Payment Request:", paymentData);
-
-      const response = await axios.post(
-        `${apiUrl}/order`,
-        paymentData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-             Authorization: `Bearer ${token}`,
-             Accept: "application/json",
-          },
-        }
-      );
+      const endpoint =
+        paymentMethod === "tabby"
+          ? `${apiUrl}/payment/tabby`
+          : `${apiUrl}/payment/tamara`;
+          
+      const response = await axios.post(endpoint, paymentData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
+      });
 
       const data = response?.data || {};
 
@@ -205,43 +209,74 @@ const Checkout = () => {
         throw new Error(data.message || "Payment could not be created.");
       }
 
-      if (data.redirect_url || data.checkout_url || data.payment_url) {
-        window.location.href =
-          data.redirect_url || data.checkout_url || data.payment_url;
-        return;
-      }
-
-      if (
+      const checkoutUrl =
+        data.redirect_url ||
+        data.checkout_url ||
+        data.payment_url ||
         data.data?.redirect_url ||
         data.data?.checkout_url ||
-        data.data?.payment_url
-      ) {
-        window.location.href =
-          data.data.redirect_url ||
-          data.data.checkout_url ||
-          data.data.payment_url;
+        data.data?.payment_url ||
+        data.tabby?.web_url ||
+        data.tabby?.checkout_url ||
+        data.tamara?.checkout_url ||
+        data.tamara?.web_url;
+
+      if (checkoutUrl) {
+        window.location.href = checkoutUrl;
         return;
       }
 
-     
-      const successMessage =
-        data.message || "Payment request created successfully.";
-
-      alert(successMessage);
+      throw new Error(
+        data.message || "Payment checkout URL was not returned by the server.",
+      );
     } catch (error) {
       console.error("Payment Error:", error);
 
-      const message =
-        error?.response?.data?.message ||
-        error?.response?.data?.error ||
-        error?.response?.data?.errors?.payment_method?.[0] ||
-        error?.message ||
-        "Something went wrong while creating the payment.";
+      let message = "Unable to process payment. Please try again.";
+      const responseData = error?.response?.data;
 
-      setErrors((prev) => ({
-        ...prev,
-        paymentMethod: message,
-      }));
+      if (responseData) {
+        if (responseData.message) {
+          message = responseData.message;
+        } else if (responseData.error) {
+          message =
+            typeof responseData.error === "string"
+              ? responseData.error
+              : JSON.stringify(responseData.error);
+        } else if (responseData.errors) {
+          const validationMessages = Object.values(responseData.errors)
+            .flatMap((value) => (Array.isArray(value) ? value : [value]))
+            .filter(Boolean)
+            .map((value) => String(value));
+
+          if (validationMessages.length) {
+            message = validationMessages.join("\n");
+          }
+        }
+
+        if (error?.response?.status === 401) {
+          message =
+            responseData.message ||
+            "Authentication failed. Please login again.";
+        } else if (error?.response?.status === 403) {
+          message =
+            responseData.message ||
+            "You are not authorized to make this payment.";
+        } else if (error?.response?.status === 404) {
+          message =
+            responseData.message || "Payment API endpoint was not found.";
+        } else if (error?.response?.status >= 500) {
+          message =
+            responseData.message || "Server error. Please try again later.";
+        }
+      } else if (error?.request) {
+        message =
+          "Unable to connect to the server. Please check your internet connection.";
+      } else if (error?.message) {
+        message = error.message;
+      }
+
+      setPaymentError(message);
     } finally {
       setLoading(false);
     }
@@ -290,7 +325,38 @@ const Checkout = () => {
           <h1 className="text-3xl font-bold text-[#011810] mt-3">Checkout</h1>
         </div>
 
-        <form onSubmit={handlePlaceOrder}>
+        {paymentError && (
+          <div
+            className="mb-6 rounded-xl border border-red-200 bg-red-50 p-4 shadow-sm"
+            role="alert"
+          >
+            <div className="flex items-start gap-3">
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-red-100 text-red-700 font-bold">
+                !
+              </div>
+
+              <div className="flex-1 min-w-0">
+                <h3 className="text-sm font-bold text-red-800">
+                  Payment Failed
+                </h3>
+                <p className="mt-1 whitespace-pre-line break-words text-sm text-red-700">
+                  {paymentError}
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setPaymentError("")}
+                className="shrink-0 text-xl leading-none text-red-500 hover:text-red-700"
+                aria-label="Close error"
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        )}
+
+        <form onSubmit={(e) => e.preventDefault()}>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-6">
               <div className="bg-white rounded-2xl p-6 shadow-sm">
@@ -497,27 +563,13 @@ const Checkout = () => {
                   Choose your preferred payment method.
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                  {/* CARD */}
+                {errors.paymentMethod && (
+                  <p className="mt-3 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">
+                    {errors.paymentMethod}
+                  </p>
+                )}
 
-                  <button
-                    type="button"
-                    onClick={() => handlePaymentMethod("card")}
-                    className={`text-left rounded-xl border p-5 transition ${
-                      paymentMethod === "card"
-                        ? "border-[#011810] bg-[#011810]/5"
-                        : "border-gray-200 hover:border-gray-400"
-                    }`}
-                  >
-                    <CreditCard size={25} className="text-[#011810]" />
-
-                    <h3 className="font-semibold mt-3">Credit / Debit Card</h3>
-
-                    <p className="text-xs text-gray-500 mt-1">
-                      Visa, Mastercard and more
-                    </p>
-                  </button>
-
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                   {/* TABBY */}
 
                   <button
@@ -554,11 +606,11 @@ const Checkout = () => {
                     }`}
                   >
                     <div className="font-bold text-lg">
-                       <img
-                      src="/logo/tamara.png"
-                      alt="Tabby"
-                      className="w-[100px] h-[100px] object-contain"
-                    />
+                      <img
+                        src="/logo/tamara.png"
+                        alt="Tabby"
+                        className="w-[100px] h-[100px] object-contain"
+                      />
                     </div>
 
                     <h3 className="font-semibold mt-3">Pay with Tamara</h3>
@@ -709,18 +761,26 @@ const Checkout = () => {
                   </div>
                 </div>
 
-                {/* PLACE ORDER */}
+                {/* PAYMENT BUTTON */}
 
                 <button
-                  type="submit"
-                  disabled={loading}
+                  type="button"
+                  disabled={loading || !paymentMethod}
+                  onClick={handlePayment}
                   className="w-full mt-6 bg-[#011810] text-white py-4 rounded-xl font-semibold hover:bg-[#02281c] transition disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {loading ? "Processing..." : "Place Order"}
+                  {loading
+                    ? "Processing..."
+                    : paymentMethod === "tabby"
+                      ? "Continue with Tabby"
+                      : paymentMethod === "tamara"
+                        ? "Continue with Tamara"
+                        : "Select Payment Method"}
                 </button>
 
                 <p className="text-xs text-gray-400 text-center mt-4">
-                  By placing your order, you agree to our terms and conditions.
+                  You will be redirected to the selected payment provider to
+                  complete your payment.
                 </p>
               </div>
             </div>
@@ -1075,7 +1135,7 @@ const Checkout = () => {
                   if (!selectedTabbyPlan) return;
 
                   setShowTabbyModal(false);
-
+                  handlePayment();
                 }}
                 className="w-full mt-7 bg-[#011810] text-white py-3.5 rounded-xl text-sm font-semibold leading-5 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[#02281c] transition"
               >
@@ -1494,7 +1554,7 @@ const Checkout = () => {
                   if (!selectedTamaraPlan) return;
 
                   setShowTamaraModal(false);
-
+                  handlePayment();
                 }}
                 className="w-full mt-7 bg-[#011810] text-white py-3.5 rounded-xl text-sm font-semibold leading-5 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[#02281c] transition"
               >
