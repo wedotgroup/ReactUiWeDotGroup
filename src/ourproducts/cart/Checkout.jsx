@@ -192,8 +192,11 @@ const Checkout = () => {
         paymentMethod === "tabby"
           ? `${apiUrl}/payment/tabby`
           : `${apiUrl}/payment/tamara`;
-          
-      const response = await axios.post(endpoint, paymentData, {
+
+      console.log("Payment Endpoint:", endpoint);
+      console.log("Payment Request:", paymentData);
+
+      const response = await axios.post(endpoint,paymentData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,

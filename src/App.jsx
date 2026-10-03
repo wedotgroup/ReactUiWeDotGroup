@@ -15,7 +15,7 @@ import ServiceDeliveryPolicy from "./pages/footers/ServiceDeliveryPolicy";
 import PaymentPolicy from "./pages/footers/PaymentPolicy";
 import Disclaimer from "./pages/footers/Disclaimer";
 import ManagementCounsultancy from "./pages/footers/ManagementCounsultancy";
-import ItCounsultancyfooter from "./pages/footers/ItCounsultancyfooter"
+import ItCounsultancyfooter from "./pages/footers/ItCounsultancyfooter";
 import Certifications from "./pages/Certifications";
 import ISOCertifications from "./pages/certifications/ISOCertifications";
 import ESGCertification from "./pages/certifications/ESGCertification";
@@ -26,84 +26,95 @@ import TrademarkRegistration from "./pages/certifications/TrademarkRegistration"
 // import SingIn from "./ourproducts/auth/SingIn";
 import ProductListing from "./ourproducts/products/ProductListing";
 import ProductDetails from "./ourproducts/products/ProductDetails";
-import AddToCart from "./ourproducts/cart/AddToCart"
+import AddToCart from "./ourproducts/cart/AddToCart";
 import ProtectedRoute from "./middleware/ProtectedRoute";
 import Profile from "./ourproducts/auth/Profile";
 import Checkout from "./ourproducts/cart/Checkout";
-
-
+import TabbyCancelPayment from "./pages/tabbys/TabbyCancelPayment";
+import TabbySuccessPayment from "./pages/tabbys/TabbySuccessPayment";
+import TabbyFailedPayment from "./pages/tabbys/TabbyFailedPayment";
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
 
   if (showSplash) {
-    return (
-      <SplashScreen
-        onFinish={() => setShowSplash(false)}
-      />
-    );
+    return <SplashScreen onFinish={() => setShowSplash(false)} />;
   }
-  
+
   return (
     <Routes>
-
       {/* Home */}
-      <Route
-        path="/"
-        element={<LandingPage />}
-      />
+      <Route path="/" element={<LandingPage />} />
 
       {/* Main Layout */}
       <Route element={<Master />}>
+        <Route path="/about" element={<AboutUs />} />
 
-        <Route
-          path="/about"
-          element={<AboutUs />}
-        />
+        <Route path="/contact" element={<ContactUs />} />
 
-        <Route
-          path="/contact"
-          element={<ContactUs />}
-        />
-
-        <Route
-          path="/hr-consultancy"
-          element={<HrConsultancy />}
-        />
+        <Route path="/hr-consultancy" element={<HrConsultancy />} />
         <Route
           path="/management-consultancy/:slug"
           element={<ManageConsultancy />}
         />
+        <Route path="/it-consultancy/:slug" element={<ItConsultancy />} />
+        <Route path="/privacy-policy" element={<PrivecyPolice />} />
+        <Route path="/terms-conditions" element={<TermCondition />} />
+        <Route path="/refund-cancellation-policy" element={<RFCPolicy />} />
         <Route
-          path="/it-consultancy/:slug"
-          element={<ItConsultancy />}
+          path="/service-delivery-policy"
+          element={<ServiceDeliveryPolicy />}
         />
-        <Route path="/privacy-policy" element={<PrivecyPolice/>}/>
-        <Route path="/terms-conditions" element={<TermCondition/>}/>
-        <Route path="/refund-cancellation-policy" element={<RFCPolicy/>}/>
-        <Route path="/service-delivery-policy" element={<ServiceDeliveryPolicy/>}/>
-        <Route path="/payment-policy" element={<PaymentPolicy/>}/>
-        <Route path="/disclaimer" element={<Disclaimer/>}/>
-        <Route path="/management-consultancy" element={<ManagementCounsultancy/>}/>
-        <Route path="/itconsultancy" element={<ItCounsultancyfooter/>}/>
-        <Route path="/certifications" element={<Certifications/>}/>
-        <Route path="/certifications/iso-certifications" element={<ISOCertifications/>}/>
-        <Route path="/certifications/trademark-registration" element={<TrademarkRegistration/>}/>
-        <Route path="/certifications/fssai" element={<FSSAI/>}/>
-        <Route path="/certifications/isi-certification" element={<ISICertification/>}/>
-        <Route path="/certifications/esg-certification" element={<ESGCertification/>}/>
-        <Route path="/certifications/social-labour-compliance" element={<SocialLabourCompliance/>}/>
-        <Route path="/products" element={<ProductListing/>}/>
-        <Route path="/products/:slug" element = {<ProductDetails/>}/>
+        <Route path="/payment-policy" element={<PaymentPolicy />} />
+        <Route path="/disclaimer" element={<Disclaimer />} />
+        <Route
+          path="/management-consultancy"
+          element={<ManagementCounsultancy />}
+        />
+        <Route path="/itconsultancy" element={<ItCounsultancyfooter />} />
+        <Route path="/certifications" element={<Certifications />} />
+        <Route
+          path="/certifications/iso-certifications"
+          element={<ISOCertifications />}
+        />
+        <Route
+          path="/certifications/trademark-registration"
+          element={<TrademarkRegistration />}
+        />
+        <Route path="/certifications/fssai" element={<FSSAI />} />
+        <Route
+          path="/certifications/isi-certification"
+          element={<ISICertification />}
+        />
+        <Route
+          path="/certifications/esg-certification"
+          element={<ESGCertification />}
+        />
+        <Route
+          path="/certifications/social-labour-compliance"
+          element={<SocialLabourCompliance />}
+        />
+        <Route path="/products" element={<ProductListing />} />
+        <Route path="/products/:slug" element={<ProductDetails />} />
 
-        <Route element={<ProtectedRoute/>}>
-        <Route path ="/cart" element = {<AddToCart/>}/>
-        <Route path="/profile" element={<Profile/>}/>
-        <Route path="/checkout"  element={<Checkout/>}/>
+        <Route element={<ProtectedRoute />}>
+          <Route path="/cart" element={<AddToCart />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route
+            path="/payment/tabby/cancel"
+            element={<TabbyCancelPayment />}
+          />
+          <Route
+            path="/payment/tabby/success"
+            element={<TabbySuccessPayment />}
+          />
+          <Route
+            path="/payment/tabby/failure"
+            element={<TabbyFailedPayment />}
+          />
         </Route>
-
       </Route>
-
     </Routes>
   );
 }
